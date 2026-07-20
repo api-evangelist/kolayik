@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: searched
+source: https://apidocs.kolayik.com/
+docs: https://apidocs.kolayik.com/
+summary:
+  types:
+  - http
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Kolay Public API requests are authenticated with a personal API token
+    sent as `Authorization: Bearer <TOKEN>`. The collection-level auth in the official
+    Postman collection is declared as bearer.'
+  token_issuance: https://app.kolayik.com/settings/developer-settings
+  sources:
+  - openapi/kolayik-public-api-openapi.yml
+  - postman/kolayik-public-api-postman.json
+notes:
+- 'Tokens are self-service: the API documentation instructs developers to create an
+  API token from the in-product developer settings screen at https://app.kolayik.com/settings/developer-settings.'
+- No OAuth 2.0, OpenID Connect, mutualTLS or api-key-in-query scheme is documented
+  for the public API; bearer token is the only published mechanism.
+- 'Authorization is bounded by the Kolay person access type of the account the token
+  belongs to (documented in the collection''s "Additional Information" section): owner
+  = full read/write on all employees; manager = same as owner except adding/removing
+  payment and tax details; employee = own information only. Kolay publishes no OAuth
+  scope surface, so scopes/ is intentionally absent.'
+support_contact: apisupport@kolay.io
