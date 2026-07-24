@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Timelog API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Timelog
+paths:
+  /v2/timelog/create:
+    post:
+      operationId: timelogCreate
+      summary: Create a timelog
+      description: You can create a new timelog record with the endpoint.
+      tags:
+      - Timelog
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-11-23 12:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-11-23 15:00:00'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 061dfecf1e1c0a3f6b5b98d1a2a029ab
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Testing
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: work
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+  /v2/timelog/list:
+    post:
+      operationId: timelogList
+      summary: List timelogs
+      tags:
+      - Timelog
+      parameters:
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 066626006c27aa1296ac34bdf14d730b
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: overtime
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: waiting
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-09-29 23:59:59'
+      - name: sortType
+        in: query
+        required: false
+        schema:
+          type: string
+        example: startDate
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+        example: desc
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 3dcf6d271a907bc4bb58d8c14a8fa4cb
+                    createdAt: '2022-09-23 15:36:03'
+                    updatedAt: '2022-09-23 15:36:03'
+                    startDate: '2022-09-23 18:00:00'
+                    endDate: '2022-09-23 20:00:00'
+                    usedMinute: 120
+                    personId: 066626006c27aa1296ac34bdf14d730b
+                    description: hello timelog
+                    convertType: unconverted
+                    status: waiting
+                    type: overtime
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/timelog/view/{id}:
+    get:
+      operationId: timelogView
+      summary: View a timelog
+      tags:
+      - Timelog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+                  createdAt: '2020-11-20 18:52:02'
+                  updatedAt: '2020-11-20 18:52:02'
+                  startDate: '2020-11-22 12:00:00'
+                  endDate: '2020-11-22 15:00:00'
+                  usedMinute: 180
+                  personId: 061dfecf1e1c0a3f6b5b98d1a2a029ab
+                  description: Testing
+                  type: overtime
+                  convertType: unconverted
+                  status: approved
+  /v2/timelog/delete/{id}:
+    delete:
+      operationId: timelogDelete
+      summary: Delete a timelog record
+      tags:
+      - Timelog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

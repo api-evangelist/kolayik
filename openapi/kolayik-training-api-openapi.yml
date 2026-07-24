@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Training API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Training
+paths:
+  /v2/training/create:
+    post:
+      operationId: trainingCreate
+      summary: Create a training
+      tags:
+      - Training
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: c28ac0865bb5f100098b879df1a1e0d6
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: lorem dolor sit amet
+                  createdAt: '2022-09-15 17:19:01'
+                  updatedAt: '2022-09-15 17:19:01'
+  /v2/training/view/{id}:
+    get:
+      operationId: trainingView
+      summary: View a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: e93331bc92cc5aecec7a86fd19a96193
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: null
+                  createdAt: '2022-09-15 14:55:44'
+                  updatedAt: '2022-09-15 14:55:44'
+  /v2/training/list:
+    get:
+      operationId: trainingList
+      summary: List training
+      tags:
+      - Training
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Sales Training
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 61e0c7c6ca425859cb9bb82f4e2b9600
+                    title: Meeting with John Doe
+                    start: '2022-09-15 16:00:00'
+                    end: '2022-09-15 17:00:00'
+                    comment: lorem dolor sit amet
+                    createdAt: '2022-09-15 15:07:38'
+                    updatedAt: '2022-09-15 15:07:38'
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/training/update/{id}:
+    put:
+      operationId: trainingUpdate
+      summary: Update a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/training/delete/{id}:
+    delete:
+      operationId: trainingDelete
+      summary: Delete a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

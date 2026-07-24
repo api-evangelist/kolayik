@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Profile API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Profile
+paths:
+  /v2/profile/me:
+    get:
+      operationId: profileMe
+      summary: Me
+      description: Get basic info about authenticated person
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: def06a1d21cd7db749f0d8d6aab271ec
+                  firstName: John
+                  lastName: Doe
+                  email: test@kolayhr.com
+                  workEmail: ''
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

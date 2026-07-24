@@ -1,0 +1,142 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Unit API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Unit
+paths:
+  /v2/unit/create-unit-item:
+    post:
+      operationId: unitCreateUnitItem
+      summary: Create a unit item
+      description: You can create a new unit item via this endpoint. You should provide either unitName or unitId.
+      tags:
+      - Unit
+      parameters:
+      - name: unitId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 621724be9cd14d5a6521d81ea2d403311
+      - name: unitName
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Location
+      - name: unitItemName
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Amsterdam
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 57c1a04dbac5203a9c0c6641c7328f3d
+                  name: Bursa
+  /v2/unit/show-unit-tree:
+    get:
+      operationId: unitShowUnitTree
+      summary: Show unit tree
+      description: 'See all available units and their items.
+
+
+        Sequence starts from 0 if the account is a holding account, 1 if otherwise.'
+      tags:
+      - Unit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 976ef279a18acaa22d471b525887d9c3
+                  name: Şirket
+                  sequence: 1
+                  items:
+                  - id: 27205ab204f538237fdbc2e2c3e53df1
+                    name: Gleichner-Gislason
+                  - id: bc290d887974bb84c21b9bd1c41d926c
+                    name: Prohaska PLC
+                - id: 837ab12fcfd5171f9bfefd19fa84ea61
+                  name: Şube
+                  sequence: 2
+                  items:
+                  - id: e1996820b1f62f41b5d717d402a81bb0
+                    name: Istanbul
+                  - id: 96fbcaaf1523eebb186e0a82648d3871
+                    name: Justinaville
+                  - id: d5c2e95617b2130307fd0c335505d44d
+                    name: North Danikaport
+                  - id: 7bbbd6f4492e5074821ea01adbe2a00f
+                    name: South Annamae
+                - id: 621724be9cd14d5a6521d81ea2d40331
+                  name: Departman
+                  sequence: 3
+                  items:
+                  - id: 0980792af93fc57e05449267809cfb12
+                    name: Finance
+                  - id: a13e236ddc0f7158e6974dc1f2ee1208
+                    name: Marketing
+                  - id: 32dcfc1242a324710306005474fe5a0c
+                    name: Sales
+                  - id: 6b25443768eeb256112ae687dde2e622
+                    name: Software Development
+                - id: d487b67d56b9715ffe8bffa86d7aead9
+                  name: Unvan
+                  sequence: 4
+                  items:
+                  - id: 484db808121a6d50c36aed742c8f13a7
+                    name: Electronic Drafter
+                  - id: e74430f918fe08bf8ce50cfb198911f5
+                    name: Hoist and Winch Operator
+                  - id: 035119a20810af02ba28d5fdf3e6a87c
+                    name: Industrial-Organizational Psychologist
+                  - id: d5abb90019f69da9a5ebc190928af80b
+                    name: Nuclear Equipment Operation Technician
+                  - id: 276a1b248723d54e811f64bb84951b00
+                    name: Veterinary Technician
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

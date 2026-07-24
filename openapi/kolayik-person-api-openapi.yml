@@ -1,0 +1,842 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Person API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Person
+paths:
+  /v2/person/create:
+    post:
+      operationId: personCreate
+      summary: Create a person
+      description: "You can create a single person with all the basic information populated. Only the firstName and the lastName fields are mandatory, others are optional. All skipped fields default to null unless otherwise stated.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system.\n\nemploymentType fulltime parttime intern freelance daily contracted mobile\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]\n\nperson.compensationList\nYou can use this field to provide compensation and salary information for the person. It only accepts an array of objects. So you can use this field to add all historical compensation data, it this case only the 'active: true' one will be the current.\n\npayPeriod monthly daily yearly weekly hourly\ntype bonus food transportation healthInsurance personalRetirement\n\n[\n            {\n                \"amount\": 1250.50,\n                \"payPeriod\": \"monthly\",\n                \"gross\": true,\n                \"currency\": \"TL\",\n                \"comment\": \"Starting salary\",\n                \"active\": true,\n                \"effectiveOn\": \"2020-08-13\",\n                \"items\": [\n                    {\n                        \"amount\": 250,\n                        \"type\": \"food\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Cash for food\",\n                        \"payPeriod\": \"monthly\"\n                    },\n                    {\n                        \"amount\": 50,\n                        \"type\": \"transportation\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Top-up cost for public transportation\",\n                        \"payPeriod\": \"monthly\"\n                    }\n                ]\n            }\n        ]\n\noptions\n\nsendWelcomeEmail can be true or false, if true an e-mail will be sent welcoming the person with a link to login. (default: false)"
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person:
+                firstName: Lorem
+                lastName: Ipsum
+                email: loremipsum0@gmail.com
+                workEmail: lorem.ipsum0@kolayhr.com
+                workPhone: '+902120000000'
+                workPhoneCountryCode: TR
+                mobilePhone: '+905550000000'
+                mobilePhoneCountryCode: TR
+                employmentStartDate: '2020-08-13'
+                contractType: definite
+                contractEndDate: '2021-08-13'
+                birthday: '1993-06-16'
+                idNumber: '2871376222213131'
+                maritalStatus: married
+                gender: female
+                levelOfDisability: firstLevel
+                educationLevel: associate
+                educationStatus: graduate
+                educationalInstitution: Istanbul Technical University
+                nationality: TR
+                numberOfChildren: 1
+                militaryService: null
+                militaryServiceDelayDate: null
+                accessType: employee
+                partnerWorkStatus: working
+                bloodType: A-
+                dataList:
+                - fieldToken: adres
+                  value: Selam Sok. 33/4
+                - fieldToken: evTelefonu
+                  value: '02123456666'
+                compensationList:
+                - amount: 1250.5
+                  payPeriod: monthly
+                  gross: true
+                  currency: TL
+                  comment: Starting salary
+                  active: true
+                  effectiveOn: '2020-08-13'
+                  items:
+                  - amount: 250
+                    type: food
+                    currency: TL
+                    affectPayroll: true
+                    gross: true
+                    comment: Cash for food
+                    payPeriod: monthly
+                  - amount: 50
+                    type: transportation
+                    currency: TL
+                    affectPayroll: true
+                    gross: true
+                    comment: Top-up cost for public transportation
+                    payPeriod: monthly
+                unitList:
+                - startDate: '2020-08-13'
+                  endDate: '2020-08-14'
+                  employmentType: fulltime
+                  managerId: null
+                  default: true
+                  items:
+                  - unitName: Şirket
+                    unitItemName: Smith Group
+                  - unitName: Şube
+                    unitItemName: Lake Isomberg
+                  - unitName: Departman
+                    unitItemName: champlin
+                  - unitName: Unvan
+                    unitItemName: Construction Laborer
+              options:
+                sendWelcomeEmail: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 4fbbe363dbb6587af080ab90d4fec8e3
+                    firstName: Lorem
+                    lastName: Ipsum
+                  options: []
+  /v2/person/update:
+    put:
+      operationId: personUpdate
+      summary: Update a person
+      description: "You can update the details of a single person. Only the id is mandatory, other fields will be updated if provided. In order to remove a value from the object, you should send it as null.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system. Items will be removed if not included that has already been sent while creating. So the given array will be the final list of units.\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]"
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person:
+                id: 57a53d44282598ff0298103381df8190
+                dataList:
+                - fieldToken: sonIseBaslamaTarihi
+                  value: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 06ccf23835a39d79d3caaf9ea9ec4497
+                    firstName: Lorem
+                    lastName: Ipsum
+  /v2/person/view/{id}:
+    get:
+      operationId: personView
+      summary: View a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 4ff2f2aceb367e31129cacd0ed84caf8
+                    firstName: Lorem
+                    lastName: Ipsum
+                    email: asd@gmail.com
+                    workEmail: lorem.ipsum111@kolayhr.com
+                    mobilePhone: '+95550000000'
+                    workPhone: '+905320000000'
+                    gender: female
+                    accessType: employee
+                    nationality: TR
+                    idNumber: '47557546902'
+                    employmentStartDate: '2020-08-13'
+                    contractType: definite
+                    contractEndDate: '2021-08-13'
+                    birthday: '1993-06-16'
+                    maritalStatus: married
+                    partnerWorkStatus: working
+                    militaryService: null
+                    militaryServiceDelayDate: null
+                    educationLevel: associate
+                    educationStatus: graduate
+                    educationalInstitution: Istanbul Technical University
+                    status: active
+                    tourStatus: null
+                    createdAt: '2020-10-16 12:08:54'
+                    updatedAt: '2020-10-16 12:18:34'
+                    levelOfDisability: firstLevel
+                    numberOfChildren: 1
+                    bloodType: A-
+                    unitList:
+                    - startDate: '2020-08-13 00:00:00'
+                      endDate: '2020-08-14 00:00:00'
+                      employmentType: fulltime
+                      managerId: null
+                      default: true
+                      active: false
+                      items:
+                      - unitItemId: bc290d887974bb84c21b9bd1c41d926c
+                        unitItemName: Prohaska PLC
+                        unitId: 976ef279a18acaa22d471b525887d9c3
+                        unitName: Şirket
+                      - unitItemId: e1996820b1f62f41b5d717d402a81bb0
+                        unitItemName: Istanbul
+                        unitId: 837ab12fcfd5171f9bfefd19fa84ea61
+                        unitName: Şube
+                      - unitItemId: 32dcfc1242a324710306005474fe5a0c
+                        unitItemName: Sales
+                        unitId: 621724be9cd14d5a6521d81ea2d40331
+                        unitName: Departman
+                      - unitItemId: 484db808121a6d50c36aed742c8f13a7
+                        unitItemName: Electronic Drafter
+                        unitId: d487b67d56b9715ffe8bffa86d7aead9
+                        unitName: Unvan
+                    dataList:
+                    - fieldId: ee438332b46f4f05b5206dfdd45b7b38
+                      fieldToken: adres
+                      value: Selam Sok. 33/4
+                    - fieldId: 2a28971aa153d132daf5149685bdcc5a
+                      fieldToken: evTelefonu
+                      value: '02123456666'
+  /v2/person/leave-status/{id}:
+    get:
+      operationId: personLeaveStatus
+      summary: Get leave statuses
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 41f4a56152fe882225b5f268c91e7d42
+                  name: Doğum Sonrası İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: fd4a0ba24cc9a1b1036542ff36ebffb0
+                  name: Yıllık İzin
+                  primary: true
+                  term: 10
+                  carriedOver: 142
+                  lastCarriedOver: 150
+                  currentEarned: 20
+                  currentUsed: 8
+                  loss: 0
+                  total: 170
+                  used: 8
+                  unused: 162
+                  leaveBonus: 0
+                  active: true
+                - id: a2372ea524020cf25e22eece8c1a2b27
+                  name: Vefat İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 72991804e9974eff5c7a87b4a85dccb6
+                  name: 'Süt izni '
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 0650b70a279d87fcc05569e338a0240b
+                  name: Mazeret İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 5
+                  currentUsed: 0
+                  loss: 50
+                  total: 55
+                  used: 0
+                  unused: 5
+                  leaveBonus: 0
+                  active: true
+                - id: 3fbd9331bb99f351b4819efcb7c9c8c9
+                  name: İş Arama İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 0fbabaac1926adc552e045b3a5622b35
+                  name: Evlilik İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 4759e2b406f1eddf9adf5e0e21d6282f
+                  name: Doğum İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: cf89babe960a9a56882725d001395a3d
+                  name: Babalık İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 36b944b74a1c3678789e8dd5a556f713
+                  name: Yol İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 4
+                  currentUsed: 0
+                  loss: 40
+                  total: 44
+                  used: 0
+                  unused: 4
+                  leaveBonus: 0
+                  active: true
+                - id: df42b0121cdd5a1e9c3300c2101f4c44
+                  name: Hastalık İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 40
+                  currentUsed: 0
+                  loss: 423.3
+                  total: 463.3
+                  used: 0
+                  unused: 40
+                  leaveBonus: 0
+                  active: true
+                - id: 361c0d29e9c754cfb7b3cae003b54742
+                  name: Ücretsiz İzin
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 728cbb6fef0bb1297167427e92e44036
+                  name: Askerlik İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+  /v2/person/view-summary/{id}:
+    get:
+      operationId: personViewSummary
+      summary: View summary of a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 25315e13ade7f3ab5a86eea6df0e5241
+                    firstName: Black
+                    lastName: Smoke
+                    avatar: https://kolayik.s3.eu-central-1.amazonaws.com/.../black_smoke.jpg
+                    email: null
+                    workEmail: black.smoke@kolayhr.com
+                    mobilePhone: ''
+                    workPhone: +90 3258561101
+                    currentUnit:
+                    - unitName: Company
+                      unitItemName: Acme Energy
+                    - unitName: Location
+                      unitItemName: Germany
+                    - unitName: Department
+                      unitItemName: Management
+                    - unitName: Position
+                      unitItemName: Database Engineer
+                    manager:
+                      id: 406de4c888921d7d63d39a7856eab849
+                      firstName: Ben
+                      lastName: Linus
+                      workEmail: ben.linus@kolayhr.com
+                    customFields:
+                    - fieldToken: Telegram Username
+                      value: blacksmk02
+  /v2/person/bulk-view:
+    post:
+      operationId: personBulkView
+      summary: View bulk person
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person_ids:
+              - '10175545312'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list:
+    post:
+      operationId: personList
+      summary: List people
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                q:
+                  type: string
+                page:
+                  type: string
+                employmentStartDate[from]:
+                  type: string
+                employmentStartDate[to]:
+                  type: string
+                employmentTerminationDate[from]:
+                  type: string
+                employmentTerminationDate[to]:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  total: 2
+                  perPage: 60
+                  currentPage: 1
+                  lastPage: 1
+                  items:
+                  - id: def06a1d21cd7db749f0d8d6aab271ec
+                    firstName: John
+                    lastName: Doe
+                  - id: f997b27ec626ac8b36cb56901ff5fbb5
+                    firstName: John
+                    lastName: Ipsum
+  /v2/person/show-available-data-fields:
+    get:
+      operationId: personShowAvailableDataFields
+      summary: Show available data fields
+      tags:
+      - Person
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - fieldId: ee438332b46f4f05b5206dfdd45b7b38
+                  fieldToken: adres
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 65a0c7f21de645aeff0b07b8b4191e81
+                  fieldToken: adresdevam
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 28a3b07640d99b40ce725e6933a93cf1
+                  fieldToken: telefonNumarasi
+                  fieldType: phoneNumber
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 2a28971aa153d132daf5149685bdcc5a
+                  fieldToken: evTelefonu
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 224d1ca558eea67bda2b823a5eb311bb
+                  fieldToken: ulke
+                  fieldType: enum
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 20867124eed16dbbe7537e00869e1998
+                  fieldToken: sehir
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 709bd3b4c107391b54cbbe611c4aaf6a
+                  fieldToken: postaKodu
+                  fieldType: number
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 99d0b4a1b47305918ce183b5eadf6974
+                  fieldToken: bankaAdi
+                  fieldType: text
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 5b0e3602cc68c33d21dca29bdbe88e20
+                  fieldToken: hesapTipi
+                  fieldType: enum
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 72fb5060f29fcb38745da1151cb3312a
+                  fieldToken: hesapNo
+                  fieldType: number
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: e409d5b1aa91a916f8db7bd6badeefd7
+                  fieldToken: iban
+                  fieldType: text
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 58b28687ea7213ced803adfb1125d0b3
+                  fieldToken: adSoyad
+                  fieldType: text
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: 1e613fd4434ae012c33be5c43b8f50d6
+                  fieldToken: yakinlikDerecesi
+                  fieldType: text
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: 0eda6b0601fb10e805ed84965709306d
+                  fieldToken: telefonNumarasi
+                  fieldType: phoneNumber
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: a9f48a94739a0cc9e2f97247c633b3c3
+                  fieldToken: baglantiAdi
+                  fieldType: text
+                  fieldCategoryId: 768e906f31accbcd7780321cd3adaad9
+                  fieldCategoryToken: baglantilar
+                - fieldId: 50bbcb7eea96da4c0a8f519904f54ccd
+                  fieldToken: baglantiAdresi
+                  fieldType: text
+                  fieldCategoryId: 768e906f31accbcd7780321cd3adaad9
+                  fieldCategoryToken: baglantilar
+  /v2/person/terminate:
+    post:
+      operationId: personTerminate
+      summary: Terminate employment
+      description: '* personId: id value of the person who will be terminated.
+
+        * date: date of termination. This attribute can be set to a future date.
+
+        * reasonCode: code of termination reason. Can take values between "01" and "50". Each code is connected to a specific reason text.
+
+        * details: comments and details about the termination. (Optional)
+
+        * replacementId: terminated person''s ongoing approval processes and managees will be switched to this person. (Optional)'
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              personId: d4038631aa494e4450aa3b8a88796bef
+              date: '2023-01-23'
+              reasonCode: '01'
+              details: Details about the termination
+              replacementId: d5a6fa7d90f3c29b9a7abce8302c19b9
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 1302952557a17a75371b183aad2b4987
+                  firstName: Anna
+                  lastName: Lisa
+  /v2/person/upload-file:
+    post:
+      operationId: personUploadFile
+      summary: Upload file
+      description: You can use this endpoint to upload a single file to a person's personal folder. You can specify a folder name or skip it to upload the file to the root folder. Executable or potentially harmful file extensions will not be accepted. You can use PDF, Excel, Word or similar file formats. Returned file size is in bytes.
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                folderName:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 835dc2129d80fc7a2e63619e98c7e4c0
+                  filename: 2021_August_Payroll.pdf
+                  personId: f8242ae2e8c36d7f3d8a86ece3f3a0de
+                  folderId: 7ae2327641eed4a800094436fbbcd442
+                  size: 5357
+                  createdAt: '2021-08-05 19:18:00'
+  /v2/person/rehire/{id}:
+    post:
+      operationId: personRehire
+      summary: Rehire a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list-files/{id}:
+    get:
+      operationId: personListFiles
+      summary: List files of a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-file/{fileId}:
+    delete:
+      operationId: personDeleteFile
+      summary: Delete a file
+      tags:
+      - Person
+      parameters:
+      - name: fileId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-folder/{folderId}:
+    delete:
+      operationId: personDeleteFolder
+      summary: Delete a folder
+      tags:
+      - Person
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/assign-training:
+    post:
+      operationId: personAssignTraining
+      summary: Assign training a person
+      tags:
+      - Person
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/update-training/{personTrainingId}:
+    put:
+      operationId: personUpdateTraining
+      summary: Update a person training
+      tags:
+      - Person
+      parameters:
+      - name: personTrainingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list-trainings/{id}:
+    get:
+      operationId: personListTrainings
+      summary: List a person's trainings
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-training/{personTrainingId}:
+    delete:
+      operationId: personDeleteTraining
+      summary: Delete a person training
+      tags:
+      - Person
+      parameters:
+      - name: personTrainingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

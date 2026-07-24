@@ -1,0 +1,512 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Approval Process
+paths:
+  /v2/approval-process/list:
+    get:
+      operationId: approvalProcessList
+      summary: List approval processes
+      tags:
+      - Approval Process
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 940457770feafcbf56b44c999b89cd26
+                    name: Default
+                    private: true
+                    isDefault: true
+                    steps:
+                    - id: a35e0ee1f8dbe441722c901b43ff9b2f
+                      person:
+                        id: 066626006c27aa1296ac34bdf14d730b
+                        firstName: John
+                        lastName: Doe
+                        email: herminia41hdeckow@hotmail.com
+                        currentUnit:
+                          id: cfe33c1cd5a0dc07e8ce410241df64c6
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9f66dba43080b0aecabc1c5cf7be25ad
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 779ed31a94874cb2fafccc46a58c2bf7
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: ec028971422230d7b5dc36d7e42ab237
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 91938cd94feb623eb0d378f0cda3b32c
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 1
+                    - id: 93f542979f34c45ffcb5e158f9252efd
+                      person:
+                        id: b4519a7bf1d4d958fd319914298e1706
+                        firstName: Evaluative
+                        lastName: Self
+                        email: rreichertava16@hotmail.com
+                        currentUnit:
+                          id: 033f8f0e07ebeb5603308177f3df5140
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9385f1932b2304d2df81875ffd4f7cf8
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 7e8e62cc9bd9fd2c1ea26d9a9a442970
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: c04f91cfe0918c56a375917d2dcae129
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: e49329c4706d1e8172eab22033616c0c
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 2
+                    - id: fde9751418b75b1c31d422573c5d1fd3
+                      person:
+                        id: 1679121d04379bcdfce25f961f70abf2
+                        firstName: Evaluative
+                        lastName: Inferior
+                        email: lind.kearacorene86@hotmail.com
+                        currentUnit:
+                          id: 9e54f38def011d9f81ecfac956c1197b
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 7b75edb76c93787f64ee629ceff26e02
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 2e3bf0195ca142f20c0acba3693b03eb
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 5b44dffd74f3ab243acf22087081340b
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 205f2c37c6b5080413dfa54cf996b05b
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 3
+                    - id: 08722b5c8a555af1baea6bb88bb1ce54
+                      person:
+                        id: 00ae725e83d0a08f771e254055cdad74
+                        firstName: Evaluative
+                        lastName: Equivalent
+                        email: ervin.bartonbertram.wolff@yahoo.com
+                        currentUnit:
+                          id: 115abea82a3b052f107506a9d6d2fe86
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9346715a80f64fcce72c865dccdfc096
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 20ab51846d946bc35e6cf60331e3bb6d
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 257bb0c0e95d3efd366c0358ca7cd682
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 47210cee4e32cec81af7e0a2245962ef
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 4
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 25
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

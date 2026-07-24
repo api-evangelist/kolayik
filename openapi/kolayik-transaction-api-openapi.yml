@@ -1,0 +1,317 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Transaction API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Transaction
+paths:
+  /v2/transaction/create:
+    post:
+      operationId: transactionCreate
+      summary: Create a transaction
+      description: You can create a new timelog record with the endpoint.
+      tags:
+      - Transaction
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                type:
+                  type: string
+                items[0][name]:
+                  type: string
+                items[0][amount]:
+                  type: string
+                items[0][vatRate]:
+                  type: string
+                items[0][file]:
+                  type: string
+                  format: binary
+                installmentPlan:
+                  type: string
+                amount:
+                  type: string
+                currency:
+                  type: string
+                paid:
+                  type: string
+                isGross:
+                  type: string
+                affectPayroll:
+                  type: string
+                date:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+  /v2/transaction/view/{id}:
+    get:
+      operationId: transactionView
+      summary: View a transaction
+      tags:
+      - Transaction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 327fcf7b62fc67cf7d103d3f86805ddc
+                  type: advance-expense
+                  amount: 0
+                  currency: null
+                  date: '2021-10-22'
+                  installmentPlan: null
+                  personId: e70e63951f35c1f524651694877768b2
+                  description: null
+                  status: approved
+                  paid: false
+                  isGross: null
+                  affectPayroll: false
+                  createdAt: '2021-10-22T12:14:30'
+                  updatedAt: '2021-10-22T12:15:46'
+                  person:
+                    id: e70e63951f35c1f524651694877768b2
+                    firstName: Lorem
+                    lastName: Ipsum
+                  items:
+                  - id: b71c7eb0dbdb5ffe1953630922c5158b
+                    name: null
+                    amount: 222
+                    vatRate: 18
+                    file: null
+  /v2/transaction/list:
+    post:
+      operationId: transactionList
+      summary: List transactions
+      tags:
+      - Transaction
+      parameters:
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 066626006c27aa1296ac34bdf14d730b
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: advance-expense
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: paid
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '0'
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-09-06 23:59:59'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 007b98ea560c401fa49bbb488e2b4a2b
+                    type: advance-expense
+                    date: '2022-09-06'
+                    installmentPlan: null
+                    personId: 066626006c27aa1296ac34bdf14d730b
+                    description: null
+                    status: approved
+                    paid: false
+                    isGross: null
+                    affectPayroll: false
+                    createdAt: '2022-09-06T16:14:32'
+                    updatedAt: '2022-09-06T16:15:46'
+                    person:
+                      id: 066626006c27aa1296ac34bdf14d730b
+                      firstName: John
+                      lastName: Doe
+                    receipts:
+                    - id: fe7ae947599a93f92d67d55e27fbc537
+                      status: created
+                      amount: 10
+                      currency: TL
+                      vatRate: 18
+                      category:
+                        id: 4a357c29d26eabe0a01151985d145f53
+                        title: Yolculuk ve Ulaşım
+                        description: Benzin, taksi, araba kiralama ve benzeri
+                        isDefault: true
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:14:32'
+                      updatedAt: '2022-09-06T16:14:32'
+                    - id: 423f97178e14d503f82d4405b7cc5963
+                      status: created
+                      amount: 20
+                      currency: USD
+                      vatRate: 18
+                      category:
+                        id: b5c903e0bee29c899fef30efe801b319
+                        title: Yiyecek ve İçecek
+                        description: Ofis dışı yapılan yiyecek harcamaları, müşteri öğle ve akşam yemekleri
+                        isDefault: false
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:14:50'
+                      updatedAt: '2022-09-06T16:14:50'
+                    - id: 003f7edb8bd61e5a391ba2d64e542e30
+                      status: created
+                      amount: 30
+                      currency: EUR
+                      vatRate: 18
+                      category:
+                        id: 8675d533d33a0b7285ef1fed81905c17
+                        title: Eğitim ve Kurslar
+                        description: Eğitim, kurs ve programları için yapılan harcamalar
+                        isDefault: false
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:15:05'
+                      updatedAt: '2022-09-06T16:15:05'
+                    - id: 38feb37186047a44196af89f3c4564ef
+                      status: created
+                      amount: 80
+                      currency: TL
+                      vatRate: 18
+                      category:
+                        id: 4a357c29d26eabe0a01151985d145f53
+                        title: Yolculuk ve Ulaşım
+                        description: Benzin, taksi, araba kiralama ve benzeri
+                        isDefault: true
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:15:35'
+                      updatedAt: '2022-09-06T16:15:35'
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/transaction/delete/{id}:
+    delete:
+      operationId: transactionDelete
+      summary: Delete a transaction record
+      tags:
+      - Transaction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

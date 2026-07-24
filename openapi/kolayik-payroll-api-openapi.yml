@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Payroll API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Payroll
+paths:
+  /v2/payroll-sheet/view/{payrollId}:
+    post:
+      operationId: payrollSheetView
+      summary: Get Payroll Sheet
+      description: "View Payroll Sheet\nReturns the complete payroll sheet data (Çarşaf Bordro) for a given payroll run as JSON. This is the API equivalent of the Excel export.\n\nScope: payroll-sheet:view\n\nRequest\nPOST /v2/payroll-sheet/view/{id}\n\nParameter\nType\nRequired\nDescription\n\nid\nstring\nYes\n32-char payroll ID\n\nBody\n{\n  \"filter\": {\n    \"search\": \"Ahmet\",\n    \"status\": [\"ended\"],\n    \"salaryPeriod\": [\"monthly\"],\n    \"insuranceId\": [\"setting_id\"],\n    \"taxId\": [\"setting_id\"],\n    \"expenseCenterId\": [\"setting_id\"],\n    \"units\": [[\"unit_item_id\"]]\n  }\n}\n\nAll filter fields are optional. Send {} to get all employees.\n\nFilters\nfilter.search\nstring — Free text search by employee full name. Supports Turkish characters.\n\nfilter.status\narray — Filter by one or more statuses (OR logic).\n\nValue\nDescription\n\nended\nCalculation completed, payslip not created\n\nstarted\nCalculation in progress\n\nfailed\nCalculation failed\n\nhasPayslip\nPayslip created\n\nisPayslipPublic\nPayslip published to employee\n\nchangedColumns\nEmployee data changed since last calculation\n\nactiveEmployee\nNo termination date\n\nterminatedEmployee\nHas termination date\n\nfilter.salaryPeriod\narray — Filter by salary period type.\n\nValue\nDescription\n\nmonthly\nAylık\n\nhourly\nSaatlik\n\nattendance_fee\nHuzur Hakkı\n\nfilter.insuranceId\narray — Company setting IDs for SGK workplaces.\n\nfilter.taxId\narray — Company setting IDs for tax departments.\n\nfilter.expenseCenterId\narray — Company setting IDs for expense centers.\n\nfilter.units\narray of arrays — Organizational unit item IDs. Each inner array is AND-ed.\n\n\"units\": [[\"branch_item_id\"], [\"department_item_id\"]]\n\nResponse\n{\n  \"error\": false,\n  \"data\": {\n    \"columns\": { \"firstName\": \"Ad\", \"lastName\": \"Soyad\", \"...\" : \"...\" },\n    \"dynamicColumns\": {\n      \"benefits\": { \"<type>\": { \"label\": \"Yemek Yardımı\", \"grossLabel\": \"Brüt\", \"netLabel\": \"Net\" } },\n      \"deductions\": { \"<type>\": { \"label\": \"İcra\", \"netLabel\": \"Net\", \"turnoverLabel\": \"Devir\" } },\n      \"promotions\": { \"<code class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;>\": { \"label\": \"05510\" } },\n      \"units\": { \"<unit_id>\": { \"label\": \"Departman\" } }\n    },\n    \"rows\": [ { \"...\" : \"...\" } ],\n    \"meta\": { \"total\": 150, \"payrollId\": \"uuid\", \"year\": 2026, \"month\": 1 }\n  }\n}\n\ncolumns\nStatic key→label map for all fixed fields. Use as table headers.\n\ndynamicColumns\nColumn definitions that vary per company/payroll:\n\nbenefits — Each has gross and net values in row data\n\ndeductions — Each has net; allowance and enforcement also have turnover\n\npromotions — SGK incentive codes; row data has the amount per code\n\nunits — Organizational units; row data has unit item name or null\n\nrows\nArray of employee objects. Key fields per row:\n\nGroup\nFields\n\nPersonal\npersonId, registrationNumber, firstName, lastName\n\nPayroll\npayrollYear, payrollMonth, hasPayslip, payrollStatus, errorMessage\n\nEmployee\nidNumber, gender, disabilityLevel, isRetired, governingLaw, specialityCode, employmentStartDate, employmentTerminationDate, terminationReason, employmentType, sgkWorkplace, sgkWorkplaceNumber, taxDepartment, taxNumber, expenseCenter, expenseCenterNumber, iban\n\nUnits\nunits — object keyed by unit ID → item name\n\nIncome\nwageType, salaryPeriod, baseWage, dailyWage, payableDay, wageGross, wageNet, overtimeGrossTotal, overtimeNetTotal, benefitsGrossTotal, benefitsNetTotal, allIncomesGrossTotal\n\nSGK\nworkDay, restDay, publicHoliday, paidLeaveDay, unpaidLeaveDay, sickDay, otherMissingDays, workHours, sgkDay, baseSgkWage, sgkExemptionTotal, sgkMonthlyTopWage, carryoverFromLastMonth, usedFromCarryover, carryoverToNextMonth, sgkMonthlyBase, employeeSgkPay, employeeUnemploymentPay, employeeSgkTotal, employerSgkPay, employerUnemploymentPay, employerSgkTotal, employerSgkTotalWithoutPromotions\n\nIncome Tax\nincomeTaxBase, disabilityExemption, incomeTaxExemptionTotal, previousMonthCumulativeTaxBase, cumulativeIncomeTaxBase, incomeTaxRatios, incomeTaxMonthlyBase, incomeTaxAmountBeforeMinimumWageExemption, minimumWageIncomeTaxExemption, incomeTaxAmount, incomeTaxExemptionByPromotions, incomeTaxPayment\n\nStamp Tax\nstampTaxBase, stampTaxExemption, stampTaxMonthlyWage, stampTaxAmountBeforeMinimumWageExemption, minimumWageStampTaxExemption, stampTaxAmount, stampTaxExemptionByPromotions, stampTaxPayment\n\nDeductions\ntaxCutTotal, privateDeductionsTotal, inKindTotal, allDeductionsTotal\n\nPromotions\npromotions (object keyed by code → amount), promotionsTotal\n\nWage\nmonthlyWageGross, monthlyWageNet\n\nEmployer Cost\npaidAmount, employeeCostTotal, totalIncentives, employeeCostTotalWithPromotions\n\nOvertime\nrestDayHour, restDayGross, restDayNet, publicHolidayOvertimeHour, publicHolidayOvertimeGross, publicHolidayOvertimeNet, workDayOvertimeHour, workDayOvertimeGross, workDayOvertimeNet\n\nSeverance\nseveranceGross, severanceNet, noticeGross, noticeNet, remainingLeaveDaysGross, remainingLeaveDaysNet\n\nBenefits\nbenefits — object keyed by type → { gross, net }\n\nDeductions\ndeductions — object keyed by type → { net } or { net, turnover }\n\nCalculation\ncalculationDate (ISO 8601), calculationId\n\nmeta\n\nField\nType\nDescription\n\ntotal\ninteger\nNumber of employees returned\n\npayrollId\nstring\nPayroll run ID\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month (1-12)\n\nExamples\nAll employees, no filter:\n\n{}\n\nCompleted monthly employees:\n\n{ \"filter\": { \"status\": [\"ended\"], \"salaryPeriod\": [\"monthly\"] } }\n\nSearch + specific SGK workplace:\n\n{ \"filter\": { \"search\": \"Melih\", \"insuranceId\": [\"setting_id_here\"] } }\n\nEmployees needing recalculation:\n\n{ \"filter\": { \"status\": [\"changedColumns\"] } }\n\nErrors\n\nCode\nDescription\n\n401\nInvalid or missing API token\n\n422\nValidation error (invalid payroll ID, invalid filter values)"
+      tags:
+      - Payroll
+      parameters:
+      - name: payrollId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              filter:
+                search: ''
+                status: []
+                salaryPeriod: []
+                insuranceId: []
+                taxId: []
+                expenseCenterId: []
+                units: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/payroll/list:
+    get:
+      operationId: payrollList
+      summary: Get Payroll List
+      description: "List Payroll Periods\nReturns the list of payroll runs (bordro dönemleri) for a given year. Use this to get payroll IDs before calling the View Payroll Sheet endpoint.\n\nScope: payroll:list\n\nRequest\nGET /v2/payroll/list?year=2026\n\nQuery Parameters\n\nParameter\nType\nRequired\nDescription\n\nyear\ninteger\nNo\nFilter by year. Max value: current year + 1. Defaults to current year if omitted.\n\nResponse\n{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"abc123def456ghi789jkl012mno345pq\",\n      \"period\": \"2026-01-01 00:00:00\",\n      \"year\": 2026,\n      \"month\": 1,\n      \"total\": 150,\n      \"payslips\": 120,\n      \"errors\": 2,\n      \"employerCost\": 1250000.50,\n      \"updatedAt\": \"2026-01-15\"\n    },\n    {\n      \"id\": \"rst678uvw901xyz234abc567def890ghi\",\n      \"period\": \"2026-02-01 00:00:00\",\n      \"year\": 2026,\n      \"month\": 2,\n      \"total\": 152,\n      \"payslips\": 0,\n      \"errors\": 5,\n      \"employerCost\": 1280000.75,\n      \"updatedAt\": \"2026-02-14\"\n    }\n  ]\n}\n\nResponse Fields\n\nField\nType\nDescription\n\nid\nstring\nPayroll run ID. Use this as {id} in /v2/payroll-sheet/view/{id}.\n\nperiod\nstring\nPeriod start date as datetime string (YYYY-MM-DD HH:mm:ss)\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month (1-12)\n\ntotal\ninteger\nTotal number of included employees\n\npayslips\ninteger\nNumber of generated payslips\n\nerrors\ninteger\nNumber of failed calculations\n\nemployerCost\nnumber\nTotal employer cost (sum of all included employees)\n\nupdatedAt\nstring\nLast update date (YYYY-MM-DD)\n\nExamples\nAll payroll for current year (default):\n\nGET /v2/payroll/list\n\nFilter by year:\n\nGET /v2/payroll/list?year=2026\n\nErrors\n\nCode\nDescription\n\n401\nInvalid or missing API token\n\n422\nValidation error (e.g. year is not an integer or exceeds max value)"
+      tags:
+      - Payroll
+      parameters:
+      - name: year
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2026'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'

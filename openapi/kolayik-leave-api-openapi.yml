@@ -1,0 +1,210 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public Approval Process Leave API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don''t have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Leave
+paths:
+  /v2/leave/list:
+    get:
+      operationId: leaveList
+      summary: List leaves
+      description: You can list leave records by date or person.
+      tags:
+      - Leave
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2019-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 23:59:59'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '100'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      - name: include_inactive_employees
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 032e7f829957f0c57feaaf88cd67c399
+                  startDate: '2020-10-07 09:00:00'
+                  endDate: '2020-10-07 18:00:00'
+                  returnDate: '2020-10-08 09:00:00'
+                  comment: I am going for a vacation.
+                  type:
+                    id: ac342dff523200714ac25487b152ca38
+                    name: Yıllık İzin
+                    limitation: limited_to_year
+                  leaveFormSigned: null
+                  person:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  replacementPerson: null
+                  status: approved
+                  usedDays: 1
+                  createdAt: '2020-10-06 01:41:41'
+                  updatedAt: '2020-10-06 01:41:58'
+  /v2/leave/create:
+    post:
+      operationId: leaveCreate
+      summary: Create a new leave record
+      description: Create a new leave record with given parameters.
+      tags:
+      - Leave
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-10-12 09:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-10-12 18:00:00'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      - name: leaveTypeId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: ac342dff523200714ac25487b152ca38
+      - name: comment
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Test leave record.
+      - name: replacementPersonId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  leave:
+                    id: 796539bdf093db3ac30b4ae9917d2d25
+                    usedDays: 1
+  /v2/leave/view/{leaveId}:
+    get:
+      operationId: leaveView
+      summary: View a leave record
+      description: View the details of an existing leave record.
+      tags:
+      - Leave
+      parameters:
+      - name: leaveId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 63ba80dfc3e6cf28f1b70b0e6e400365
+                  startDate: '2020-10-12 09:00:00'
+                  endDate: '2020-10-12 18:00:00'
+                  returnDate: '2020-10-13 09:00:00'
+                  comment: Test leave record.
+                  type:
+                    id: ac342dff523200714ac25487b152ca38
+                    name: Yıllık İzin
+                    limitation: limited_to_year
+                  leaveFormSigned: null
+                  person:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  replacementPerson:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  status: approved
+                  usedDays: 1
+                  createdAt: '2020-10-12 19:34:33'
+                  updatedAt: '2020-10-12 19:34:33'
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent as `Authorization: Bearer <TOKEN>`.'
