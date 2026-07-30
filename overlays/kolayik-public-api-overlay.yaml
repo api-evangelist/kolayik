@@ -1,0 +1,52 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Kolay Public API
+  version: 1.0.0
+extends: openapi/kolayik-public-api-openapi.yml
+x-generated: '2026-07-19'
+x-method: generated
+x-source: https://apidocs.kolayik.com/
+x-note: >-
+  The base OpenAPI document is itself a faithful conversion of the official Kolay
+  Public API Postman collection (postman/kolayik-public-api-postman.json). This
+  overlay records only API Evangelist enhancements and never mutates that conversion.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: kolayik
+    x-apievangelist-spec-provenance: converted from the official public Postman collection
+      published by Kolay at https://apidocs.kolayik.com/ (publishDate 2020-11-03)
+    x-apievangelist-artifacts:
+      authentication: authentication/kolayik-authentication.yml
+      conventions: conventions/kolayik-conventions.yml
+      errors: errors/kolayik-problem-types.yml
+      lifecycle: lifecycle/kolayik-lifecycle.yml
+      data_model: data-model/kolayik-data-model.yml
+      conformance: conformance/kolayik-conformance.yml
+      agentic_access: agentic-access/kolayik-agentic-access.yml
+      skills: skills/_index.yml
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - No 4xx/5xx responses are documented for any operation; only 200 examples are
+      published.
+    - No JSON schemas are published for request or response bodies; bodies are documented
+      by example only.
+    - No rate-limit policy or rate-limit response headers are documented.
+    - No sandbox or test mode exists — every write hits live HR data.
+    - No webhook or event surface is published.
+    - No idempotency mechanism is documented for the create/update operations.
+- target: $.servers
+  update:
+    x-apievangelist-note: Single production host; Kolay publishes no sandbox host.
+- target: $.components.securitySchemes.bearerAuth
+  update:
+    x-apievangelist-token-issuance: https://app.kolayik.com/settings/developer-settings
+    x-apievangelist-authorization-model: >-
+      Effective authorization is bounded by the Kolay access type of the account the
+      token belongs to — owner (full read/write on all employees), manager (as owner
+      except payment and tax details), employee (own record only).
+- target: $.tags
+  update:
+    x-apievangelist-note: Tags mirror the folder structure of the official Postman
+      collection.

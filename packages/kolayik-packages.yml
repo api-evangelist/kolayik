@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+source: pypi.org, registry.npmjs.org, github.com/kolayik
+official_sdk_count: 0
+packages:
+- language: python
+  registry: pypi
+  name: kolay-cli
+  version_seen: 0.13.3
+  url: https://pypi.org/project/kolay-cli/
+  install: pipx install kolay-cli
+  repository: https://github.com/ezapmar/kolay-cli
+  mirror: https://github.com/kolayik/kolay-cli
+  author: Tunc Ucer
+  license: MIT
+  official: false
+  official_note: 'The project README states it is "an independent, community-maintained
+    project" and "not an official product of Kolay Yazilim A.S." with no endorsement
+    or support from the company.'
+  provides:
+  - kolay (CLI)
+  - kolay-mcp (MCP server)
+  artifact: cli/kolayik-cli.yml
+notes:
+- 'Kolay İK ships no first-party client libraries. Searched npm, PyPI, Maven Central,
+  NuGet, pkg.go.dev, RubyGems, Packagist and crates.io plus the official API documentation
+  at apidocs.kolayik.com — the documentation offers Postman code snippets in C#, cURL
+  and other languages but links no SDK.'
+- 'Because no package is first-party, no `SDKs` pointer is emitted in apis.yml — the
+  sdk_count checks are genuinely unmet rather than gamed.'
+- 'The github.com/kolayik organization''s other public repositories are general-purpose
+  Laravel/PHP utilities rather than API clients: `auth` (JWT authentication for Laravel),
+  `tckimlik` (Turkish national ID validation), plus forks of `slack` and `laravel-packager`.'

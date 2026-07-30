@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: searched
+source: https://apidocs.kolayik.com/
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://apidocs.kolayik.com/
+  evidence: Every operation in the official public collection is served under https://api.kolayik.com/v2/.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  documented: false
+  evidence: No deprecation policy, Sunset/Deprecation header support (RFC 8594), or
+    version end-of-life schedule is published. No `Deprecation` pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  documented: false
+status_page:
+  url: https://status.kolayik.com
+  platform: Uptime Kuma
+  verified: '2026-07-19'
+  http_status: 200
+changelog:
+  url: https://updates.kolayik.com/tr
+  platform: UserGuiding
+  artifact: changelog/kolayik-changelog.yml
+  scope: product changelog (whole HR platform), not API-specific
+deprecated_operations: []
+notes:
+- The product changelog covers the Kolay İK application; Kolay publishes no separate
+  API changelog or API version history.
+- 'Support channel for the API is a direct email address rather than a ticketed developer
+  portal: apisupport@kolay.io.'

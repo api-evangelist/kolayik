@@ -1,0 +1,34 @@
+{
+  "provider": "kolayik",
+  "sources": [
+    "kolayik-approval-process-api-openapi.yml",
+    "kolayik-calendar-api-openapi.yml",
+    "kolayik-expense-api-openapi.yml",
+    "kolayik-leave-api-openapi.yml",
+    "kolayik-payroll-api-openapi.yml",
+    "kolayik-person-api-openapi.yml",
+    "kolayik-profile-api-openapi.yml",
+    "kolayik-timelog-api-openapi.yml",
+    "kolayik-training-api-openapi.yml",
+    "kolayik-transaction-api-openapi.yml",
+    "kolayik-unit-api-openapi.yml"
+  ],
+  "outputs": [
+    "kolayik-approval-process-api-openapi.yml",
+    "kolayik-calendar-api-openapi.yml",
+    "kolayik-expense-api-openapi.yml",
+    "kolayik-leave-api-openapi.yml",
+    "kolayik-payroll-api-openapi.yml",
+    "kolayik-person-api-openapi.yml",
+    "kolayik-profile-api-openapi.yml",
+    "kolayik-timelog-api-openapi.yml",
+    "kolayik-training-api-openapi.yml",
+    "kolayik-transaction-api-openapi.yml",
+    "kolayik-unit-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,159 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kolayik-public-api-openapi.yml
+searched_from: https://apidocs.kolayik.com/
+api: Kolay Public API v2
+identifiers:
+  style: opaque 32-character hexadecimal string
+  prefixes: none — Kolay ids carry no type prefix
+  example: def06a1d21cd7db749f0d8d6aab271ec
+entities:
+- name: Person
+  description: An employee record. Every human in Kolay — including admins and non-login
+    employees — is a Person. The central entity of the model.
+  operations: [personCreate, personUpdate, personView, personViewSummary, personBulkView,
+    personList, personTerminate, personRehire, personShowAvailableDataFields, personLeaveStatus]
+  key_fields: [id, firstName, lastName, email, workEmail, employmentStartDate, contractType,
+    contractEndDate, accessType, idNumber, nationality]
+  enumerations:
+    accessType: [employee, manager, owner]
+    contractType: [definite, indefinite]
+    gender: [female, male, unspecified]
+    maritalStatus: [married, single, divorced, unspecified]
+    educationLevel: [primary, secondary, high_school, associate, bachelor, master,
+      doctorate, none]
+    educationStatus: [graduate, student]
+    levelOfDisability: [notDisabled, thirdLevel, secondLevel, firstLevel]
+    bloodType: [A-, A+, 0+, 0-, AB-, AB+, B-, B+]
+- name: PersonDataField
+  description: A custom person attribute, addressed by fieldToken and carried on Person.dataList.
+    Available tokens are discoverable at runtime.
+  operations: [personShowAvailableDataFields]
+  key_fields: [fieldToken, value]
+- name: Compensation
+  description: A salary/compensation record on a Person, with nested benefit items
+    (food, transportation, ...).
+  key_fields: [amount, payPeriod, gross, currency, effectiveOn, active, items]
+- name: Unit
+  description: A node of the organizational tree (Şirket / Şube / Departman / Unvan).
+    A Person's unitList assigns them to unit items over time.
+  operations: [unitShowUnitTree, unitCreateUnitItem]
+  key_fields: [unitId, unitName, unitItemName]
+- name: Leave
+  description: A leave/absence request for a Person, of a given LeaveType, over a date
+    range, optionally with a replacement Person.
+  operations: [leaveList, leaveCreate, leaveView]
+  key_fields: [leaveId, personId, leaveTypeId, startDate, endDate, status, comment,
+    replacementPersonId]
+  enumerations:
+    status: [approved, waiting]
+- name: LeaveType
+  description: A category of leave, referenced by leaveTypeId when creating a leave
+    record.
+  key_fields: [leaveTypeId]
+- name: Timelog
+  description: A time entry (work or overtime) for a Person over a start/end datetime.
+  operations: [timelogCreate, timelogList, timelogView, timelogDelete]
+  key_fields: [id, personId, startDate, endDate, status, type, description]
+  enumerations:
+    type: [work, overtime]
+    status: [approved, waiting]
+- name: Transaction
+  description: An expense or advance transaction attached to a Person.
+  operations: [transactionCreate, transactionList, transactionView, transactionDelete]
+  key_fields: [id, personId, type, status, paid, expenseCenterId]
+  enumerations:
+    type: [advance-expense]
+    status: [approved]
+- name: ExpenseCategory
+  description: A category available for expense transactions.
+  operations: [expenseListCategories]
+  key_fields: [title, isEnable]
+- name: Training
+  description: A catalogue training course, assignable to People.
+  operations: [trainingCreate, trainingList, trainingView, trainingUpdate, trainingDelete]
+  key_fields: [id, title]
+- name: PersonTraining
+  description: The assignment of a Training to a Person.
+  operations: [personAssignTraining, personListTrainings, personUpdateTraining, personDeleteTraining]
+  key_fields: [personTrainingId, personId]
+- name: Event
+  description: A calendar event.
+  operations: [eventCreate, eventList, eventView, eventUpdate, eventDelete]
+  key_fields: [id, start, end, search]
+- name: PersonFile
+  description: A file (and containing folder) stored on a Person's özlük record.
+  operations: [personUploadFile, personListFiles, personDeleteFile, personDeleteFolder]
+  key_fields: [fileId, folderId, personId]
+- name: Payroll
+  description: A payroll run; a payroll sheet is retrieved per payrollId.
+  operations: [payrollList, payrollSheetView]
+  key_fields: [payrollId, year]
+- name: ApprovalProcess
+  description: A configured approval workflow.
+  operations: [approvalProcessList]
+- name: Profile
+  description: The identity behind the API token in use.
+  operations: [profileMe]
+relationships:
+- from: Person
+  to: PersonDataField
+  kind: has_many
+  via: dataList
+- from: Person
+  to: Compensation
+  kind: has_many
+  via: compensationList
+- from: Person
+  to: Unit
+  kind: has_many
+  via: unitList
+- from: Person
+  to: Person
+  kind: has_one
+  via: managerId
+  note: A person's unit assignment names their manager.
+- from: Leave
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: Leave
+  to: LeaveType
+  kind: belongs_to
+  via: leaveTypeId
+- from: Leave
+  to: Person
+  kind: has_one
+  via: replacementPersonId
+- from: Timelog
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: Transaction
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: Transaction
+  to: ExpenseCategory
+  kind: belongs_to
+  via: expenseCenterId
+- from: PersonTraining
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: PersonTraining
+  to: Training
+  kind: belongs_to
+  via: trainingId
+- from: PersonFile
+  to: Person
+  kind: belongs_to
+  via: personId
+- from: Unit
+  to: Unit
+  kind: has_many
+  via: unit tree (unitShowUnitTree returns the nested structure)
+notes:
+- 'Derived from the request/response examples and folder documentation of the official
+  Kolay Public API Postman collection. Kolay publishes no schema definitions, so field
+  types beyond those stated in the Person folder documentation are not asserted here.'

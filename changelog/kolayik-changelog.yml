@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: https://updates.kolayik.com/tr
+url: https://updates.kolayik.com/tr
+title: "Kolay İK'da yeni neler var?"
+platform: UserGuiding (updates.userguiding.com)
+scope: product
+api_specific: false
+scheme:
+  type: dated-product-updates
+  versioned: false
+  current_api_version: v2
+entries: []
+notes:
+- 'Kolay İK publishes a live, dated product changelog for the HR application at updates.kolayik.com/tr.
+  The page is a client-rendered Next.js application and carries `noindex, nofollow`;
+  individual entries are not present in the served HTML, so no entries could be captured
+  verbatim without fabricating them. The `entries[]` list is deliberately empty — the
+  live page is the source of truth.'
+- No API-specific changelog or version history is published. The Kolay Public API Postman
+  collection was first published 2020-11-03 (publishDate in postman/kolayik-public-api-postman.json)
+  and is still on v2.

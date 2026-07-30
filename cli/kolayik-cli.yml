@@ -1,0 +1,70 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/ezapmar/kolay-cli
+official: false
+official_note: 'The project README states it is "an independent, community-maintained
+  project" and "not an official product of Kolay Yazilim A.S." Kolay İK ships no first-party
+  CLI, so no `CLI` pointer is emitted in apis.yml.'
+name: kolay
+package: kolay-cli
+version_seen: 0.13.3
+license: MIT
+language: Python
+requires: Python 3.10+
+repository: https://github.com/ezapmar/kolay-cli
+registry: https://pypi.org/project/kolay-cli/
+install:
+- pipx install kolay-cli
+- pip install kolay-cli
+binaries:
+- name: kolay
+  description: Interactive terminal interface for the Kolay Public API.
+- name: kolay-mcp
+  description: MCP server exposing the same surface to AI assistants.
+configuration:
+  env:
+  - name: KOLAY_API_TOKEN
+    description: API token created at https://app.kolayik.com/settings/developer-settings.
+  - name: KOLAY_BASE_URL
+    description: Override the API base URL (defaults to https://api.kolayik.com).
+  - name: KOLAY_OUTPUT
+    description: Output format, e.g. json.
+  - name: KOLAY_ENCRYPT_CONFIG
+    description: Enable AES-256-GCM encryption of the local config file.
+  credential_storage: OS keychain (macOS Keychain, GNOME Keyring, Windows Credential
+    Vault) or an encrypted config file.
+commands:
+- group: person
+  subcommands: [list, view, summary, create, update, terminate, rehire, fields, list-files,
+    upload-file, delete-file, bulk-view]
+- group: leave
+  subcommands: [list, view, create, cancel]
+- group: timelog
+  subcommands: [list, view, create, delete]
+- group: training
+  subcommands: [list, view, create, update, delete, assign]
+- group: transaction
+  subcommands: [list, view, create, delete]
+- group: payroll
+  subcommands: [view]
+- group: calendar
+  subcommands: [list, view, create, update, delete]
+- group: unit
+  subcommands: [tree, create-item]
+- group: approval
+  subcommands: [list]
+- group: expense
+  subcommands: [categories]
+- group: auth
+  subcommands: [login, status, me]
+- group: config
+  subcommands: [set]
+- group: doctor
+  subcommands: []
+key_flows:
+- kolay setup — guided first-time authentication.
+- kolay doctor — connectivity and credential health check.
+- kolay mcp install — auto-configure the MCP server for Claude Desktop.
+caveats:
+- 'The README warns that all write operations target live HR data — Kolay publishes
+  no sandbox or test mode.'

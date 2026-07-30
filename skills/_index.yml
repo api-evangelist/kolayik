@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/kolayik-public-api-openapi.yml
+api: Kolay Public API v2
+notes:
+- Every operationId referenced below was verified verbatim against openapi/kolayik-public-api-openapi.yml,
+  which is a faithful conversion of the official Kolay Public API Postman collection.
+- Kolay publishes no sandbox and no idempotency mechanism, so every skill carries an
+  explicit human-confirmation rule for writes.
+skills:
+- file: kolayik-onboard-employee.md
+  name: Onboard an employee in Kolay İK
+  api: openapi/kolayik-public-api-openapi.yml
+  operations: [personShowAvailableDataFields, unitShowUnitTree, unitCreateUnitItem,
+    personCreate, personView, personViewSummary, trainingList, personAssignTraining,
+    personListTrainings]
+- file: kolayik-request-and-track-leave.md
+  name: Check balances and file a leave request in Kolay İK
+  api: openapi/kolayik-public-api-openapi.yml
+  operations: [personList, personLeaveStatus, leaveList, leaveCreate, leaveView, approvalProcessList]
+- file: kolayik-record-time-and-expenses.md
+  name: Record time and expenses in Kolay İK
+  api: openapi/kolayik-public-api-openapi.yml
+  operations: [personList, timelogCreate, timelogList, timelogView, timelogDelete,
+    expenseListCategories, transactionCreate, transactionList, transactionView]
+- file: kolayik-offboard-employee.md
+  name: Offboard (or rehire) an employee in Kolay İK
+  api: openapi/kolayik-public-api-openapi.yml
+  operations: [personList, personView, personLeaveStatus, leaveList, timelogList, personListFiles,
+    personTerminate, personRehire, personUpdate, personUploadFile, personDeleteFile,
+    personDeleteFolder]

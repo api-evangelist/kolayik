@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: https://kolayik.com/bilgi-guvenligi-politikasi
+standards:
+- id: iso-27001
+  name: TS ISO/IEC 27001:2013 — Information Security Management
+  conforms: true
+  evidence: Named on the published Kolay İK information security policy, which states
+    the certifications are maintained through annual audits.
+  source: https://kolayik.com/bilgi-guvenligi-politikasi
+- id: iso-27701
+  name: TS ISO/IEC 27701:2019 — Privacy Information Management
+  conforms: true
+  evidence: Named on the published Kolay İK information security policy.
+  source: https://kolayik.com/bilgi-guvenligi-politikasi
+- id: iso-9001
+  name: TS EN/ISO 9001:2015 — Quality Management
+  conforms: true
+  evidence: Named on the published Kolay İK information security policy.
+  source: https://kolayik.com/bilgi-guvenligi-politikasi
+- id: kvkk
+  name: KVKK (Türkiye Law No. 6698 on the Protection of Personal Data)
+  conforms: true
+  evidence: 'Kolay publishes three distinct KVKK notices: the website notice, the platform
+    account-holder notice, and the employee personal-data protection policy.'
+  source: https://kolayik.com/internet-sitesi-kvkk
+- id: oauth2
+  conforms: false
+  evidence: The public API declares only an HTTP bearer scheme; no OAuth 2.0 authorization
+    server is published.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Responses use a custom envelope with error and data fields rather than
+    application/problem+json.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on kolayik.com.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation or sunset policy is published.
+- id: json-api
+  conforms: false
+- id: scim2
+  conforms: false
+  evidence: No /scim/v2 surface is published despite the API being an HR/identity data
+    source.
+- id: soc2
+  conforms: false
+  evidence: Not claimed anywhere on the Kolay İK site.
+- id: pagination
+  conforms: true
+  evidence: List operations accept `limit` and `page` query parameters.
+  source: openapi/kolayik-public-api-openapi.yml
+- id: idempotency
+  conforms: false
+  evidence: No idempotency key mechanism is documented.
+compliance_contact: bilgiguvenligi@kolayik.com

@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Kolay İK hosts
+probed: '2026-07-19'
+hosts:
+- host: https://kolayik.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://api.kolayik.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 400
+  - path: /.well-known/openid-configuration
+    status: 400
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+  - path: /.well-known/api-catalog
+    status: 400
+  - path: /.well-known/ai-plugin.json
+    status: 400
+  note: The API host returns HTTP 400 for every unrouted path rather than 404; no discovery
+    document is served.
+- host: https://app.kolayik.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    soft_404: true
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 200
+    soft_404: true
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    soft_404: true
+    file: null
+  - path: /.well-known/api-catalog
+    status: 200
+    soft_404: true
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    soft_404: true
+    file: null
+  note: 'app.kolayik.com is a single-page Angular application that answers every path
+    with its index.html (content-type text/html). The HTTP 200s above are soft 404s,
+    not real discovery documents — nothing was saved.'
+found: []
+notes:
+- kolayik.com is served behind Cloudflare with a wildcard DNS record, so arbitrary
+  subdomains (developer., docs., destek., status.) resolve. Subdomain existence was
+  verified by content, not by DNS or status code.
+- No RFC 9116 security.txt is published; see security/kolayik-vulnerability-disclosure.yml.

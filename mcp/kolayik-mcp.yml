@@ -1,0 +1,256 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kolayik-public-api-openapi.yml
+status: candidate
+server:
+  name: kolayik
+  transport: http
+  url: null
+  official: false
+notes:
+- Kolay Ik publishes no first-party MCP server. The tools[] list below is a CANDIDATE surface derived one-to-one
+  from the 46 operations of the official Kolay Public API Postman collection, not a server Kolay operates.
+- 'A third-party MCP server for this API does exist: kolay-mcp, shipped in the community-maintained kolay-cli package
+  (https://github.com/ezapmar/kolay-cli), with a hosted HTTP endpoint at https://kolay.up.railway.app/mcp authenticated
+  with an X-Kolay-Token header. It is explicitly not an official Kolay product and is recorded here for accuracy
+  only.'
+- 'Any MCP exposure of this API is high-consequence: the surface writes to live HR, payroll and personal data and
+  Kolay publishes no sandbox. See agentic-access/kolayik-agentic-access.yml.'
+third_party_servers:
+- name: kolay-mcp
+  transport: stdio, http
+  url: https://kolay.up.railway.app/mcp
+  auth_header: X-Kolay-Token
+  repository: https://github.com/ezapmar/kolay-cli
+  official: false
+tools:
+- name: person_create
+  description: Create a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personCreate
+  method: POST
+  path: /v2/person/create
+- name: person_update
+  description: Update a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personUpdate
+  method: PUT
+  path: /v2/person/update
+- name: person_view
+  description: View a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personView
+  method: GET
+  path: /v2/person/view/{id}
+- name: person_leave_status
+  description: Get leave statuses
+  source_operation: openapi/kolayik-public-api-openapi.yml#personLeaveStatus
+  method: GET
+  path: /v2/person/leave-status/{id}
+- name: person_view_summary
+  description: View summary of a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personViewSummary
+  method: GET
+  path: /v2/person/view-summary/{id}
+- name: person_bulk_view
+  description: View bulk person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personBulkView
+  method: POST
+  path: /v2/person/bulk-view
+- name: person_list
+  description: List people
+  source_operation: openapi/kolayik-public-api-openapi.yml#personList
+  method: POST
+  path: /v2/person/list
+- name: person_show_available_data_fields
+  description: Show available data fields
+  source_operation: openapi/kolayik-public-api-openapi.yml#personShowAvailableDataFields
+  method: GET
+  path: /v2/person/show-available-data-fields
+- name: person_terminate
+  description: Terminate employment
+  source_operation: openapi/kolayik-public-api-openapi.yml#personTerminate
+  method: POST
+  path: /v2/person/terminate
+- name: person_upload_file
+  description: Upload file
+  source_operation: openapi/kolayik-public-api-openapi.yml#personUploadFile
+  method: POST
+  path: /v2/person/upload-file
+- name: person_rehire
+  description: Rehire a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personRehire
+  method: POST
+  path: /v2/person/rehire/{id}
+- name: person_list_files
+  description: List files of a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personListFiles
+  method: GET
+  path: /v2/person/list-files/{id}
+- name: person_delete_file
+  description: Delete a file
+  source_operation: openapi/kolayik-public-api-openapi.yml#personDeleteFile
+  method: DELETE
+  path: /v2/person/delete-file/{fileId}
+- name: person_delete_folder
+  description: Delete a folder
+  source_operation: openapi/kolayik-public-api-openapi.yml#personDeleteFolder
+  method: DELETE
+  path: /v2/person/delete-folder/{folderId}
+- name: person_assign_training
+  description: Assign training a person
+  source_operation: openapi/kolayik-public-api-openapi.yml#personAssignTraining
+  method: POST
+  path: /v2/person/assign-training
+- name: person_update_training
+  description: Update a person training
+  source_operation: openapi/kolayik-public-api-openapi.yml#personUpdateTraining
+  method: PUT
+  path: /v2/person/update-training/{personTrainingId}
+- name: person_list_trainings
+  description: List a person's trainings
+  source_operation: openapi/kolayik-public-api-openapi.yml#personListTrainings
+  method: GET
+  path: /v2/person/list-trainings/{id}
+- name: person_delete_training
+  description: Delete a person training
+  source_operation: openapi/kolayik-public-api-openapi.yml#personDeleteTraining
+  method: DELETE
+  path: /v2/person/delete-training/{personTrainingId}
+- name: unit_create_unit_item
+  description: Create a unit item
+  source_operation: openapi/kolayik-public-api-openapi.yml#unitCreateUnitItem
+  method: POST
+  path: /v2/unit/create-unit-item
+- name: unit_show_unit_tree
+  description: Show unit tree
+  source_operation: openapi/kolayik-public-api-openapi.yml#unitShowUnitTree
+  method: GET
+  path: /v2/unit/show-unit-tree
+- name: leave_list
+  description: List leaves
+  source_operation: openapi/kolayik-public-api-openapi.yml#leaveList
+  method: GET
+  path: /v2/leave/list
+- name: leave_create
+  description: Create a new leave record
+  source_operation: openapi/kolayik-public-api-openapi.yml#leaveCreate
+  method: POST
+  path: /v2/leave/create
+- name: leave_view
+  description: View a leave record
+  source_operation: openapi/kolayik-public-api-openapi.yml#leaveView
+  method: GET
+  path: /v2/leave/view/{leaveId}
+- name: profile_me
+  description: Me
+  source_operation: openapi/kolayik-public-api-openapi.yml#profileMe
+  method: GET
+  path: /v2/profile/me
+- name: timelog_create
+  description: Create a timelog
+  source_operation: openapi/kolayik-public-api-openapi.yml#timelogCreate
+  method: POST
+  path: /v2/timelog/create
+- name: timelog_list
+  description: List timelogs
+  source_operation: openapi/kolayik-public-api-openapi.yml#timelogList
+  method: POST
+  path: /v2/timelog/list
+- name: timelog_view
+  description: View a timelog
+  source_operation: openapi/kolayik-public-api-openapi.yml#timelogView
+  method: GET
+  path: /v2/timelog/view/{id}
+- name: timelog_delete
+  description: Delete a timelog record
+  source_operation: openapi/kolayik-public-api-openapi.yml#timelogDelete
+  method: DELETE
+  path: /v2/timelog/delete/{id}
+- name: transaction_create
+  description: Create a transaction
+  source_operation: openapi/kolayik-public-api-openapi.yml#transactionCreate
+  method: POST
+  path: /v2/transaction/create
+- name: transaction_view
+  description: View a transaction
+  source_operation: openapi/kolayik-public-api-openapi.yml#transactionView
+  method: GET
+  path: /v2/transaction/view/{id}
+- name: transaction_list
+  description: List transactions
+  source_operation: openapi/kolayik-public-api-openapi.yml#transactionList
+  method: POST
+  path: /v2/transaction/list
+- name: transaction_delete
+  description: Delete a transaction record
+  source_operation: openapi/kolayik-public-api-openapi.yml#transactionDelete
+  method: DELETE
+  path: /v2/transaction/delete/{id}
+- name: approval_process_list
+  description: List approval processes
+  source_operation: openapi/kolayik-public-api-openapi.yml#approvalProcessList
+  method: GET
+  path: /v2/approval-process/list
+- name: event_create
+  description: Create an event
+  source_operation: openapi/kolayik-public-api-openapi.yml#eventCreate
+  method: POST
+  path: /v2/event/create
+- name: event_view
+  description: View an event
+  source_operation: openapi/kolayik-public-api-openapi.yml#eventView
+  method: GET
+  path: /v2/event/view/{id}
+- name: event_list
+  description: List events
+  source_operation: openapi/kolayik-public-api-openapi.yml#eventList
+  method: GET
+  path: /v2/event/list
+- name: event_update
+  description: Update an event
+  source_operation: openapi/kolayik-public-api-openapi.yml#eventUpdate
+  method: PUT
+  path: /v2/event/update/{id}
+- name: event_delete
+  description: Delete an event
+  source_operation: openapi/kolayik-public-api-openapi.yml#eventDelete
+  method: DELETE
+  path: /v2/event/delete/{id}
+- name: training_create
+  description: Create a training
+  source_operation: openapi/kolayik-public-api-openapi.yml#trainingCreate
+  method: POST
+  path: /v2/training/create
+- name: training_view
+  description: View a training
+  source_operation: openapi/kolayik-public-api-openapi.yml#trainingView
+  method: GET
+  path: /v2/training/view/{id}
+- name: training_list
+  description: List training
+  source_operation: openapi/kolayik-public-api-openapi.yml#trainingList
+  method: GET
+  path: /v2/training/list
+- name: training_update
+  description: Update a training
+  source_operation: openapi/kolayik-public-api-openapi.yml#trainingUpdate
+  method: PUT
+  path: /v2/training/update/{id}
+- name: training_delete
+  description: Delete a training
+  source_operation: openapi/kolayik-public-api-openapi.yml#trainingDelete
+  method: DELETE
+  path: /v2/training/delete/{id}
+- name: expense_list_categories
+  description: List Categories
+  source_operation: openapi/kolayik-public-api-openapi.yml#expenseListCategories
+  method: GET
+  path: /v2/expense/list-categories
+- name: payroll_sheet_view
+  description: Get Payroll Sheet
+  source_operation: openapi/kolayik-public-api-openapi.yml#payrollSheetView
+  method: POST
+  path: /v2/payroll-sheet/view/{payrollId}
+- name: payroll_list
+  description: Get Payroll List
+  source_operation: openapi/kolayik-public-api-openapi.yml#payrollList
+  method: GET
+  path: /v2/payroll/list

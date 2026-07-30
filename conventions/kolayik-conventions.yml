@@ -1,0 +1,102 @@
+generated: '2026-07-19'
+method: searched
+source: https://apidocs.kolayik.com/
+docs: https://apidocs.kolayik.com/
+api: openapi/kolayik-public-api-openapi.yml
+authentication:
+  style: http-bearer
+  header: Authorization
+  format: Bearer <TOKEN>
+  issuance: https://app.kolayik.com/settings/developer-settings
+  artifact: authentication/kolayik-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v2
+  example: https://api.kolayik.com/v2/person/list
+  artifact: lifecycle/kolayik-lifecycle.yml
+base_url: https://api.kolayik.com
+response_envelope:
+  shape: '{"error": <boolean>, "data": <object>}'
+  success_indicator: error
+  payload_field: data
+  evidence: Every documented example response in the official Postman collection (35
+    of 46 operations carry a saved 200 example) returns this envelope.
+  artifact: errors/kolayik-problem-types.yml
+pagination:
+  style: page-number
+  documented: true
+  parameters:
+  - name: limit
+    description: Maximum number of records to return.
+    observed_on:
+    - leaveList
+    - timelogList
+    - transactionList
+    - eventList
+    - trainingList
+  - name: page
+    description: 1-based page number.
+    observed_on:
+    - timelogList
+    - transactionList
+    - eventList
+    - trainingList
+  response_fields: not documented in the published examples
+sorting:
+  documented: true
+  parameters:
+  - name: sortType
+    description: Field to sort on (e.g. startDate).
+    observed_on:
+    - timelogList
+  - name: sortOrder
+    description: asc or desc.
+    observed_on:
+    - timelogList
+filtering:
+  documented: true
+  common_parameters:
+  - personId
+  - status
+  - type
+  - startDate
+  - endDate
+  - search
+  - include_inactive_employees
+date_format:
+  dates: YYYY-MM-DD
+  timestamps: 'YYYY-MM-DD HH:MM:SS'
+  evidence: Person folder documentation ("employmentStartDate must be in YYYY-MM-DD
+    format") and the datetime query values in leave/timelog/transaction/event list
+    operations.
+identifiers:
+  style: opaque 32-character hexadecimal strings
+  example_fields:
+  - id
+  - personId
+  - leaveTypeId
+  - unitId
+  - payrollId
+  artifact: data-model/kolayik-data-model.yml
+idempotency:
+  supported: false
+  evidence: No Idempotency-Key header, idempotency parameter, or retry-safety guidance
+    appears anywhere in the official Postman collection or its documentation. No `Idempotency`
+    pointer is emitted for this provider.
+rate_limiting:
+  documented: false
+  evidence: The published documentation states no request quota, and no rate-limit
+    response headers appear in the saved example responses.
+request_tracing:
+  documented: false
+metadata:
+  mechanism: custom person data fields
+  description: Additional employee attributes are carried as a `dataList` array of
+    `{fieldToken, value}` objects; the available tokens are discoverable at runtime
+    via the personShowAvailableDataFields operation.
+field_expansion:
+  documented: false
+webhooks:
+  documented: false
+  evidence: No webhook, event subscription, or callback surface is documented; asyncapi/
+    is intentionally absent.

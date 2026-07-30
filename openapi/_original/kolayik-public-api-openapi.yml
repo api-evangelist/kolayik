@@ -1,0 +1,2627 @@
+openapi: 3.1.0
+info:
+  title: Kolay Public API
+  version: 2.0.0
+  description: 'Welcome to Public API reference of Kolay!
+
+
+    This documentation is here to help you easily integrate your existing apps to Kolay. In order to use
+    this API you need to have an API Token ready. If you don''t have an existing API Token you can visit
+    the following link and create one for your needs https://app.kolayik.com/settings/developer-settings
+    If you have any technical questions you can contact us via apisupport@kolay.io'
+  contact:
+    name: Kolay API Support
+    email: apisupport@kolay.io
+    url: https://apidocs.kolayik.com/
+servers:
+- url: https://api.kolayik.com
+  description: Production
+tags:
+- name: Person
+- name: Unit
+- name: Leave
+- name: Profile
+- name: Timelog
+- name: Transaction
+- name: Approval Process
+- name: Calendar
+- name: Training
+- name: Expense
+- name: Payroll
+security:
+- bearerAuth: []
+paths:
+  /v2/person/create:
+    post:
+      operationId: personCreate
+      summary: Create a person
+      description: "You can create a single person with all the basic information populated. Only the\
+        \ firstName and the lastName fields are mandatory, others are optional. All skipped fields default\
+        \ to null unless otherwise stated.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is\
+        \ a list of additional person data fields. This object attribute only accepts an array of objects.\
+        \ Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\"\
+        : \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"\
+        evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is\
+        \ the unit list of a person and accepts an array of unit objects, so you can choose to add historical\
+        \ data or only the active unit. If the field default is true that means it will be the default\
+        \ unit throughout the system.\n\nemploymentType fulltime parttime intern freelance daily contracted\
+        \ mobile\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\"\
+        ,\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\"\
+        : true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\"\
+        : \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n           \
+        \ {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n\
+        \            },\n            {\n                \"unitName\": \"Departman\",\n               \
+        \ \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"\
+        Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n  \
+        \      ]\n    }\n]\n\nperson.compensationList\nYou can use this field to provide compensation\
+        \ and salary information for the person. It only accepts an array of objects. So you can use this\
+        \ field to add all historical compensation data, it this case only the 'active: true' one will\
+        \ be the current.\n\npayPeriod monthly daily yearly weekly hourly\ntype bonus food transportation\
+        \ healthInsurance personalRetirement\n\n[\n            {\n                \"amount\": 1250.50,\n\
+        \                \"payPeriod\": \"monthly\",\n                \"gross\": true,\n             \
+        \   \"currency\": \"TL\",\n                \"comment\": \"Starting salary\",\n               \
+        \ \"active\": true,\n                \"effectiveOn\": \"2020-08-13\",\n                \"items\"\
+        : [\n                    {\n                        \"amount\": 250,\n                       \
+        \ \"type\": \"food\",\n                        \"currency\": \"TL\",\n                       \
+        \ \"affectPayroll\": true,\n                        \"gross\": true,\n                       \
+        \ \"comment\": \"Cash for food\",\n                        \"payPeriod\": \"monthly\"\n      \
+        \              },\n                    {\n                        \"amount\": 50,\n          \
+        \              \"type\": \"transportation\",\n                        \"currency\": \"TL\",\n\
+        \                        \"affectPayroll\": true,\n                        \"gross\": true,\n\
+        \                        \"comment\": \"Top-up cost for public transportation\",\n           \
+        \             \"payPeriod\": \"monthly\"\n                    }\n                ]\n         \
+        \   }\n        ]\n\noptions\n\nsendWelcomeEmail can be true or false, if true an e-mail will be\
+        \ sent welcoming the person with a link to login. (default: false)"
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person:
+                firstName: Lorem
+                lastName: Ipsum
+                email: loremipsum0@gmail.com
+                workEmail: lorem.ipsum0@kolayhr.com
+                workPhone: '+902120000000'
+                workPhoneCountryCode: TR
+                mobilePhone: '+905550000000'
+                mobilePhoneCountryCode: TR
+                employmentStartDate: '2020-08-13'
+                contractType: definite
+                contractEndDate: '2021-08-13'
+                birthday: '1993-06-16'
+                idNumber: '2871376222213131'
+                maritalStatus: married
+                gender: female
+                levelOfDisability: firstLevel
+                educationLevel: associate
+                educationStatus: graduate
+                educationalInstitution: Istanbul Technical University
+                nationality: TR
+                numberOfChildren: 1
+                militaryService: null
+                militaryServiceDelayDate: null
+                accessType: employee
+                partnerWorkStatus: working
+                bloodType: A-
+                dataList:
+                - fieldToken: adres
+                  value: Selam Sok. 33/4
+                - fieldToken: evTelefonu
+                  value: '02123456666'
+                compensationList:
+                - amount: 1250.5
+                  payPeriod: monthly
+                  gross: true
+                  currency: TL
+                  comment: Starting salary
+                  active: true
+                  effectiveOn: '2020-08-13'
+                  items:
+                  - amount: 250
+                    type: food
+                    currency: TL
+                    affectPayroll: true
+                    gross: true
+                    comment: Cash for food
+                    payPeriod: monthly
+                  - amount: 50
+                    type: transportation
+                    currency: TL
+                    affectPayroll: true
+                    gross: true
+                    comment: Top-up cost for public transportation
+                    payPeriod: monthly
+                unitList:
+                - startDate: '2020-08-13'
+                  endDate: '2020-08-14'
+                  employmentType: fulltime
+                  managerId: null
+                  default: true
+                  items:
+                  - unitName: Şirket
+                    unitItemName: Smith Group
+                  - unitName: Şube
+                    unitItemName: Lake Isomberg
+                  - unitName: Departman
+                    unitItemName: champlin
+                  - unitName: Unvan
+                    unitItemName: Construction Laborer
+              options:
+                sendWelcomeEmail: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 4fbbe363dbb6587af080ab90d4fec8e3
+                    firstName: Lorem
+                    lastName: Ipsum
+                  options: []
+  /v2/person/update:
+    put:
+      operationId: personUpdate
+      summary: Update a person
+      description: "You can update the details of a single person. Only the id is mandatory, other fields\
+        \ will be updated if provided. In order to remove a value from the object, you should send it\
+        \ as null.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person\
+        \ data fields. This object attribute only accepts an array of objects. Objects can only have two\
+        \ properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n   \
+        \     \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n\
+        \        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list\
+        \ of a person and accepts an array of unit objects, so you can choose to add historical data or\
+        \ only the active unit. If the field default is true that means it will be the default unit throughout\
+        \ the system. Items will be removed if not included that has already been sent while creating.\
+        \ So the given array will be the final list of units.\n\n[\n    {\n        \"startDate\": \"2020-08-13\"\
+        ,\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"\
+        managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\":\
+        \ [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\"\
+        : \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n  \
+        \              \"unitItemName\": \"Amsterdam\"\n            },\n            {\n              \
+        \  \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n\
+        \            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"\
+        Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]"
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person:
+                id: 57a53d44282598ff0298103381df8190
+                dataList:
+                - fieldToken: sonIseBaslamaTarihi
+                  value: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 06ccf23835a39d79d3caaf9ea9ec4497
+                    firstName: Lorem
+                    lastName: Ipsum
+  /v2/person/view/{id}:
+    get:
+      operationId: personView
+      summary: View a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 4ff2f2aceb367e31129cacd0ed84caf8
+                    firstName: Lorem
+                    lastName: Ipsum
+                    email: asd@gmail.com
+                    workEmail: lorem.ipsum111@kolayhr.com
+                    mobilePhone: '+95550000000'
+                    workPhone: '+905320000000'
+                    gender: female
+                    accessType: employee
+                    nationality: TR
+                    idNumber: '47557546902'
+                    employmentStartDate: '2020-08-13'
+                    contractType: definite
+                    contractEndDate: '2021-08-13'
+                    birthday: '1993-06-16'
+                    maritalStatus: married
+                    partnerWorkStatus: working
+                    militaryService: null
+                    militaryServiceDelayDate: null
+                    educationLevel: associate
+                    educationStatus: graduate
+                    educationalInstitution: Istanbul Technical University
+                    status: active
+                    tourStatus: null
+                    createdAt: '2020-10-16 12:08:54'
+                    updatedAt: '2020-10-16 12:18:34'
+                    levelOfDisability: firstLevel
+                    numberOfChildren: 1
+                    bloodType: A-
+                    unitList:
+                    - startDate: '2020-08-13 00:00:00'
+                      endDate: '2020-08-14 00:00:00'
+                      employmentType: fulltime
+                      managerId: null
+                      default: true
+                      active: false
+                      items:
+                      - unitItemId: bc290d887974bb84c21b9bd1c41d926c
+                        unitItemName: Prohaska PLC
+                        unitId: 976ef279a18acaa22d471b525887d9c3
+                        unitName: Şirket
+                      - unitItemId: e1996820b1f62f41b5d717d402a81bb0
+                        unitItemName: Istanbul
+                        unitId: 837ab12fcfd5171f9bfefd19fa84ea61
+                        unitName: Şube
+                      - unitItemId: 32dcfc1242a324710306005474fe5a0c
+                        unitItemName: Sales
+                        unitId: 621724be9cd14d5a6521d81ea2d40331
+                        unitName: Departman
+                      - unitItemId: 484db808121a6d50c36aed742c8f13a7
+                        unitItemName: Electronic Drafter
+                        unitId: d487b67d56b9715ffe8bffa86d7aead9
+                        unitName: Unvan
+                    dataList:
+                    - fieldId: ee438332b46f4f05b5206dfdd45b7b38
+                      fieldToken: adres
+                      value: Selam Sok. 33/4
+                    - fieldId: 2a28971aa153d132daf5149685bdcc5a
+                      fieldToken: evTelefonu
+                      value: '02123456666'
+  /v2/person/leave-status/{id}:
+    get:
+      operationId: personLeaveStatus
+      summary: Get leave statuses
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 41f4a56152fe882225b5f268c91e7d42
+                  name: Doğum Sonrası İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: fd4a0ba24cc9a1b1036542ff36ebffb0
+                  name: Yıllık İzin
+                  primary: true
+                  term: 10
+                  carriedOver: 142
+                  lastCarriedOver: 150
+                  currentEarned: 20
+                  currentUsed: 8
+                  loss: 0
+                  total: 170
+                  used: 8
+                  unused: 162
+                  leaveBonus: 0
+                  active: true
+                - id: a2372ea524020cf25e22eece8c1a2b27
+                  name: Vefat İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 72991804e9974eff5c7a87b4a85dccb6
+                  name: 'Süt izni '
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 0650b70a279d87fcc05569e338a0240b
+                  name: Mazeret İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 5
+                  currentUsed: 0
+                  loss: 50
+                  total: 55
+                  used: 0
+                  unused: 5
+                  leaveBonus: 0
+                  active: true
+                - id: 3fbd9331bb99f351b4819efcb7c9c8c9
+                  name: İş Arama İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 0fbabaac1926adc552e045b3a5622b35
+                  name: Evlilik İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 4759e2b406f1eddf9adf5e0e21d6282f
+                  name: Doğum İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: cf89babe960a9a56882725d001395a3d
+                  name: Babalık İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 36b944b74a1c3678789e8dd5a556f713
+                  name: Yol İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 4
+                  currentUsed: 0
+                  loss: 40
+                  total: 44
+                  used: 0
+                  unused: 4
+                  leaveBonus: 0
+                  active: true
+                - id: df42b0121cdd5a1e9c3300c2101f4c44
+                  name: Hastalık İzni
+                  primary: false
+                  term: 10
+                  carriedOver: 0
+                  lastCarriedOver: 0
+                  currentEarned: 40
+                  currentUsed: 0
+                  loss: 423.3
+                  total: 463.3
+                  used: 0
+                  unused: 40
+                  leaveBonus: 0
+                  active: true
+                - id: 361c0d29e9c754cfb7b3cae003b54742
+                  name: Ücretsiz İzin
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+                - id: 728cbb6fef0bb1297167427e92e44036
+                  name: Askerlik İzni
+                  primary: false
+                  term: 10
+                  currentUsed: 0
+                  used: 0
+                  leaveBonus: 0
+                  active: true
+  /v2/person/view-summary/{id}:
+    get:
+      operationId: personViewSummary
+      summary: View summary of a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  person:
+                    id: 25315e13ade7f3ab5a86eea6df0e5241
+                    firstName: Black
+                    lastName: Smoke
+                    avatar: https://kolayik.s3.eu-central-1.amazonaws.com/.../black_smoke.jpg
+                    email: null
+                    workEmail: black.smoke@kolayhr.com
+                    mobilePhone: ''
+                    workPhone: +90 3258561101
+                    currentUnit:
+                    - unitName: Company
+                      unitItemName: Acme Energy
+                    - unitName: Location
+                      unitItemName: Germany
+                    - unitName: Department
+                      unitItemName: Management
+                    - unitName: Position
+                      unitItemName: Database Engineer
+                    manager:
+                      id: 406de4c888921d7d63d39a7856eab849
+                      firstName: Ben
+                      lastName: Linus
+                      workEmail: ben.linus@kolayhr.com
+                    customFields:
+                    - fieldToken: Telegram Username
+                      value: blacksmk02
+  /v2/person/bulk-view:
+    post:
+      operationId: personBulkView
+      summary: View bulk person
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              person_ids:
+              - '10175545312'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list:
+    post:
+      operationId: personList
+      summary: List people
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                q:
+                  type: string
+                page:
+                  type: string
+                employmentStartDate[from]:
+                  type: string
+                employmentStartDate[to]:
+                  type: string
+                employmentTerminationDate[from]:
+                  type: string
+                employmentTerminationDate[to]:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  total: 2
+                  perPage: 60
+                  currentPage: 1
+                  lastPage: 1
+                  items:
+                  - id: def06a1d21cd7db749f0d8d6aab271ec
+                    firstName: John
+                    lastName: Doe
+                  - id: f997b27ec626ac8b36cb56901ff5fbb5
+                    firstName: John
+                    lastName: Ipsum
+  /v2/person/show-available-data-fields:
+    get:
+      operationId: personShowAvailableDataFields
+      summary: Show available data fields
+      tags:
+      - Person
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - fieldId: ee438332b46f4f05b5206dfdd45b7b38
+                  fieldToken: adres
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 65a0c7f21de645aeff0b07b8b4191e81
+                  fieldToken: adresdevam
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 28a3b07640d99b40ce725e6933a93cf1
+                  fieldToken: telefonNumarasi
+                  fieldType: phoneNumber
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 2a28971aa153d132daf5149685bdcc5a
+                  fieldToken: evTelefonu
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 224d1ca558eea67bda2b823a5eb311bb
+                  fieldToken: ulke
+                  fieldType: enum
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 20867124eed16dbbe7537e00869e1998
+                  fieldToken: sehir
+                  fieldType: text
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 709bd3b4c107391b54cbbe611c4aaf6a
+                  fieldToken: postaKodu
+                  fieldType: number
+                  fieldCategoryId: 9a60c488c46868771c28c4740e4b277f
+                  fieldCategoryToken: adresBilgileri
+                - fieldId: 99d0b4a1b47305918ce183b5eadf6974
+                  fieldToken: bankaAdi
+                  fieldType: text
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 5b0e3602cc68c33d21dca29bdbe88e20
+                  fieldToken: hesapTipi
+                  fieldType: enum
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 72fb5060f29fcb38745da1151cb3312a
+                  fieldToken: hesapNo
+                  fieldType: number
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: e409d5b1aa91a916f8db7bd6badeefd7
+                  fieldToken: iban
+                  fieldType: text
+                  fieldCategoryId: 13267bb7fa35cb8c3c23386a2cdf3cff
+                  fieldCategoryToken: bankaBilgileri
+                - fieldId: 58b28687ea7213ced803adfb1125d0b3
+                  fieldToken: adSoyad
+                  fieldType: text
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: 1e613fd4434ae012c33be5c43b8f50d6
+                  fieldToken: yakinlikDerecesi
+                  fieldType: text
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: 0eda6b0601fb10e805ed84965709306d
+                  fieldToken: telefonNumarasi
+                  fieldType: phoneNumber
+                  fieldCategoryId: cd2a3812d5d438c9c8e88912ee794283
+                  fieldCategoryToken: acilDurumBilgileri
+                - fieldId: a9f48a94739a0cc9e2f97247c633b3c3
+                  fieldToken: baglantiAdi
+                  fieldType: text
+                  fieldCategoryId: 768e906f31accbcd7780321cd3adaad9
+                  fieldCategoryToken: baglantilar
+                - fieldId: 50bbcb7eea96da4c0a8f519904f54ccd
+                  fieldToken: baglantiAdresi
+                  fieldType: text
+                  fieldCategoryId: 768e906f31accbcd7780321cd3adaad9
+                  fieldCategoryToken: baglantilar
+  /v2/person/terminate:
+    post:
+      operationId: personTerminate
+      summary: Terminate employment
+      description: '* personId: id value of the person who will be terminated.
+
+        * date: date of termination. This attribute can be set to a future date.
+
+        * reasonCode: code of termination reason. Can take values between "01" and "50". Each code is
+        connected to a specific reason text.
+
+        * details: comments and details about the termination. (Optional)
+
+        * replacementId: terminated person''s ongoing approval processes and managees will be switched
+        to this person. (Optional)'
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              personId: d4038631aa494e4450aa3b8a88796bef
+              date: '2023-01-23'
+              reasonCode: '01'
+              details: Details about the termination
+              replacementId: d5a6fa7d90f3c29b9a7abce8302c19b9
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 1302952557a17a75371b183aad2b4987
+                  firstName: Anna
+                  lastName: Lisa
+  /v2/person/upload-file:
+    post:
+      operationId: personUploadFile
+      summary: Upload file
+      description: You can use this endpoint to upload a single file to a person's personal folder. You
+        can specify a folder name or skip it to upload the file to the root folder. Executable or potentially
+        harmful file extensions will not be accepted. You can use PDF, Excel, Word or similar file formats.
+        Returned file size is in bytes.
+      tags:
+      - Person
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                folderName:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 835dc2129d80fc7a2e63619e98c7e4c0
+                  filename: 2021_August_Payroll.pdf
+                  personId: f8242ae2e8c36d7f3d8a86ece3f3a0de
+                  folderId: 7ae2327641eed4a800094436fbbcd442
+                  size: 5357
+                  createdAt: '2021-08-05 19:18:00'
+  /v2/person/rehire/{id}:
+    post:
+      operationId: personRehire
+      summary: Rehire a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list-files/{id}:
+    get:
+      operationId: personListFiles
+      summary: List files of a person
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-file/{fileId}:
+    delete:
+      operationId: personDeleteFile
+      summary: Delete a file
+      tags:
+      - Person
+      parameters:
+      - name: fileId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-folder/{folderId}:
+    delete:
+      operationId: personDeleteFolder
+      summary: Delete a folder
+      tags:
+      - Person
+      parameters:
+      - name: folderId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/assign-training:
+    post:
+      operationId: personAssignTraining
+      summary: Assign training a person
+      tags:
+      - Person
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/update-training/{personTrainingId}:
+    put:
+      operationId: personUpdateTraining
+      summary: Update a person training
+      tags:
+      - Person
+      parameters:
+      - name: personTrainingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/list-trainings/{id}:
+    get:
+      operationId: personListTrainings
+      summary: List a person's trainings
+      tags:
+      - Person
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/person/delete-training/{personTrainingId}:
+    delete:
+      operationId: personDeleteTraining
+      summary: Delete a person training
+      tags:
+      - Person
+      parameters:
+      - name: personTrainingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/unit/create-unit-item:
+    post:
+      operationId: unitCreateUnitItem
+      summary: Create a unit item
+      description: You can create a new unit item via this endpoint. You should provide either unitName
+        or unitId.
+      tags:
+      - Unit
+      parameters:
+      - name: unitId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 621724be9cd14d5a6521d81ea2d403311
+      - name: unitName
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Location
+      - name: unitItemName
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Amsterdam
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 57c1a04dbac5203a9c0c6641c7328f3d
+                  name: Bursa
+  /v2/unit/show-unit-tree:
+    get:
+      operationId: unitShowUnitTree
+      summary: Show unit tree
+      description: 'See all available units and their items.
+
+
+        Sequence starts from 0 if the account is a holding account, 1 if otherwise.'
+      tags:
+      - Unit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 976ef279a18acaa22d471b525887d9c3
+                  name: Şirket
+                  sequence: 1
+                  items:
+                  - id: 27205ab204f538237fdbc2e2c3e53df1
+                    name: Gleichner-Gislason
+                  - id: bc290d887974bb84c21b9bd1c41d926c
+                    name: Prohaska PLC
+                - id: 837ab12fcfd5171f9bfefd19fa84ea61
+                  name: Şube
+                  sequence: 2
+                  items:
+                  - id: e1996820b1f62f41b5d717d402a81bb0
+                    name: Istanbul
+                  - id: 96fbcaaf1523eebb186e0a82648d3871
+                    name: Justinaville
+                  - id: d5c2e95617b2130307fd0c335505d44d
+                    name: North Danikaport
+                  - id: 7bbbd6f4492e5074821ea01adbe2a00f
+                    name: South Annamae
+                - id: 621724be9cd14d5a6521d81ea2d40331
+                  name: Departman
+                  sequence: 3
+                  items:
+                  - id: 0980792af93fc57e05449267809cfb12
+                    name: Finance
+                  - id: a13e236ddc0f7158e6974dc1f2ee1208
+                    name: Marketing
+                  - id: 32dcfc1242a324710306005474fe5a0c
+                    name: Sales
+                  - id: 6b25443768eeb256112ae687dde2e622
+                    name: Software Development
+                - id: d487b67d56b9715ffe8bffa86d7aead9
+                  name: Unvan
+                  sequence: 4
+                  items:
+                  - id: 484db808121a6d50c36aed742c8f13a7
+                    name: Electronic Drafter
+                  - id: e74430f918fe08bf8ce50cfb198911f5
+                    name: Hoist and Winch Operator
+                  - id: 035119a20810af02ba28d5fdf3e6a87c
+                    name: Industrial-Organizational Psychologist
+                  - id: d5abb90019f69da9a5ebc190928af80b
+                    name: Nuclear Equipment Operation Technician
+                  - id: 276a1b248723d54e811f64bb84951b00
+                    name: Veterinary Technician
+  /v2/leave/list:
+    get:
+      operationId: leaveList
+      summary: List leaves
+      description: You can list leave records by date or person.
+      tags:
+      - Leave
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2019-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 23:59:59'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '100'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      - name: include_inactive_employees
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 'false'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                - id: 032e7f829957f0c57feaaf88cd67c399
+                  startDate: '2020-10-07 09:00:00'
+                  endDate: '2020-10-07 18:00:00'
+                  returnDate: '2020-10-08 09:00:00'
+                  comment: I am going for a vacation.
+                  type:
+                    id: ac342dff523200714ac25487b152ca38
+                    name: Yıllık İzin
+                    limitation: limited_to_year
+                  leaveFormSigned: null
+                  person:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  replacementPerson: null
+                  status: approved
+                  usedDays: 1
+                  createdAt: '2020-10-06 01:41:41'
+                  updatedAt: '2020-10-06 01:41:58'
+  /v2/leave/create:
+    post:
+      operationId: leaveCreate
+      summary: Create a new leave record
+      description: Create a new leave record with given parameters.
+      tags:
+      - Leave
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-10-12 09:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-10-12 18:00:00'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      - name: leaveTypeId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: ac342dff523200714ac25487b152ca38
+      - name: comment
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Test leave record.
+      - name: replacementPersonId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: def06a1d21cd7db749f0d8d6aab271ec
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  leave:
+                    id: 796539bdf093db3ac30b4ae9917d2d25
+                    usedDays: 1
+  /v2/leave/view/{leaveId}:
+    get:
+      operationId: leaveView
+      summary: View a leave record
+      description: View the details of an existing leave record.
+      tags:
+      - Leave
+      parameters:
+      - name: leaveId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 63ba80dfc3e6cf28f1b70b0e6e400365
+                  startDate: '2020-10-12 09:00:00'
+                  endDate: '2020-10-12 18:00:00'
+                  returnDate: '2020-10-13 09:00:00'
+                  comment: Test leave record.
+                  type:
+                    id: ac342dff523200714ac25487b152ca38
+                    name: Yıllık İzin
+                    limitation: limited_to_year
+                  leaveFormSigned: null
+                  person:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  replacementPerson:
+                    id: def06a1d21cd7db749f0d8d6aab271ec
+                    name: John Doe
+                  status: approved
+                  usedDays: 1
+                  createdAt: '2020-10-12 19:34:33'
+                  updatedAt: '2020-10-12 19:34:33'
+  /v2/profile/me:
+    get:
+      operationId: profileMe
+      summary: Me
+      description: Get basic info about authenticated person
+      tags:
+      - Profile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: def06a1d21cd7db749f0d8d6aab271ec
+                  firstName: John
+                  lastName: Doe
+                  email: test@kolayhr.com
+                  workEmail: ''
+  /v2/timelog/create:
+    post:
+      operationId: timelogCreate
+      summary: Create a timelog
+      description: You can create a new timelog record with the endpoint.
+      tags:
+      - Timelog
+      parameters:
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-11-23 12:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2020-11-23 15:00:00'
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 061dfecf1e1c0a3f6b5b98d1a2a029ab
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Testing
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: work
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+  /v2/timelog/list:
+    post:
+      operationId: timelogList
+      summary: List timelogs
+      tags:
+      - Timelog
+      parameters:
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 066626006c27aa1296ac34bdf14d730b
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: overtime
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: waiting
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-09-29 23:59:59'
+      - name: sortType
+        in: query
+        required: false
+        schema:
+          type: string
+        example: startDate
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+        example: desc
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 3dcf6d271a907bc4bb58d8c14a8fa4cb
+                    createdAt: '2022-09-23 15:36:03'
+                    updatedAt: '2022-09-23 15:36:03'
+                    startDate: '2022-09-23 18:00:00'
+                    endDate: '2022-09-23 20:00:00'
+                    usedMinute: 120
+                    personId: 066626006c27aa1296ac34bdf14d730b
+                    description: hello timelog
+                    convertType: unconverted
+                    status: waiting
+                    type: overtime
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/timelog/view/{id}:
+    get:
+      operationId: timelogView
+      summary: View a timelog
+      tags:
+      - Timelog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+                  createdAt: '2020-11-20 18:52:02'
+                  updatedAt: '2020-11-20 18:52:02'
+                  startDate: '2020-11-22 12:00:00'
+                  endDate: '2020-11-22 15:00:00'
+                  usedMinute: 180
+                  personId: 061dfecf1e1c0a3f6b5b98d1a2a029ab
+                  description: Testing
+                  type: overtime
+                  convertType: unconverted
+                  status: approved
+  /v2/timelog/delete/{id}:
+    delete:
+      operationId: timelogDelete
+      summary: Delete a timelog record
+      tags:
+      - Timelog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/transaction/create:
+    post:
+      operationId: transactionCreate
+      summary: Create a transaction
+      description: You can create a new timelog record with the endpoint.
+      tags:
+      - Transaction
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                personId:
+                  type: string
+                type:
+                  type: string
+                items[0][name]:
+                  type: string
+                items[0][amount]:
+                  type: string
+                items[0][vatRate]:
+                  type: string
+                items[0][file]:
+                  type: string
+                  format: binary
+                installmentPlan:
+                  type: string
+                amount:
+                  type: string
+                currency:
+                  type: string
+                paid:
+                  type: string
+                isGross:
+                  type: string
+                affectPayroll:
+                  type: string
+                date:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 0eb33e53da558944f8f48add5a361a2b
+  /v2/transaction/view/{id}:
+    get:
+      operationId: transactionView
+      summary: View a transaction
+      tags:
+      - Transaction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: 327fcf7b62fc67cf7d103d3f86805ddc
+                  type: advance-expense
+                  amount: 0
+                  currency: null
+                  date: '2021-10-22'
+                  installmentPlan: null
+                  personId: e70e63951f35c1f524651694877768b2
+                  description: null
+                  status: approved
+                  paid: false
+                  isGross: null
+                  affectPayroll: false
+                  createdAt: '2021-10-22T12:14:30'
+                  updatedAt: '2021-10-22T12:15:46'
+                  person:
+                    id: e70e63951f35c1f524651694877768b2
+                    firstName: Lorem
+                    lastName: Ipsum
+                  items:
+                  - id: b71c7eb0dbdb5ffe1953630922c5158b
+                    name: null
+                    amount: 222
+                    vatRate: 18
+                    file: null
+  /v2/transaction/list:
+    post:
+      operationId: transactionList
+      summary: List transactions
+      tags:
+      - Transaction
+      parameters:
+      - name: personId
+        in: query
+        required: false
+        schema:
+          type: string
+        example: 066626006c27aa1296ac34bdf14d730b
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        example: advance-expense
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        example: approved
+      - name: paid
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '0'
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2021-10-07 00:00:00'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-09-06 23:59:59'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 007b98ea560c401fa49bbb488e2b4a2b
+                    type: advance-expense
+                    date: '2022-09-06'
+                    installmentPlan: null
+                    personId: 066626006c27aa1296ac34bdf14d730b
+                    description: null
+                    status: approved
+                    paid: false
+                    isGross: null
+                    affectPayroll: false
+                    createdAt: '2022-09-06T16:14:32'
+                    updatedAt: '2022-09-06T16:15:46'
+                    person:
+                      id: 066626006c27aa1296ac34bdf14d730b
+                      firstName: John
+                      lastName: Doe
+                    receipts:
+                    - id: fe7ae947599a93f92d67d55e27fbc537
+                      status: created
+                      amount: 10
+                      currency: TL
+                      vatRate: 18
+                      category:
+                        id: 4a357c29d26eabe0a01151985d145f53
+                        title: Yolculuk ve Ulaşım
+                        description: Benzin, taksi, araba kiralama ve benzeri
+                        isDefault: true
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:14:32'
+                      updatedAt: '2022-09-06T16:14:32'
+                    - id: 423f97178e14d503f82d4405b7cc5963
+                      status: created
+                      amount: 20
+                      currency: USD
+                      vatRate: 18
+                      category:
+                        id: b5c903e0bee29c899fef30efe801b319
+                        title: Yiyecek ve İçecek
+                        description: Ofis dışı yapılan yiyecek harcamaları, müşteri öğle ve akşam yemekleri
+                        isDefault: false
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:14:50'
+                      updatedAt: '2022-09-06T16:14:50'
+                    - id: 003f7edb8bd61e5a391ba2d64e542e30
+                      status: created
+                      amount: 30
+                      currency: EUR
+                      vatRate: 18
+                      category:
+                        id: 8675d533d33a0b7285ef1fed81905c17
+                        title: Eğitim ve Kurslar
+                        description: Eğitim, kurs ve programları için yapılan harcamalar
+                        isDefault: false
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:15:05'
+                      updatedAt: '2022-09-06T16:15:05'
+                    - id: 38feb37186047a44196af89f3c4564ef
+                      status: created
+                      amount: 80
+                      currency: TL
+                      vatRate: 18
+                      category:
+                        id: 4a357c29d26eabe0a01151985d145f53
+                        title: Yolculuk ve Ulaşım
+                        description: Benzin, taksi, araba kiralama ve benzeri
+                        isDefault: true
+                        isEnable: true
+                      file: null
+                      date: '2022-09-06'
+                      description: null
+                      lastEvaluator: null
+                      createdAt: '2022-09-06T16:15:35'
+                      updatedAt: '2022-09-06T16:15:35'
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/transaction/delete/{id}:
+    delete:
+      operationId: transactionDelete
+      summary: Delete a transaction record
+      tags:
+      - Transaction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/approval-process/list:
+    get:
+      operationId: approvalProcessList
+      summary: List approval processes
+      tags:
+      - Approval Process
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 940457770feafcbf56b44c999b89cd26
+                    name: Default
+                    private: true
+                    isDefault: true
+                    steps:
+                    - id: a35e0ee1f8dbe441722c901b43ff9b2f
+                      person:
+                        id: 066626006c27aa1296ac34bdf14d730b
+                        firstName: John
+                        lastName: Doe
+                        email: herminia41hdeckow@hotmail.com
+                        currentUnit:
+                          id: cfe33c1cd5a0dc07e8ce410241df64c6
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9f66dba43080b0aecabc1c5cf7be25ad
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 779ed31a94874cb2fafccc46a58c2bf7
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: ec028971422230d7b5dc36d7e42ab237
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 91938cd94feb623eb0d378f0cda3b32c
+                            personunitId: cfe33c1cd5a0dc07e8ce410241df64c6
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 1
+                    - id: 93f542979f34c45ffcb5e158f9252efd
+                      person:
+                        id: b4519a7bf1d4d958fd319914298e1706
+                        firstName: Evaluative
+                        lastName: Self
+                        email: rreichertava16@hotmail.com
+                        currentUnit:
+                          id: 033f8f0e07ebeb5603308177f3df5140
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9385f1932b2304d2df81875ffd4f7cf8
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 7e8e62cc9bd9fd2c1ea26d9a9a442970
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: c04f91cfe0918c56a375917d2dcae129
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: e49329c4706d1e8172eab22033616c0c
+                            personunitId: 033f8f0e07ebeb5603308177f3df5140
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 2
+                    - id: fde9751418b75b1c31d422573c5d1fd3
+                      person:
+                        id: 1679121d04379bcdfce25f961f70abf2
+                        firstName: Evaluative
+                        lastName: Inferior
+                        email: lind.kearacorene86@hotmail.com
+                        currentUnit:
+                          id: 9e54f38def011d9f81ecfac956c1197b
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 7b75edb76c93787f64ee629ceff26e02
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 2e3bf0195ca142f20c0acba3693b03eb
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 5b44dffd74f3ab243acf22087081340b
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 205f2c37c6b5080413dfa54cf996b05b
+                            personunitId: 9e54f38def011d9f81ecfac956c1197b
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 3
+                    - id: 08722b5c8a555af1baea6bb88bb1ce54
+                      person:
+                        id: 00ae725e83d0a08f771e254055cdad74
+                        firstName: Evaluative
+                        lastName: Equivalent
+                        email: ervin.bartonbertram.wolff@yahoo.com
+                        currentUnit:
+                          id: 115abea82a3b052f107506a9d6d2fe86
+                          managerId: null
+                          default: true
+                          items:
+                          - id: 9346715a80f64fcce72c865dccdfc096
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: b5053d9f8380d43b88482c6075c2868c
+                            companyUnitItem:
+                              id: b5053d9f8380d43b88482c6075c2868c
+                              name: Tillman, Leffler and Nolan
+                              parentId: null
+                              address: '448 Aniya Well Apt. 687
+
+                                Brendanfort, NE 98541'
+                              phone: +1-843-357-0352
+                              emailDomain: cartwright.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: b0b8560f5198da411d8306044f8c3d9f
+                              publicHolidayGroupId: 1dae4c5aa0df7337c35032106d1ee85f
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: b0b8560f5198da411d8306044f8c3d9f
+                                name: Şirket
+                                status: true
+                                sequence: 1
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 20ab51846d946bc35e6cf60331e3bb6d
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: 32288321f315ed8a3e82cb872357502f
+                            companyUnitItem:
+                              id: 32288321f315ed8a3e82cb872357502f
+                              name: Corwinbury
+                              parentId: null
+                              address: '279 Abernathy Land
+
+                                Marvinmouth, UT 69202'
+                              phone: +1.551.514.1019
+                              emailDomain: fay.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 02d01db028848ebe55af7f625845b95f
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 02d01db028848ebe55af7f625845b95f
+                                name: Şube
+                                status: true
+                                sequence: 2
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 257bb0c0e95d3efd366c0358ca7cd682
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: fb94001d2bb4cb4b3e70556f35ca2338
+                            companyUnitItem:
+                              id: fb94001d2bb4cb4b3e70556f35ca2338
+                              name: kuhic
+                              parentId: null
+                              address: '669 Wolf Lock
+
+                                Lurashire, IL 46906-2685'
+                              phone: '+18206923798'
+                              emailDomain: huels.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 15b06090fcc9c9d00b299a4fd33022f6
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 15b06090fcc9c9d00b299a4fd33022f6
+                                name: Departman
+                                status: true
+                                sequence: 3
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                          - id: 47210cee4e32cec81af7e0a2245962ef
+                            personunitId: 115abea82a3b052f107506a9d6d2fe86
+                            companyunititemId: b7a18e81220f68c2c3b3cf979712c522
+                            companyUnitItem:
+                              id: b7a18e81220f68c2c3b3cf979712c522
+                              name: Transportation Worker
+                              parentId: null
+                              address: '3282 Kemmer Green Suite 897
+
+                                Millstown, OK 40823-7281'
+                              phone: +1-412-456-7405
+                              emailDomain: bins.com
+                              mersisNumber: null
+                              sgkRegistrationNumber: null
+                              companyunitId: 279bd01f0637ad275162b1cc5eb18f16
+                              publicHolidayGroupId: null
+                              createdAt: '2022-09-05 12:00:00'
+                              updatedAt: '2022-09-05 12:00:00'
+                              companyUnit:
+                                id: 279bd01f0637ad275162b1cc5eb18f16
+                                name: Unvan
+                                status: true
+                                sequence: 4
+                                createdAt: '2022-09-05 12:00:00'
+                                updatedAt: '2022-09-05 12:00:00'
+                      order: 4
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 25
+  /v2/event/create:
+    post:
+      operationId: eventCreate
+      summary: Create an event
+      tags:
+      - Calendar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: c28ac0865bb5f100098b879df1a1e0d6
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: lorem dolor sit amet
+                  createdAt: '2022-09-15 17:19:01'
+                  updatedAt: '2022-09-15 17:19:01'
+  /v2/event/view/{id}:
+    get:
+      operationId: eventView
+      summary: View an event
+      tags:
+      - Calendar
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: e93331bc92cc5aecec7a86fd19a96193
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: null
+                  createdAt: '2022-09-15 14:55:44'
+                  updatedAt: '2022-09-15 14:55:44'
+  /v2/event/list:
+    get:
+      operationId: eventList
+      summary: List events
+      tags:
+      - Calendar
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Meeting
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-01-01 00:00:00'
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2022-12-31 23:59:59'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 61e0c7c6ca425859cb9bb82f4e2b9600
+                    title: Meeting with John Doe
+                    start: '2022-09-15 16:00:00'
+                    end: '2022-09-15 17:00:00'
+                    comment: lorem dolor sit amet
+                    createdAt: '2022-09-15 15:07:38'
+                    updatedAt: '2022-09-15 15:07:38'
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/event/update/{id}:
+    put:
+      operationId: eventUpdate
+      summary: Update an event
+      tags:
+      - Calendar
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/event/delete/{id}:
+    delete:
+      operationId: eventDelete
+      summary: Delete an event
+      tags:
+      - Calendar
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/training/create:
+    post:
+      operationId: trainingCreate
+      summary: Create a training
+      tags:
+      - Training
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: c28ac0865bb5f100098b879df1a1e0d6
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: lorem dolor sit amet
+                  createdAt: '2022-09-15 17:19:01'
+                  updatedAt: '2022-09-15 17:19:01'
+  /v2/training/view/{id}:
+    get:
+      operationId: trainingView
+      summary: View a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  id: e93331bc92cc5aecec7a86fd19a96193
+                  title: Meeting with John Doe
+                  start: '2022-09-15 16:00:00'
+                  end: '2022-09-15 17:00:00'
+                  comment: null
+                  createdAt: '2022-09-15 14:55:44'
+                  updatedAt: '2022-09-15 14:55:44'
+  /v2/training/list:
+    get:
+      operationId: trainingList
+      summary: List training
+      tags:
+      - Training
+      parameters:
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Sales Training
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '10'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data:
+                  items:
+                  - id: 61e0c7c6ca425859cb9bb82f4e2b9600
+                    title: Meeting with John Doe
+                    start: '2022-09-15 16:00:00'
+                    end: '2022-09-15 17:00:00'
+                    comment: lorem dolor sit amet
+                    createdAt: '2022-09-15 15:07:38'
+                    updatedAt: '2022-09-15 15:07:38'
+                  searchCount: 1
+                  totalCount: 1
+                  page: 1
+                  limit: 10
+  /v2/training/update/{id}:
+    put:
+      operationId: trainingUpdate
+      summary: Update a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/training/delete/{id}:
+    delete:
+      operationId: trainingDelete
+      summary: Delete a training
+      tags:
+      - Training
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+              example:
+                error: false
+                data: true
+  /v2/expense/list-categories:
+    get:
+      operationId: expenseListCategories
+      summary: List Categories
+      tags:
+      - Expense
+      parameters:
+      - name: title
+        in: query
+        required: false
+        schema:
+          type: string
+        example: Taksi
+      - name: isEnable
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '1'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/payroll-sheet/view/{payrollId}:
+    post:
+      operationId: payrollSheetView
+      summary: Get Payroll Sheet
+      description: "View Payroll Sheet\nReturns the complete payroll sheet data (Çarşaf Bordro) for a\
+        \ given payroll run as JSON. This is the API equivalent of the Excel export.\n\nScope: payroll-sheet:view\n\
+        \nRequest\nPOST /v2/payroll-sheet/view/{id}\n\nParameter\nType\nRequired\nDescription\n\nid\n\
+        string\nYes\n32-char payroll ID\n\nBody\n{\n  \"filter\": {\n    \"search\": \"Ahmet\",\n    \"\
+        status\": [\"ended\"],\n    \"salaryPeriod\": [\"monthly\"],\n    \"insuranceId\": [\"setting_id\"\
+        ],\n    \"taxId\": [\"setting_id\"],\n    \"expenseCenterId\": [\"setting_id\"],\n    \"units\"\
+        : [[\"unit_item_id\"]]\n  }\n}\n\nAll filter fields are optional. Send {} to get all employees.\n\
+        \nFilters\nfilter.search\nstring — Free text search by employee full name. Supports Turkish characters.\n\
+        \nfilter.status\narray — Filter by one or more statuses (OR logic).\n\nValue\nDescription\n\n\
+        ended\nCalculation completed, payslip not created\n\nstarted\nCalculation in progress\n\nfailed\n\
+        Calculation failed\n\nhasPayslip\nPayslip created\n\nisPayslipPublic\nPayslip published to employee\n\
+        \nchangedColumns\nEmployee data changed since last calculation\n\nactiveEmployee\nNo termination\
+        \ date\n\nterminatedEmployee\nHas termination date\n\nfilter.salaryPeriod\narray — Filter by salary\
+        \ period type.\n\nValue\nDescription\n\nmonthly\nAylık\n\nhourly\nSaatlik\n\nattendance_fee\n\
+        Huzur Hakkı\n\nfilter.insuranceId\narray — Company setting IDs for SGK workplaces.\n\nfilter.taxId\n\
+        array — Company setting IDs for tax departments.\n\nfilter.expenseCenterId\narray — Company setting\
+        \ IDs for expense centers.\n\nfilter.units\narray of arrays — Organizational unit item IDs. Each\
+        \ inner array is AND-ed.\n\n\"units\": [[\"branch_item_id\"], [\"department_item_id\"]]\n\nResponse\n\
+        {\n  \"error\": false,\n  \"data\": {\n    \"columns\": { \"firstName\": \"Ad\", \"lastName\"\
+        : \"Soyad\", \"...\" : \"...\" },\n    \"dynamicColumns\": {\n      \"benefits\": { \"<type>\"\
+        : { \"label\": \"Yemek Yardımı\", \"grossLabel\": \"Brüt\", \"netLabel\": \"Net\" } },\n     \
+        \ \"deductions\": { \"<type>\": { \"label\": \"İcra\", \"netLabel\": \"Net\", \"turnoverLabel\"\
+        : \"Devir\" } },\n      \"promotions\": { \"<code class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;\
+        \ class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;\
+        \ class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;\
+        \ class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;>\"\
+        : { \"label\": \"05510\" } },\n      \"units\": { \"<unit_id>\": { \"label\": \"Departman\" }\
+        \ }\n    },\n    \"rows\": [ { \"...\" : \"...\" } ],\n    \"meta\": { \"total\": 150, \"payrollId\"\
+        : \"uuid\", \"year\": 2026, \"month\": 1 }\n  }\n}\n\ncolumns\nStatic key→label map for all fixed\
+        \ fields. Use as table headers.\n\ndynamicColumns\nColumn definitions that vary per company/payroll:\n\
+        \nbenefits — Each has gross and net values in row data\n\ndeductions — Each has net; allowance\
+        \ and enforcement also have turnover\n\npromotions — SGK incentive codes; row data has the amount\
+        \ per code\n\nunits — Organizational units; row data has unit item name or null\n\nrows\nArray\
+        \ of employee objects. Key fields per row:\n\nGroup\nFields\n\nPersonal\npersonId, registrationNumber,\
+        \ firstName, lastName\n\nPayroll\npayrollYear, payrollMonth, hasPayslip, payrollStatus, errorMessage\n\
+        \nEmployee\nidNumber, gender, disabilityLevel, isRetired, governingLaw, specialityCode, employmentStartDate,\
+        \ employmentTerminationDate, terminationReason, employmentType, sgkWorkplace, sgkWorkplaceNumber,\
+        \ taxDepartment, taxNumber, expenseCenter, expenseCenterNumber, iban\n\nUnits\nunits — object\
+        \ keyed by unit ID → item name\n\nIncome\nwageType, salaryPeriod, baseWage, dailyWage, payableDay,\
+        \ wageGross, wageNet, overtimeGrossTotal, overtimeNetTotal, benefitsGrossTotal, benefitsNetTotal,\
+        \ allIncomesGrossTotal\n\nSGK\nworkDay, restDay, publicHoliday, paidLeaveDay, unpaidLeaveDay,\
+        \ sickDay, otherMissingDays, workHours, sgkDay, baseSgkWage, sgkExemptionTotal, sgkMonthlyTopWage,\
+        \ carryoverFromLastMonth, usedFromCarryover, carryoverToNextMonth, sgkMonthlyBase, employeeSgkPay,\
+        \ employeeUnemploymentPay, employeeSgkTotal, employerSgkPay, employerUnemploymentPay, employerSgkTotal,\
+        \ employerSgkTotalWithoutPromotions\n\nIncome Tax\nincomeTaxBase, disabilityExemption, incomeTaxExemptionTotal,\
+        \ previousMonthCumulativeTaxBase, cumulativeIncomeTaxBase, incomeTaxRatios, incomeTaxMonthlyBase,\
+        \ incomeTaxAmountBeforeMinimumWageExemption, minimumWageIncomeTaxExemption, incomeTaxAmount, incomeTaxExemptionByPromotions,\
+        \ incomeTaxPayment\n\nStamp Tax\nstampTaxBase, stampTaxExemption, stampTaxMonthlyWage, stampTaxAmountBeforeMinimumWageExemption,\
+        \ minimumWageStampTaxExemption, stampTaxAmount, stampTaxExemptionByPromotions, stampTaxPayment\n\
+        \nDeductions\ntaxCutTotal, privateDeductionsTotal, inKindTotal, allDeductionsTotal\n\nPromotions\n\
+        promotions (object keyed by code → amount), promotionsTotal\n\nWage\nmonthlyWageGross, monthlyWageNet\n\
+        \nEmployer Cost\npaidAmount, employeeCostTotal, totalIncentives, employeeCostTotalWithPromotions\n\
+        \nOvertime\nrestDayHour, restDayGross, restDayNet, publicHolidayOvertimeHour, publicHolidayOvertimeGross,\
+        \ publicHolidayOvertimeNet, workDayOvertimeHour, workDayOvertimeGross, workDayOvertimeNet\n\n\
+        Severance\nseveranceGross, severanceNet, noticeGross, noticeNet, remainingLeaveDaysGross, remainingLeaveDaysNet\n\
+        \nBenefits\nbenefits — object keyed by type → { gross, net }\n\nDeductions\ndeductions — object\
+        \ keyed by type → { net } or { net, turnover }\n\nCalculation\ncalculationDate (ISO 8601), calculationId\n\
+        \nmeta\n\nField\nType\nDescription\n\ntotal\ninteger\nNumber of employees returned\n\npayrollId\n\
+        string\nPayroll run ID\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month (1-12)\n\
+        \nExamples\nAll employees, no filter:\n\n{}\n\nCompleted monthly employees:\n\n{ \"filter\": {\
+        \ \"status\": [\"ended\"], \"salaryPeriod\": [\"monthly\"] } }\n\nSearch + specific SGK workplace:\n\
+        \n{ \"filter\": { \"search\": \"Melih\", \"insuranceId\": [\"setting_id_here\"] } }\n\nEmployees\
+        \ needing recalculation:\n\n{ \"filter\": { \"status\": [\"changedColumns\"] } }\n\nErrors\n\n\
+        Code\nDescription\n\n401\nInvalid or missing API token\n\n422\nValidation error (invalid payroll\
+        \ ID, invalid filter values)"
+      tags:
+      - Payroll
+      parameters:
+      - name: payrollId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              filter:
+                search: ''
+                status: []
+                salaryPeriod: []
+                insuranceId: []
+                taxId: []
+                expenseCenterId: []
+                units: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /v2/payroll/list:
+    get:
+      operationId: payrollList
+      summary: Get Payroll List
+      description: "List Payroll Periods\nReturns the list of payroll runs (bordro dönemleri) for a given\
+        \ year. Use this to get payroll IDs before calling the View Payroll Sheet endpoint.\n\nScope:\
+        \ payroll:list\n\nRequest\nGET /v2/payroll/list?year=2026\n\nQuery Parameters\n\nParameter\nType\n\
+        Required\nDescription\n\nyear\ninteger\nNo\nFilter by year. Max value: current year + 1. Defaults\
+        \ to current year if omitted.\n\nResponse\n{\n  \"error\": false,\n  \"data\": [\n    {\n    \
+        \  \"id\": \"abc123def456ghi789jkl012mno345pq\",\n      \"period\": \"2026-01-01 00:00:00\",\n\
+        \      \"year\": 2026,\n      \"month\": 1,\n      \"total\": 150,\n      \"payslips\": 120,\n\
+        \      \"errors\": 2,\n      \"employerCost\": 1250000.50,\n      \"updatedAt\": \"2026-01-15\"\
+        \n    },\n    {\n      \"id\": \"rst678uvw901xyz234abc567def890ghi\",\n      \"period\": \"2026-02-01\
+        \ 00:00:00\",\n      \"year\": 2026,\n      \"month\": 2,\n      \"total\": 152,\n      \"payslips\"\
+        : 0,\n      \"errors\": 5,\n      \"employerCost\": 1280000.75,\n      \"updatedAt\": \"2026-02-14\"\
+        \n    }\n  ]\n}\n\nResponse Fields\n\nField\nType\nDescription\n\nid\nstring\nPayroll run ID.\
+        \ Use this as {id} in /v2/payroll-sheet/view/{id}.\n\nperiod\nstring\nPeriod start date as datetime\
+        \ string (YYYY-MM-DD HH:mm:ss)\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month\
+        \ (1-12)\n\ntotal\ninteger\nTotal number of included employees\n\npayslips\ninteger\nNumber of\
+        \ generated payslips\n\nerrors\ninteger\nNumber of failed calculations\n\nemployerCost\nnumber\n\
+        Total employer cost (sum of all included employees)\n\nupdatedAt\nstring\nLast update date (YYYY-MM-DD)\n\
+        \nExamples\nAll payroll for current year (default):\n\nGET /v2/payroll/list\n\nFilter by year:\n\
+        \nGET /v2/payroll/list?year=2026\n\nErrors\n\nCode\nDescription\n\n401\nInvalid or missing API\
+        \ token\n\n422\nValidation error (e.g. year is not an integer or exceeds max value)"
+      tags:
+      - Payroll
+      parameters:
+      - name: year
+        in: query
+        required: false
+        schema:
+          type: string
+        example: '2026'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created at https://app.kolayik.com/settings/developer-settings and sent
+        as `Authorization: Bearer <TOKEN>`.'
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Kolay response envelope observed in every documented example response.
+      properties:
+        error:
+          type: boolean
+          description: False on success.
+        data:
+          description: Operation payload.
+      required:
+      - error

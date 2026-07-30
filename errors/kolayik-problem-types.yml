@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: derived
+source: postman/kolayik-public-api-postman.json
+format: custom-envelope
+rfc9457: false
+envelope:
+  shape: '{"error": <boolean>, "data": <object>}'
+  error_field: error
+  error_field_type: boolean
+  payload_field: data
+  content_type: application/json
+  description: 'Kolay does not use RFC 9457 problem+json. Every documented response
+    carries a boolean `error` flag alongside a `data` payload; a successful call returns
+    error = false.'
+problems: []
+notes:
+- 'The official Kolay Public API documentation publishes 35 saved example responses,
+  all of them HTTP 200 with `"error": false`. No 4xx/5xx example, error-code registry,
+  or error-message catalogue is published, so no problem types can be enumerated without
+  fabricating them.'
+- Because the API is not a payments or card-authorization API, errors/kolayik-decline-codes.yml
+  is not applicable.
+gaps_to_raise_with_provider:
+- Publish the failure shape (what an error = true response looks like and which field
+  carries the message/code).
+- Publish an error-code registry with remediation guidance.
+- Document which HTTP status codes each operation can return.
