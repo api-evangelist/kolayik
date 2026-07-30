@@ -1,25 +1,318 @@
 aid: kolayik
 name: KolayIK
-description: KolayIK is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Kolay İK (Kolay Yazılım A.Ş.) is an Istanbul-based cloud human-resources
+  and human-capital-management SaaS platform serving more than 4,500 companies and
+  300,000+ employees, predominantly in Türkiye. The product covers employee/personnel
+  records (özlük), payroll (bordro), performance evaluation, shift management (vardiya),
+  compensation review, applicant tracking, HR analytics, time and attendance (PDKS),
+  leave management, expense and asset tracking, and training. Kolay publishes an official
+  public REST API — the "Kolay Public API" (v2, https://api.kolayik.com) — documented
+  as a public Postman collection at apidocs.kolayik.com, covering person, unit, leave,
+  timelog, transaction, approval, calendar, training, expense and payroll resources,
+  authenticated with a bearer API token created from the in-product developer settings.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/6113889e45c6e62ebf4ca212/616f325923c82836146d34aa_kolay-ik-logo-tr.svg
 url: https://raw.githubusercontent.com/api-evangelist/kolayik/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: official-public-api-documented
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Human Resources
+- HR
+- Payroll
+- Human Capital Management
+- Employee Management
+- Time and Attendance
+- Applicant Tracking
+- SaaS
+- Turkey
+apis:
+- aid: kolayik:kolayik-approval-process-api
+  name: KolayIK Approval Process API
+  description: The Approval Process API from KolayIK — 1 operation(s) for approval process.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Approval Process
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-approval-process-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-calendar-api
+  name: KolayIK Calendar API
+  description: The Calendar API from KolayIK — 5 operation(s) for calendar.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Calendar
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-calendar-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-expense-api
+  name: KolayIK Expense API
+  description: The Expense API from KolayIK — 1 operation(s) for expense.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Expense
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-expense-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-leave-api
+  name: KolayIK Leave API
+  description: The Leave API from KolayIK — 3 operation(s) for leave.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Leave
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-leave-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-payroll-api
+  name: KolayIK Payroll API
+  description: The Payroll API from KolayIK — 2 operation(s) for payroll.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Payroll
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-payroll-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-person-api
+  name: KolayIK Person API
+  description: The Person API from KolayIK — 18 operation(s) for person.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Person
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-person-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-profile-api
+  name: KolayIK Profile API
+  description: The Profile API from KolayIK — 1 operation(s) for profile.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-profile-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-timelog-api
+  name: KolayIK Timelog API
+  description: The Timelog API from KolayIK — 4 operation(s) for timelog.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Timelog
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-timelog-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-training-api
+  name: KolayIK Training API
+  description: The Training API from KolayIK — 5 operation(s) for training.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Training
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-training-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-transaction-api
+  name: KolayIK Transaction API
+  description: The Transaction API from KolayIK — 4 operation(s) for transaction.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-transaction-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
+- aid: kolayik:kolayik-unit-api
+  name: KolayIK Unit API
+  description: The Unit API from KolayIK — 2 operation(s) for unit.
+  humanURL: https://apidocs.kolayik.com/
+  baseURL: https://api.kolayik.com
+  tags:
+  - Unit
+  properties:
+  - type: OpenAPI
+    url: openapi/kolayik-unit-api-openapi.yml
+  - type: Postman
+    url: postman/kolayik-public-api-postman.json
+  - type: Documentation
+    url: https://apidocs.kolayik.com/
+  - type: APIReference
+    url: https://apidocs.kolayik.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/kolayik-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/kolayik-agentic-access.yml
 - type: Website
   url: https://kolayik.com
+- type: DeveloperPortal
+  url: https://apidocs.kolayik.com/
+- type: Documentation
+  url: https://apidocs.kolayik.com/
+- type: APIReference
+  url: https://apidocs.kolayik.com/
+- type: Postman
+  url: https://apidocs.kolayik.com/
+- type: SignUp
+  url: https://kolayik.com/kayit-ol
+- type: Login
+  url: https://app.kolayik.com/home
+- type: Pricing
+  url: https://kolayik.com/insan-kaynaklari-yazilimi-fiyatlari
+- type: Support
+  url: https://destek.kolayik.com/tr/
+- type: HelpCenter
+  url: https://destek.kolayik.com/tr/
+- type: Blog
+  url: https://kolayik.com/blog
+- type: GitHubOrganization
+  url: https://github.com/kolayik
+- type: TermsOfService
+  url: https://kolayik.com/kullanici-sozlesmesi
+- type: PrivacyPolicy
+  url: https://kolayik.com/internet-sitesi-kvkk
+- type: Security
+  url: https://kolayik.com/bilgi-guvenligi-politikasi
+- type: Compliance
+  url: https://kolayik.com/bilgi-guvenligi-politikasi
+- type: StatusPage
+  url: https://status.kolayik.com
+- type: ChangeLog
+  url: https://updates.kolayik.com/tr
+- type: Contact
+  url: https://kolayik.com/iletisim
+- type: About
+  url: https://kolayik.com/hakkimizda
+- type: Academy
+  url: https://akademi.kolayik.com/
+- type: Twitter
+  url: https://twitter.com/kolayik
+- type: LinkedIn
+  url: https://www.linkedin.com/company/kolayik/
+- type: YouTube
+  url: https://www.youtube.com/channel/UCR3rklQaddzZsppuFM4YxHw
+- type: Authentication
+  url: authentication/kolayik-authentication.yml
+- type: Conventions
+  url: conventions/kolayik-conventions.yml
+- type: ErrorCatalog
+  url: errors/kolayik-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/kolayik-lifecycle.yml
+- type: ChangeLog
+  name: Kolay changelog artifact
+  url: changelog/kolayik-changelog.yml
+- type: Conformance
+  url: conformance/kolayik-conformance.yml
+- type: Packages
+  url: packages/kolayik-packages.yml
+- type: WellKnown
+  url: well-known/kolayik-well-known.yml
+- type: MCPServer
+  url: mcp/kolayik-mcp.yml
+- type: LLMsTxt
+  url: llms/kolayik-llms.txt
+- type: DataModel
+  url: data-model/kolayik-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Onboard an employee in Kolay İK
+  url: arazzo/kolayik-onboard-employee.yml
+- type: Arazzo
+  name: Check balances and book leave in Kolay İK
+  url: arazzo/kolayik-book-leave.yml
+
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
