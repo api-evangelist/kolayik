@@ -227,6 +227,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/kolayik-public-api-overlay.yaml
 - type: DomainSecurity
   url: security/kolayik-domain-security.yml
 - type: AgenticAccess
