@@ -1,0 +1,368 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Person API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Person",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can create a single person with all the basic information populated. Only the firstName and the lastName fields are mandatory, others are optional. All skipped fields default to null unless otherwise stated.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4"
+        },
+        {
+          "info": {
+            "name": "Update a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kolayik.com/v2/person/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can update the details of a single person. Only the id is mandatory, other fields will be updated if provided. In order to remove a value from the object, you should send it as null.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"f"
+        },
+        {
+          "info": {
+            "name": "View a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/view/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a person"
+        },
+        {
+          "info": {
+            "name": "Get leave statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/leave-status/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get leave statuses"
+        },
+        {
+          "info": {
+            "name": "View summary of a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/view-summary/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View summary of a person"
+        },
+        {
+          "info": {
+            "name": "View bulk person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/bulk-view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "View bulk person"
+        },
+        {
+          "info": {
+            "name": "List people",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/list",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "status",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "q",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "page",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "employmentStartDate[from]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "employmentStartDate[to]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "employmentTerminationDate[from]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "employmentTerminationDate[to]",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "List people"
+        },
+        {
+          "info": {
+            "name": "Show available data fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/show-available-data-fields"
+          },
+          "docs": "Show available data fields"
+        },
+        {
+          "info": {
+            "name": "Terminate employment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/terminate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "* personId: id value of the person who will be terminated.\n* date: date of termination. This attribute can be set to a future date.\n* reasonCode: code of termination reason. Can take values between \"01\" and \"50\". Each code is connected to a specific reason text.\n* details: comments and details about the termination. (Optional)\n* replacementId: terminated person's ongoing approval processes and managees will be switched to this person. (Optional)"
+        },
+        {
+          "info": {
+            "name": "Upload file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/upload-file",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "personId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "folderName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "You can use this endpoint to upload a single file to a person's personal folder. You can specify a folder name or skip it to upload the file to the root folder. Executable or potentially harmful file extensions will not be accepted. You can use PDF, Excel, Word or similar file formats. Returned file size is in bytes."
+        },
+        {
+          "info": {
+            "name": "Rehire a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/rehire/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rehire a person"
+        },
+        {
+          "info": {
+            "name": "List files of a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/list-files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List files of a person"
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/person/delete-file/:fileId",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a file"
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/person/delete-folder/:folderId",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a folder"
+        },
+        {
+          "info": {
+            "name": "Assign training a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/person/assign-training"
+          },
+          "docs": "Assign training a person"
+        },
+        {
+          "info": {
+            "name": "Update a person training",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kolayik.com/v2/person/update-training/:personTrainingId",
+            "params": [
+              {
+                "name": "personTrainingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a person training"
+        },
+        {
+          "info": {
+            "name": "List a person's trainings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/person/list-trainings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List a person's trainings"
+        },
+        {
+          "info": {
+            "name": "Delete a person training",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/person/delete-training/:personTrainingId",
+            "params": [
+              {
+                "name": "personTrainingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a person training"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

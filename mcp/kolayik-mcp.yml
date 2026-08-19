@@ -8,14 +8,15 @@ server:
   url: null
   official: false
 notes:
-- Kolay Ik publishes no first-party MCP server. The tools[] list below is a CANDIDATE surface derived one-to-one
-  from the 46 operations of the official Kolay Public API Postman collection, not a server Kolay operates.
-- 'A third-party MCP server for this API does exist: kolay-mcp, shipped in the community-maintained kolay-cli package
-  (https://github.com/ezapmar/kolay-cli), with a hosted HTTP endpoint at https://kolay.up.railway.app/mcp authenticated
-  with an X-Kolay-Token header. It is explicitly not an official Kolay product and is recorded here for accuracy
-  only.'
-- 'Any MCP exposure of this API is high-consequence: the surface writes to live HR, payroll and personal data and
-  Kolay publishes no sandbox. See agentic-access/kolayik-agentic-access.yml.'
+- Kolay Ik publishes no first-party MCP server. The tools[] list below is a CANDIDATE surface derived
+  one-to-one from the 46 operations of the official Kolay Public API Postman collection, not a server
+  Kolay operates.
+- 'A third-party MCP server for this API does exist: kolay-mcp, shipped in the community-maintained kolay-cli
+  package (https://github.com/ezapmar/kolay-cli), with a hosted HTTP endpoint at https://kolay.up.railway.app/mcp
+  authenticated with an X-Kolay-Token header. It is explicitly not an official Kolay product and is recorded
+  here for accuracy only.'
+- 'Any MCP exposure of this API is high-consequence: the surface writes to live HR, payroll and personal
+  data and Kolay publishes no sandbox. See agentic-access/kolayik-agentic-access.yml.'
 third_party_servers:
 - name: kolay-mcp
   transport: stdio, http
@@ -254,3 +255,9 @@ tools:
   source_operation: openapi/kolayik-public-api-openapi.yml#payrollList
   method: GET
   path: /v2/payroll/list
+deployment:
+  mode: none
+  verified: derived
+  tools: 46
+  checked: '2026-08-12'
+  source: catalog MCP census

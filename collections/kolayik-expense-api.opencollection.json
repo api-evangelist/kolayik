@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Expense API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expense",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/expense/list-categories",
+            "params": [
+              {
+                "name": "title",
+                "value": "Taksi",
+                "type": "query"
+              },
+              {
+                "name": "isEnable",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Categories"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

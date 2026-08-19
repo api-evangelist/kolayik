@@ -1,0 +1,255 @@
+{
+  "item": [
+    {
+      "id": "c53f6ed0-892b-40ab-831d-87fee6dfccca",
+      "name": "Payroll",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a607c6e4-51e0-4166-bbc4-1d3983dbc871",
+          "name": "Get Payroll Sheet",
+          "request": {
+            "name": "Get Payroll Sheet",
+            "description": {
+              "content": "View Payroll Sheet\nReturns the complete payroll sheet data (Çarşaf Bordro) for a given payroll run as JSON. This is the API equivalent of the Excel export.\n\nScope: payroll-sheet:view\n\nRequest\nPOST /v2/payroll-sheet/view/{id}\n\nParameter\nType\nRequired\nDescription\n\nid\nstring\nYes\n32-char payroll ID\n\nBody\n{\n  \"filter\": {\n    \"search\": \"Ahmet\",\n    \"status\": [\"ended\"],\n    \"salaryPeriod\": [\"monthly\"],\n    \"insuranceId\": [\"setting_id\"],\n    \"taxId\": [\"setting_id\"],\n    \"expenseCenterId\": [\"setting_id\"],\n    \"units\": [[\"unit_item_id\"]]\n  }\n}\n\nAll filter fields are optional. Send {} to get all employees.\n\nFilters\nfilter.search\nstring — Free text search by employee full name. Supports Turkish characters.\n\nfilter.status\narray — Filter by one or more statuses (OR logic).\n\nValue\nDescription\n\nended\nCalculation completed, payslip not created\n\nstarted\nCalculation in progress\n\nfailed\nCalculation failed\n\nhasPayslip\nPayslip created\n\nisPayslipPublic\nPayslip published to employee\n\nchangedColumns\nEmployee data changed since last calculation\n\nactiveEmployee\nNo termination date\n\nterminatedEmployee\nHas termination date\n\nfilter.salaryPeriod\narray — Filter by salary period type.\n\nValue\nDescription\n\nmonthly\nAylık\n\nhourly\nSaatlik\n\nattendance_fee\nHuzur Hakkı\n\nfilter.insuranceId\narray — Company setting IDs for SGK workplaces.\n\nfilter.taxId\narray — Company setting IDs for tax departments.\n\nfilter.expenseCenterId\narray — Company setting IDs for expense centers.\n\nfilter.units\narray of arrays — Organizational unit item IDs. Each inner array is AND-ed.\n\n\"units\": [[\"branch_item_id\"], [\"department_item_id\"]]\n\nResponse\n{\n  \"error\": false,\n  \"data\": {\n    \"columns\": { \"firstName\": \"Ad\", \"lastName\": \"Soyad\", \"...\" : \"...\" },\n    \"dynamicColumns\": {\n      \"benefits\": { \"<type>\": { \"label\": \"Yemek Yardımı\", \"grossLabel\": \"Brüt\", \"netLabel\": \"Net\" } },\n      \"deductions\": { \"<type>\": { \"label\": \"İcra\", \"netLabel\": \"Net\", \"turnoverLabel\": \"Devir\" } },\n      \"promotions\": { \"<code class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27; class=&#x27;preserveHtml&#x27;>\": { \"label\": \"05510\" } },\n      \"units\": { \"<unit_id>\": { \"label\": \"Departman\" } }\n    },\n    \"rows\": [ { \"...\" : \"...\" } ],\n    \"meta\": { \"total\": 150, \"payrollId\": \"uuid\", \"year\": 2026, \"month\": 1 }\n  }\n}\n\ncolumns\nStatic key→label map for all fixed fields. Use as table headers.\n\ndynamicColumns\nColumn definitions that vary per company/payroll:\n\nbenefits — Each has gross and net values in row data\n\ndeductions — Each has net; allowance and enforcement also have turnover\n\npromotions — SGK incentive codes; row data has the amount per code\n\nunits — Organizational units; row data has unit item name or null\n\nrows\nArray of employee objects. Key fields per row:\n\nGroup\nFields\n\nPersonal\npersonId, registrationNumber, firstName, lastName\n\nPayroll\npayrollYear, payrollMonth, hasPayslip, payrollStatus, errorMessage\n\nEmployee\nidNumber, gender, disabilityLevel, isRetired, governingLaw, specialityCode, employmentStartDate, employmentTerminationDate, terminationReason, employmentType, sgkWorkplace, sgkWorkplaceNumber, taxDepartment, taxNumber, expenseCenter, expenseCenterNumber, iban\n\nUnits\nunits — object keyed by unit ID → item name\n\nIncome\nwageType, salaryPeriod, baseWage, dailyWage, payableDay, wageGross, wageNet, overtimeGrossTotal, overtimeNetTotal, benefitsGrossTotal, benefitsNetTotal, allIncomesGrossTotal\n\nSGK\nworkDay, restDay, publicHoliday, paidLeaveDay, unpaidLeaveDay, sickDay, otherMissingDays, workHours, sgkDay, baseSgkWage, sgkExemptionTotal, sgkMonthlyTopWage, carryoverFromLastMonth, usedFromCarryover, carryoverToNextMonth, sgkMonthlyBase, employeeSgkPay, employeeUnemploymentPay, employeeSgkTotal, employerSgkPay, employerUnemploymentPay, employerSgkTotal, employerSgkTotalWithoutPromotions\n\nIncome Tax\nincomeTaxBase, disabilityExemption, incomeTaxExemptionTotal, previousMonthCumulativeTaxBase, cumulativeIncomeTaxBase, incomeTaxRatios, incomeTaxMonthlyBase, incomeTaxAmountBeforeMinimumWageExemption, minimumWageIncomeTaxExemption, incomeTaxAmount, incomeTaxExemptionByPromotions, incomeTaxPayment\n\nStamp Tax\nstampTaxBase, stampTaxExemption, stampTaxMonthlyWage, stampTaxAmountBeforeMinimumWageExemption, minimumWageStampTaxExemption, stampTaxAmount, stampTaxExemptionByPromotions, stampTaxPayment\n\nDeductions\ntaxCutTotal, privateDeductionsTotal, inKindTotal, allDeductionsTotal\n\nPromotions\npromotions (object keyed by code → amount), promotionsTotal\n\nWage\nmonthlyWageGross, monthlyWageNet\n\nEmployer Cost\npaidAmount, employeeCostTotal, totalIncentives, employeeCostTotalWithPromotions\n\nOvertime\nrestDayHour, restDayGross, restDayNet, publicHolidayOvertimeHour, publicHolidayOvertimeGross, publicHolidayOvertimeNet, workDayOvertimeHour, workDayOvertimeGross, workDayOvertimeNet\n\nSeverance\nseveranceGross, severanceNet, noticeGross, noticeNet, remainingLeaveDaysGross, remainingLeaveDaysNet\n\nBenefits\nbenefits — object keyed by type → { gross, net }\n\nDeductions\ndeductions — object keyed by type → { net } or { net, turnover }\n\nCalculation\ncalculationDate (ISO 8601), calculationId\n\nmeta\n\nField\nType\nDescription\n\ntotal\ninteger\nNumber of employees returned\n\npayrollId\nstring\nPayroll run ID\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month (1-12)\n\nExamples\nAll employees, no filter:\n\n{}\n\nCompleted monthly employees:\n\n{ \"filter\": { \"status\": [\"ended\"], \"salaryPeriod\": [\"monthly\"] } }\n\nSearch + specific SGK workplace:\n\n{ \"filter\": { \"search\": \"Melih\", \"insuranceId\": [\"setting_id_here\"] } }\n\nEmployees needing recalculation:\n\n{ \"filter\": { \"status\": [\"changedColumns\"] } }\n\nErrors\n\nCode\nDescription\n\n401\nInvalid or missing API token\n\n422\nValidation error (invalid payroll ID, invalid filter values)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "payroll-sheet",
+                "view",
+                ":payrollId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payrollId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f739c4c0-a543-435d-a65f-85b2051aff94",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payroll-sheet",
+                    "view",
+                    ":payrollId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payrollId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"search\": \"\",\n    \"status\": [],\n    \"salaryPeriod\": [],\n    \"insuranceId\": [],\n    \"taxId\": [],\n    \"expenseCenterId\": [],\n    \"units\": []\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": true,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db09cc40-9851-4b7f-bcfe-1008f7ec48e6",
+          "name": "Get Payroll List",
+          "request": {
+            "name": "Get Payroll List",
+            "description": {
+              "content": "List Payroll Periods\nReturns the list of payroll runs (bordro dönemleri) for a given year. Use this to get payroll IDs before calling the View Payroll Sheet endpoint.\n\nScope: payroll:list\n\nRequest\nGET /v2/payroll/list?year=2026\n\nQuery Parameters\n\nParameter\nType\nRequired\nDescription\n\nyear\ninteger\nNo\nFilter by year. Max value: current year + 1. Defaults to current year if omitted.\n\nResponse\n{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"abc123def456ghi789jkl012mno345pq\",\n      \"period\": \"2026-01-01 00:00:00\",\n      \"year\": 2026,\n      \"month\": 1,\n      \"total\": 150,\n      \"payslips\": 120,\n      \"errors\": 2,\n      \"employerCost\": 1250000.50,\n      \"updatedAt\": \"2026-01-15\"\n    },\n    {\n      \"id\": \"rst678uvw901xyz234abc567def890ghi\",\n      \"period\": \"2026-02-01 00:00:00\",\n      \"year\": 2026,\n      \"month\": 2,\n      \"total\": 152,\n      \"payslips\": 0,\n      \"errors\": 5,\n      \"employerCost\": 1280000.75,\n      \"updatedAt\": \"2026-02-14\"\n    }\n  ]\n}\n\nResponse Fields\n\nField\nType\nDescription\n\nid\nstring\nPayroll run ID. Use this as {id} in /v2/payroll-sheet/view/{id}.\n\nperiod\nstring\nPeriod start date as datetime string (YYYY-MM-DD HH:mm:ss)\n\nyear\ninteger\nPayroll year\n\nmonth\ninteger\nPayroll month (1-12)\n\ntotal\ninteger\nTotal number of included employees\n\npayslips\ninteger\nNumber of generated payslips\n\nerrors\ninteger\nNumber of failed calculations\n\nemployerCost\nnumber\nTotal employer cost (sum of all included employees)\n\nupdatedAt\nstring\nLast update date (YYYY-MM-DD)\n\nExamples\nAll payroll for current year (default):\n\nGET /v2/payroll/list\n\nFilter by year:\n\nGET /v2/payroll/list?year=2026\n\nErrors\n\nCode\nDescription\n\n401\nInvalid or missing API token\n\n422\nValidation error (e.g. year is not an integer or exceeds max value)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "payroll",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b64cd44a-767f-4d18-bea5-1be49c69fd33",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payroll",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "year",
+                      "value": "2026"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": true,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c2750386-a017-4820-bd77-d769e19cf77e",
+    "name": "Kolay Public Approval Process Payroll API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

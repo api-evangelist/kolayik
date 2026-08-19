@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Approval Process",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List approval processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/approval-process/list"
+          },
+          "docs": "List approval processes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

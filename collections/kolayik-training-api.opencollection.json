@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Training API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Training",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a training",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/training/create"
+          },
+          "docs": "Create a training"
+        },
+        {
+          "info": {
+            "name": "View a training",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/training/view/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a training"
+        },
+        {
+          "info": {
+            "name": "List training",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/training/list",
+            "params": [
+              {
+                "name": "search",
+                "value": "Sales Training",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List training"
+        },
+        {
+          "info": {
+            "name": "Update a training",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kolayik.com/v2/training/update/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a training"
+        },
+        {
+          "info": {
+            "name": "Delete a training",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/training/delete/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a training"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1914 @@
+{
+  "item": [
+    {
+      "id": "e88ced4a-7d04-4970-9433-fe9f3260a402",
+      "name": "Person",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "358c2c5a-be4b-4c26-b6a3-d19d52f3b2ea",
+          "name": "Create a person",
+          "request": {
+            "name": "Create a person",
+            "description": {
+              "content": "You can create a single person with all the basic information populated. Only the firstName and the lastName fields are mandatory, others are optional. All skipped fields default to null unless otherwise stated.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system.\n\nemploymentType fulltime parttime intern freelance daily contracted mobile\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]\n\nperson.compensationList\nYou can use this field to provide compensation and salary information for the person. It only accepts an array of objects. So you can use this field to add all historical compensation data, it this case only the 'active: true' one will be the current.\n\npayPeriod monthly daily yearly weekly hourly\ntype bonus food transportation healthInsurance personalRetirement\n\n[\n            {\n                \"amount\": 1250.50,\n                \"payPeriod\": \"monthly\",\n                \"gross\": true,\n                \"currency\": \"TL\",\n                \"comment\": \"Starting salary\",\n                \"active\": true,\n                \"effectiveOn\": \"2020-08-13\",\n                \"items\": [\n                    {\n                        \"amount\": 250,\n                        \"type\": \"food\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Cash for food\",\n                        \"payPeriod\": \"monthly\"\n                    },\n                    {\n                        \"amount\": 50,\n                        \"type\": \"transportation\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Top-up cost for public transportation\",\n                        \"payPeriod\": \"monthly\"\n                    }\n                ]\n            }\n        ]\n\noptions\n\nsendWelcomeEmail can be true or false, if true an e-mail will be sent welcoming the person with a link to login. (default: false)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16c10808-cf04-424d-b351-76ef917acb74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": {\n    \"firstName\": \"Lorem\",\n    \"lastName\": \"Ipsum\",\n    \"email\": \"loremipsum0@gmail.com\",\n    \"workEmail\": \"lorem.ipsum0@kolayhr.com\",\n    \"workPhone\": \"+902120000000\",\n    \"workPhoneCountryCode\": \"TR\",\n    \"mobilePhone\": \"+905550000000\",\n    \"mobilePhoneCountryCode\": \"TR\",\n    \"employmentStartDate\": \"2020-08-13\",\n    \"contractType\": \"definite\",\n    \"contractEndDate\": \"2021-08-13\",\n    \"birthday\": \"1993-06-16\",\n    \"idNumber\": \"2871376222213131\",\n    \"maritalStatus\": \"married\",\n    \"gender\": \"female\",\n    \"levelOfDisability\": \"firstLevel\",\n    \"educationLevel\": \"associate\",\n    \"educationStatus\": \"graduate\",\n    \"educationalInstitution\": \"Istanbul Technical University\",\n    \"nationality\": \"TR\",\n    \"numberOfChildren\": 1,\n    \"militaryService\": null,\n    \"militaryServiceDelayDate\": null,\n    \"accessType\": \"employee\",\n    \"partnerWorkStatus\": \"working\",\n    \"bloodType\": \"A-\",\n    \"dataList\": [\n      {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n      },\n      {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n      }\n    ],\n    \"compensationList\": [\n      {\n        \"amount\": 1250.5,\n        \"payPeriod\": \"monthly\",\n        \"gross\": true,\n        \"currency\": \"TL\",\n        \"comment\": \"Starting salary\",\n        \"active\": true,\n        \"effectiveOn\": \"2020-08-13\",\n        \"items\": [\n          {\n            \"amount\": 250,\n            \"type\": \"food\",\n            \"currency\": \"TL\",\n            \"affectPayroll\": true,\n            \"gross\": true,\n            \"comment\": \"Cash for food\",\n            \"payPeriod\": \"monthly\"\n          },\n          {\n            \"amount\": 50,\n            \"type\": \"transportation\",\n            \"currency\": \"TL\",\n            \"affectPayroll\": true,\n            \"gross\": true,\n            \"comment\": \"Top-up cost for public transportation\",\n            \"payPeriod\": \"monthly\"\n          }\n        ]\n      }\n    ],\n    \"unitList\": [\n      {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"items\": [\n          {\n            \"unitName\": \"Şirket\",\n            \"unitItemName\": \"Smith Group\"\n          },\n          {\n            \"unitName\": \"Şube\",\n            \"unitItemName\": \"Lake Isomberg\"\n          },\n          {\n            \"unitName\": \"Departman\",\n            \"unitItemName\": \"champlin\"\n          },\n          {\n            \"unitName\": \"Unvan\",\n            \"unitItemName\": \"Construction Laborer\"\n          }\n        ]\n      }\n    ]\n  },\n  \"options\": {\n    \"sendWelcomeEmail\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"person\": {\n      \"id\": \"4fbbe363dbb6587af080ab90d4fec8e3\",\n      \"firstName\": \"Lorem\",\n      \"lastName\": \"Ipsum\"\n    },\n    \"options\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e247ac83-5f40-4bd9-b11a-be2a4c38768a",
+          "name": "Update a person",
+          "request": {
+            "name": "Update a person",
+            "description": {
+              "content": "You can update the details of a single person. Only the id is mandatory, other fields will be updated if provided. In order to remove a value from the object, you should send it as null.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system. Items will be removed if not included that has already been sent while creating. So the given array will be the final list of units.\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d3685c6-0d71-42db-8342-c02693a9d58a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": {\n    \"id\": \"57a53d44282598ff0298103381df8190\",\n    \"dataList\": [\n      {\n        \"fieldToken\": \"sonIseBaslamaTarihi\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"person\": {\n      \"id\": \"06ccf23835a39d79d3caaf9ea9ec4497\",\n      \"firstName\": \"Lorem\",\n      \"lastName\": \"Ipsum\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f3870f-7cc8-4747-8565-ee18cae9fcf5",
+          "name": "View a person",
+          "request": {
+            "name": "View a person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "view",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "169144aa-9a35-4247-a467-2e28cb952c7d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "view",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"person\": {\n      \"id\": \"4ff2f2aceb367e31129cacd0ed84caf8\",\n      \"firstName\": \"Lorem\",\n      \"lastName\": \"Ipsum\",\n      \"email\": \"asd@gmail.com\",\n      \"workEmail\": \"lorem.ipsum111@kolayhr.com\",\n      \"mobilePhone\": \"+95550000000\",\n      \"workPhone\": \"+905320000000\",\n      \"gender\": \"female\",\n      \"accessType\": \"employee\",\n      \"nationality\": \"TR\",\n      \"idNumber\": \"47557546902\",\n      \"employmentStartDate\": \"2020-08-13\",\n      \"contractType\": \"definite\",\n      \"contractEndDate\": \"2021-08-13\",\n      \"birthday\": \"1993-06-16\",\n      \"maritalStatus\": \"married\",\n      \"partnerWorkStatus\": \"working\",\n      \"militaryService\": null,\n      \"militaryServiceDelayDate\": null,\n      \"educationLevel\": \"associate\",\n      \"educationStatus\": \"graduate\",\n      \"educationalInstitution\": \"Istanbul Technical University\",\n      \"status\": \"active\",\n      \"tourStatus\": null,\n      \"createdAt\": \"2020-10-16 12:08:54\",\n      \"updatedAt\": \"2020-10-16 12:18:34\",\n      \"levelOfDisability\": \"firstLevel\",\n      \"numberOfChildren\": 1,\n      \"bloodType\": \"A-\",\n      \"unitList\": [\n        {\n          \"startDate\": \"2020-08-13 00:00:00\",\n          \"endDate\": \"2020-08-14 00:00:00\",\n          \"employmentType\": \"fulltime\",\n          \"managerId\": null,\n          \"default\": true,\n          \"active\": false,\n          \"items\": [\n            {\n              \"unitItemId\": \"bc290d887974bb84c21b9bd1c41d926c\",\n              \"unitItemName\": \"Prohaska PLC\",\n              \"unitId\": \"976ef279a18acaa22d471b525887d9c3\",\n              \"unitName\": \"Şirket\"\n            },\n            {\n              \"unitItemId\": \"e1996820b1f62f41b5d717d402a81bb0\",\n              \"unitItemName\": \"Istanbul\",\n              \"unitId\": \"837ab12fcfd5171f9bfefd19fa84ea61\",\n              \"unitName\": \"Şube\"\n            },\n            {\n              \"unitItemId\": \"32dcfc1242a324710306005474fe5a0c\",\n              \"unitItemName\": \"Sales\",\n              \"unitId\": \"621724be9cd14d5a6521d81ea2d40331\",\n              \"unitName\": \"Departman\"\n            },\n            {\n              \"unitItemId\": \"484db808121a6d50c36aed742c8f13a7\",\n              \"unitItemName\": \"Electronic Drafter\",\n              \"unitId\": \"d487b67d56b9715ffe8bffa86d7aead9\",\n              \"unitName\": \"Unvan\"\n            }\n          ]\n        }\n      ],\n      \"dataList\": [\n        {\n          \"fieldId\": \"ee438332b46f4f05b5206dfdd45b7b38\",\n          \"fieldToken\": \"adres\",\n          \"value\": \"Selam Sok. 33/4\"\n        },\n        {\n          \"fieldId\": \"2a28971aa153d132daf5149685bdcc5a\",\n          \"fieldToken\": \"evTelefonu\",\n          \"value\": \"02123456666\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "881089e2-08a4-4059-b344-8edebf5fb705",
+          "name": "Get leave statuses",
+          "request": {
+            "name": "Get leave statuses",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "leave-status",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8ae5db1-da51-4260-ade8-14fd4746d73b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "leave-status",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"41f4a56152fe882225b5f268c91e7d42\",\n      \"name\": \"Doğum Sonrası İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"fd4a0ba24cc9a1b1036542ff36ebffb0\",\n      \"name\": \"Yıllık İzin\",\n      \"primary\": true,\n      \"term\": 10,\n      \"carriedOver\": 142,\n      \"lastCarriedOver\": 150,\n      \"currentEarned\": 20,\n      \"currentUsed\": 8,\n      \"loss\": 0,\n      \"total\": 170,\n      \"used\": 8,\n      \"unused\": 162,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"a2372ea524020cf25e22eece8c1a2b27\",\n      \"name\": \"Vefat İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"72991804e9974eff5c7a87b4a85dccb6\",\n      \"name\": \"Süt izni \",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"0650b70a279d87fcc05569e338a0240b\",\n      \"name\": \"Mazeret İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"carriedOver\": 0,\n      \"lastCarriedOver\": 0,\n      \"currentEarned\": 5,\n      \"currentUsed\": 0,\n      \"loss\": 50,\n      \"total\": 55,\n      \"used\": 0,\n      \"unused\": 5,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"3fbd9331bb99f351b4819efcb7c9c8c9\",\n      \"name\": \"İş Arama İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"0fbabaac1926adc552e045b3a5622b35\",\n      \"name\": \"Evlilik İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"4759e2b406f1eddf9adf5e0e21d6282f\",\n      \"name\": \"Doğum İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"cf89babe960a9a56882725d001395a3d\",\n      \"name\": \"Babalık İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"36b944b74a1c3678789e8dd5a556f713\",\n      \"name\": \"Yol İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"carriedOver\": 0,\n      \"lastCarriedOver\": 0,\n      \"currentEarned\": 4,\n      \"currentUsed\": 0,\n      \"loss\": 40,\n      \"total\": 44,\n      \"used\": 0,\n      \"unused\": 4,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"df42b0121cdd5a1e9c3300c2101f4c44\",\n      \"name\": \"Hastalık İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"carriedOver\": 0,\n      \"lastCarriedOver\": 0,\n      \"currentEarned\": 40,\n      \"currentUsed\": 0,\n      \"loss\": 423.3,\n      \"total\": 463.3,\n      \"used\": 0,\n      \"unused\": 40,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"361c0d29e9c754cfb7b3cae003b54742\",\n      \"name\": \"Ücretsiz İzin\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    },\n    {\n      \"id\": \"728cbb6fef0bb1297167427e92e44036\",\n      \"name\": \"Askerlik İzni\",\n      \"primary\": false,\n      \"term\": 10,\n      \"currentUsed\": 0,\n      \"used\": 0,\n      \"leaveBonus\": 0,\n      \"active\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "632ce7fa-9ef9-4a0c-a670-8bb6ad369fd1",
+          "name": "View summary of a person",
+          "request": {
+            "name": "View summary of a person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "view-summary",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2967b531-394b-4477-b7c9-d7df7f6600e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "view-summary",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"person\": {\n      \"id\": \"25315e13ade7f3ab5a86eea6df0e5241\",\n      \"firstName\": \"Black\",\n      \"lastName\": \"Smoke\",\n      \"avatar\": \"https://kolayik.s3.eu-central-1.amazonaws.com/.../black_smoke.jpg\",\n      \"email\": null,\n      \"workEmail\": \"black.smoke@kolayhr.com\",\n      \"mobilePhone\": \"\",\n      \"workPhone\": \"+90 3258561101\",\n      \"currentUnit\": [\n        {\n          \"unitName\": \"Company\",\n          \"unitItemName\": \"Acme Energy\"\n        },\n        {\n          \"unitName\": \"Location\",\n          \"unitItemName\": \"Germany\"\n        },\n        {\n          \"unitName\": \"Department\",\n          \"unitItemName\": \"Management\"\n        },\n        {\n          \"unitName\": \"Position\",\n          \"unitItemName\": \"Database Engineer\"\n        }\n      ],\n      \"manager\": {\n        \"id\": \"406de4c888921d7d63d39a7856eab849\",\n        \"firstName\": \"Ben\",\n        \"lastName\": \"Linus\",\n        \"workEmail\": \"ben.linus@kolayhr.com\"\n      },\n      \"customFields\": [\n        {\n          \"fieldToken\": \"Telegram Username\",\n          \"value\": \"blacksmk02\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdf22128-a05e-4287-96cf-f146632fd9b1",
+          "name": "View bulk person",
+          "request": {
+            "name": "View bulk person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "bulk-view"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbb1ebc4-604c-4a0b-940d-b347557f217a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "bulk-view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_ids\": [\n    \"10175545312\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ff4f5dc-170b-49bb-9edd-9f97af9d8167",
+          "name": "List people",
+          "request": {
+            "name": "List people",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "q",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "page",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "employmentStartDate[from]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "employmentStartDate[to]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "employmentTerminationDate[from]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "employmentTerminationDate[to]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75b3402e-c502-4285-9eea-fa40272f1ca7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "q",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "page",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "employmentStartDate[from]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "employmentStartDate[to]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "employmentTerminationDate[from]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "employmentTerminationDate[to]",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"total\": 2,\n    \"perPage\": 60,\n    \"currentPage\": 1,\n    \"lastPage\": 1,\n    \"items\": [\n      {\n        \"id\": \"def06a1d21cd7db749f0d8d6aab271ec\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\"\n      },\n      {\n        \"id\": \"f997b27ec626ac8b36cb56901ff5fbb5\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Ipsum\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4322f60f-0608-4fb4-bccd-97c88d54bccd",
+          "name": "Show available data fields",
+          "request": {
+            "name": "Show available data fields",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "show-available-data-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "469257d3-9fbd-451d-969c-60e0c12e88b5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "show-available-data-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": [\n    {\n      \"fieldId\": \"ee438332b46f4f05b5206dfdd45b7b38\",\n      \"fieldToken\": \"adres\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"65a0c7f21de645aeff0b07b8b4191e81\",\n      \"fieldToken\": \"adresdevam\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"28a3b07640d99b40ce725e6933a93cf1\",\n      \"fieldToken\": \"telefonNumarasi\",\n      \"fieldType\": \"phoneNumber\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"2a28971aa153d132daf5149685bdcc5a\",\n      \"fieldToken\": \"evTelefonu\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"224d1ca558eea67bda2b823a5eb311bb\",\n      \"fieldToken\": \"ulke\",\n      \"fieldType\": \"enum\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"20867124eed16dbbe7537e00869e1998\",\n      \"fieldToken\": \"sehir\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"709bd3b4c107391b54cbbe611c4aaf6a\",\n      \"fieldToken\": \"postaKodu\",\n      \"fieldType\": \"number\",\n      \"fieldCategoryId\": \"9a60c488c46868771c28c4740e4b277f\",\n      \"fieldCategoryToken\": \"adresBilgileri\"\n    },\n    {\n      \"fieldId\": \"99d0b4a1b47305918ce183b5eadf6974\",\n      \"fieldToken\": \"bankaAdi\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"13267bb7fa35cb8c3c23386a2cdf3cff\",\n      \"fieldCategoryToken\": \"bankaBilgileri\"\n    },\n    {\n      \"fieldId\": \"5b0e3602cc68c33d21dca29bdbe88e20\",\n      \"fieldToken\": \"hesapTipi\",\n      \"fieldType\": \"enum\",\n      \"fieldCategoryId\": \"13267bb7fa35cb8c3c23386a2cdf3cff\",\n      \"fieldCategoryToken\": \"bankaBilgileri\"\n    },\n    {\n      \"fieldId\": \"72fb5060f29fcb38745da1151cb3312a\",\n      \"fieldToken\": \"hesapNo\",\n      \"fieldType\": \"number\",\n      \"fieldCategoryId\": \"13267bb7fa35cb8c3c23386a2cdf3cff\",\n      \"fieldCategoryToken\": \"bankaBilgileri\"\n    },\n    {\n      \"fieldId\": \"e409d5b1aa91a916f8db7bd6badeefd7\",\n      \"fieldToken\": \"iban\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"13267bb7fa35cb8c3c23386a2cdf3cff\",\n      \"fieldCategoryToken\": \"bankaBilgileri\"\n    },\n    {\n      \"fieldId\": \"58b28687ea7213ced803adfb1125d0b3\",\n      \"fieldToken\": \"adSoyad\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"cd2a3812d5d438c9c8e88912ee794283\",\n      \"fieldCategoryToken\": \"acilDurumBilgileri\"\n    },\n    {\n      \"fieldId\": \"1e613fd4434ae012c33be5c43b8f50d6\",\n      \"fieldToken\": \"yakinlikDerecesi\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"cd2a3812d5d438c9c8e88912ee794283\",\n      \"fieldCategoryToken\": \"acilDurumBilgileri\"\n    },\n    {\n      \"fieldId\": \"0eda6b0601fb10e805ed84965709306d\",\n      \"fieldToken\": \"telefonNumarasi\",\n      \"fieldType\": \"phoneNumber\",\n      \"fieldCategoryId\": \"cd2a3812d5d438c9c8e88912ee794283\",\n      \"fieldCategoryToken\": \"acilDurumBilgileri\"\n    },\n    {\n      \"fieldId\": \"a9f48a94739a0cc9e2f97247c633b3c3\",\n      \"fieldToken\": \"baglantiAdi\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"768e906f31accbcd7780321cd3adaad9\",\n      \"fieldCategoryToken\": \"baglantilar\"\n    },\n    {\n      \"fieldId\": \"50bbcb7eea96da4c0a8f519904f54ccd\",\n      \"fieldToken\": \"baglantiAdresi\",\n      \"fieldType\": \"text\",\n      \"fieldCategoryId\": \"768e906f31accbcd7780321cd3adaad9\",\n      \"fieldCategoryToken\": \"baglantilar\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b77146d2-81ba-43b7-8dac-e3573c49bf33",
+          "name": "Terminate employment",
+          "request": {
+            "name": "Terminate employment",
+            "description": {
+              "content": "* personId: id value of the person who will be terminated.\n* date: date of termination. This attribute can be set to a future date.\n* reasonCode: code of termination reason. Can take values between \"01\" and \"50\". Each code is connected to a specific reason text.\n* details: comments and details about the termination. (Optional)\n* replacementId: terminated person's ongoing approval processes and managees will be switched to this person. (Optional)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdf79157-ddf8-44b2-a179-083b6c9daa6f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"personId\": \"d4038631aa494e4450aa3b8a88796bef\",\n  \"date\": \"2023-01-23\",\n  \"reasonCode\": \"01\",\n  \"details\": \"Details about the termination\",\n  \"replacementId\": \"d5a6fa7d90f3c29b9a7abce8302c19b9\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"1302952557a17a75371b183aad2b4987\",\n    \"firstName\": \"Anna\",\n    \"lastName\": \"Lisa\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25bb65c8-00b9-4bae-b2f9-2354e2b7b694",
+          "name": "Upload file",
+          "request": {
+            "name": "Upload file",
+            "description": {
+              "content": "You can use this endpoint to upload a single file to a person's personal folder. You can specify a folder name or skip it to upload the file to the root folder. Executable or potentially harmful file extensions will not be accepted. You can use PDF, Excel, Word or similar file formats. Returned file size is in bytes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "upload-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "personId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "folderName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b37f023e-691e-4592-b580-b30004cf519f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "upload-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "personId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "folderName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"835dc2129d80fc7a2e63619e98c7e4c0\",\n    \"filename\": \"2021_August_Payroll.pdf\",\n    \"personId\": \"f8242ae2e8c36d7f3d8a86ece3f3a0de\",\n    \"folderId\": \"7ae2327641eed4a800094436fbbcd442\",\n    \"size\": 5357,\n    \"createdAt\": \"2021-08-05 19:18:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7834b5fc-8de4-450e-adc9-7a5a56faf367",
+          "name": "Rehire a person",
+          "request": {
+            "name": "Rehire a person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "rehire",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea9c8f14-327b-4292-83da-e52a6fa955f0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "rehire",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfeeb46c-41dc-47df-819e-118ff4dffa85",
+          "name": "List files of a person",
+          "request": {
+            "name": "List files of a person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "list-files",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea5138a2-4e5c-4010-815d-1a4ffda74135",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "list-files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cdb40dd-7b1b-44d8-a9e3-75fb3dd34f1a",
+          "name": "Delete a file",
+          "request": {
+            "name": "Delete a file",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "delete-file",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f220b8a-3a40-4814-9940-02054da0e1a9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "delete-file",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad8be5b9-0600-4c67-a8a9-f0283cd40f0a",
+          "name": "Delete a folder",
+          "request": {
+            "name": "Delete a folder",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "delete-folder",
+                ":folderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "folderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45580d83-4ce2-4e01-84d6-2b0fca97659e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "delete-folder",
+                    ":folderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "folderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5dfabd0-6366-45a6-9b78-f3893a06853e",
+          "name": "Assign training a person",
+          "request": {
+            "name": "Assign training a person",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "assign-training"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63417442-50c4-4010-88db-1463d1e19c93",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "assign-training"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ec85ea-ed7b-4841-ac41-b08740f492fb",
+          "name": "Update a person training",
+          "request": {
+            "name": "Update a person training",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "update-training",
+                ":personTrainingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "personTrainingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4fe62ad-8c24-4890-9fec-81b8a31667d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "update-training",
+                    ":personTrainingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "personTrainingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfaa8826-6d08-452f-9a94-db55c8e88783",
+          "name": "List a person's trainings",
+          "request": {
+            "name": "List a person's trainings",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "list-trainings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61e97473-06e1-4233-bdf7-a013495ab4c5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "list-trainings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fc486db-231a-40c7-ac5f-d70a9afcef6b",
+          "name": "Delete a person training",
+          "request": {
+            "name": "Delete a person training",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person",
+                "delete-training",
+                ":personTrainingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "personTrainingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7be4cac-dd34-48f3-b34b-af1b029e73c6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person",
+                    "delete-training",
+                    ":personTrainingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "personTrainingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1de1d46c-aa9a-4b15-b7fe-cd17c8926e51",
+    "name": "Kolay Public Approval Process Person API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Transaction API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/transaction/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "personId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "items[0][name]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "items[0][amount]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "items[0][vatRate]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "items[0][file]",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "installmentPlan",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "amount",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "currency",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "paid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "isGross",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "affectPayroll",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "date",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "status",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "You can create a new timelog record with the endpoint."
+        },
+        {
+          "info": {
+            "name": "View a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/transaction/view/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a transaction"
+        },
+        {
+          "info": {
+            "name": "List transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/transaction/list",
+            "params": [
+              {
+                "name": "personId",
+                "value": "066626006c27aa1296ac34bdf14d730b",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "advance-expense",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "approved",
+                "type": "query"
+              },
+              {
+                "name": "paid",
+                "value": "0",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "2021-10-07 00:00:00",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "2022-09-06 23:59:59",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List transactions"
+        },
+        {
+          "info": {
+            "name": "Delete a transaction record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/transaction/delete/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a transaction record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

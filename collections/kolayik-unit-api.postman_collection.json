@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "009df061-fd93-4361-b05f-dc295614c491",
+      "name": "Unit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec447388-e20a-4e80-89b3-f46c4f641648",
+          "name": "Create a unit item",
+          "request": {
+            "name": "Create a unit item",
+            "description": {
+              "content": "You can create a new unit item via this endpoint. You should provide either unitName or unitId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "unit",
+                "create-unit-item"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "unitId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unitName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unitItemName",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1eed963-30fa-4c26-b524-0fc76c03d3e0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unit",
+                    "create-unit-item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "unitId",
+                      "value": "621724be9cd14d5a6521d81ea2d403311"
+                    },
+                    {
+                      "key": "unitName",
+                      "value": "Location"
+                    },
+                    {
+                      "key": "unitItemName",
+                      "value": "Amsterdam"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"57c1a04dbac5203a9c0c6641c7328f3d\",\n    \"name\": \"Bursa\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a143042-6582-42f1-b9e9-36c328e19178",
+          "name": "Show unit tree",
+          "request": {
+            "name": "Show unit tree",
+            "description": {
+              "content": "See all available units and their items.\n\nSequence starts from 0 if the account is a holding account, 1 if otherwise.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "unit",
+                "show-unit-tree"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60d2a005-aba1-4f0c-871b-f9c53212570c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "unit",
+                    "show-unit-tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"976ef279a18acaa22d471b525887d9c3\",\n      \"name\": \"Şirket\",\n      \"sequence\": 1,\n      \"items\": [\n        {\n          \"id\": \"27205ab204f538237fdbc2e2c3e53df1\",\n          \"name\": \"Gleichner-Gislason\"\n        },\n        {\n          \"id\": \"bc290d887974bb84c21b9bd1c41d926c\",\n          \"name\": \"Prohaska PLC\"\n        }\n      ]\n    },\n    {\n      \"id\": \"837ab12fcfd5171f9bfefd19fa84ea61\",\n      \"name\": \"Şube\",\n      \"sequence\": 2,\n      \"items\": [\n        {\n          \"id\": \"e1996820b1f62f41b5d717d402a81bb0\",\n          \"name\": \"Istanbul\"\n        },\n        {\n          \"id\": \"96fbcaaf1523eebb186e0a82648d3871\",\n          \"name\": \"Justinaville\"\n        },\n        {\n          \"id\": \"d5c2e95617b2130307fd0c335505d44d\",\n          \"name\": \"North Danikaport\"\n        },\n        {\n          \"id\": \"7bbbd6f4492e5074821ea01adbe2a00f\",\n          \"name\": \"South Annamae\"\n        }\n      ]\n    },\n    {\n      \"id\": \"621724be9cd14d5a6521d81ea2d40331\",\n      \"name\": \"Departman\",\n      \"sequence\": 3,\n      \"items\": [\n        {\n          \"id\": \"0980792af93fc57e05449267809cfb12\",\n          \"name\": \"Finance\"\n        },\n        {\n          \"id\": \"a13e236ddc0f7158e6974dc1f2ee1208\",\n          \"name\": \"Marketing\"\n        },\n        {\n          \"id\": \"32dcfc1242a324710306005474fe5a0c\",\n          \"name\": \"Sales\"\n        },\n        {\n          \"id\": \"6b25443768eeb256112ae687dde2e622\",\n          \"name\": \"Software Development\"\n        }\n      ]\n    },\n    {\n      \"id\": \"d487b67d56b9715ffe8bffa86d7aead9\",\n      \"name\": \"Unvan\",\n      \"sequence\": 4,\n      \"items\": [\n        {\n          \"id\": \"484db808121a6d50c36aed742c8f13a7\",\n          \"name\": \"Electronic Drafter\"\n        },\n        {\n          \"id\": \"e74430f918fe08bf8ce50cfb198911f5\",\n          \"name\": \"Hoist and Winch Operator\"\n        },\n        {\n          \"id\": \"035119a20810af02ba28d5fdf3e6a87c\",\n          \"name\": \"Industrial-Organizational Psychologist\"\n        },\n        {\n          \"id\": \"d5abb90019f69da9a5ebc190928af80b\",\n          \"name\": \"Nuclear Equipment Operation Technician\"\n        },\n        {\n          \"id\": \"276a1b248723d54e811f64bb84951b00\",\n          \"name\": \"Veterinary Technician\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b214bc3e-5e0a-4acb-9dcd-5e763cc8b3c2",
+    "name": "Kolay Public Approval Process Unit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

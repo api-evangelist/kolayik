@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "b73e9a2a-feb8-41c6-9b9a-a967e8cc5e92",
+      "name": "Timelog",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76a84c0f-d26d-4c20-aa0c-bc1a8db565ab",
+          "name": "Create a timelog",
+          "request": {
+            "name": "Create a timelog",
+            "description": {
+              "content": "You can create a new timelog record with the endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "timelog",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "personId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1aa09805-069b-4494-a314-f95165facd94",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "timelog",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2020-11-23 12:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2020-11-23 15:00:00"
+                    },
+                    {
+                      "key": "personId",
+                      "value": "061dfecf1e1c0a3f6b5b98d1a2a029ab"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approved"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Testing"
+                    },
+                    {
+                      "key": "type",
+                      "value": "work"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"0eb33e53da558944f8f48add5a361a2b\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09c6903f-dfac-4c94-8ad0-33b68d40db9d",
+          "name": "List timelogs",
+          "request": {
+            "name": "List timelogs",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "timelog",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "personId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56c63860-c0c2-42ca-8549-e819bbf59d1e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "timelog",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "personId",
+                      "value": "066626006c27aa1296ac34bdf14d730b"
+                    },
+                    {
+                      "key": "type",
+                      "value": "overtime"
+                    },
+                    {
+                      "key": "status",
+                      "value": "waiting"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2021-10-07 00:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2022-09-29 23:59:59"
+                    },
+                    {
+                      "key": "sortType",
+                      "value": "startDate"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"3dcf6d271a907bc4bb58d8c14a8fa4cb\",\n        \"createdAt\": \"2022-09-23 15:36:03\",\n        \"updatedAt\": \"2022-09-23 15:36:03\",\n        \"startDate\": \"2022-09-23 18:00:00\",\n        \"endDate\": \"2022-09-23 20:00:00\",\n        \"usedMinute\": 120,\n        \"personId\": \"066626006c27aa1296ac34bdf14d730b\",\n        \"description\": \"hello timelog\",\n        \"convertType\": \"unconverted\",\n        \"status\": \"waiting\",\n        \"type\": \"overtime\"\n      }\n    ],\n    \"searchCount\": 1,\n    \"totalCount\": 1,\n    \"page\": 1,\n    \"limit\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29bcc42e-5ee5-4567-ab43-87a515ba39c2",
+          "name": "View a timelog",
+          "request": {
+            "name": "View a timelog",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "timelog",
+                "view",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd0415d8-b9e6-437f-8447-132824da870e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "timelog",
+                    "view",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"0eb33e53da558944f8f48add5a361a2b\",\n    \"createdAt\": \"2020-11-20 18:52:02\",\n    \"updatedAt\": \"2020-11-20 18:52:02\",\n    \"startDate\": \"2020-11-22 12:00:00\",\n    \"endDate\": \"2020-11-22 15:00:00\",\n    \"usedMinute\": 180,\n    \"personId\": \"061dfecf1e1c0a3f6b5b98d1a2a029ab\",\n    \"description\": \"Testing\",\n    \"type\": \"overtime\",\n    \"convertType\": \"unconverted\",\n    \"status\": \"approved\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cbee4cc-da30-42fb-b4f0-878285a13ee2",
+          "name": "Delete a timelog record",
+          "request": {
+            "name": "Delete a timelog record",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "timelog",
+                "delete",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d366118-dd6a-404a-b19a-4ec37b6e667b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "timelog",
+                    "delete",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "69c6d00d-df34-4818-accc-4aa69df987a7",
+    "name": "Kolay Public Approval Process Timelog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

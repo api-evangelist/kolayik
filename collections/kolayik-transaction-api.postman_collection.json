@@ -1,0 +1,707 @@
+{
+  "item": [
+    {
+      "id": "45be7b38-f24c-4217-98ed-3caacccd3d1d",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "400940ab-9a50-4e5e-805d-b1eb57f12cb7",
+          "name": "Create a transaction",
+          "request": {
+            "name": "Create a transaction",
+            "description": {
+              "content": "You can create a new timelog record with the endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "transaction",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "personId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "items[0][name]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "items[0][amount]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "items[0][vatRate]",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "items[0][file]",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "installmentPlan",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "amount",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "paid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "isGross",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "affectPayroll",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "date",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "status",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71325ac1-221d-486c-ae23-7d65533d63e3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "personId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "items[0][name]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "items[0][amount]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "items[0][vatRate]",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "items[0][file]",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "installmentPlan",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "paid",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "isGross",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "affectPayroll",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "date",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"0eb33e53da558944f8f48add5a361a2b\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a39b4131-b49b-480e-9852-1edeba1d79b0",
+          "name": "View a transaction",
+          "request": {
+            "name": "View a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction",
+                "view",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d9ad00b-a293-406b-9fe5-a7f80e2248ef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction",
+                    "view",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"327fcf7b62fc67cf7d103d3f86805ddc\",\n    \"type\": \"advance-expense\",\n    \"amount\": 0,\n    \"currency\": null,\n    \"date\": \"2021-10-22\",\n    \"installmentPlan\": null,\n    \"personId\": \"e70e63951f35c1f524651694877768b2\",\n    \"description\": null,\n    \"status\": \"approved\",\n    \"paid\": false,\n    \"isGross\": null,\n    \"affectPayroll\": false,\n    \"createdAt\": \"2021-10-22T12:14:30\",\n    \"updatedAt\": \"2021-10-22T12:15:46\",\n    \"person\": {\n      \"id\": \"e70e63951f35c1f524651694877768b2\",\n      \"firstName\": \"Lorem\",\n      \"lastName\": \"Ipsum\"\n    },\n    \"items\": [\n      {\n        \"id\": \"b71c7eb0dbdb5ffe1953630922c5158b\",\n        \"name\": null,\n        \"amount\": 222,\n        \"vatRate\": 18,\n        \"file\": null\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65ec26e6-5c09-4c44-a885-42d602d3125b",
+          "name": "List transactions",
+          "request": {
+            "name": "List transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "personId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "paid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1046129d-e983-4087-a171-b0ee970bf70a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "personId",
+                      "value": "066626006c27aa1296ac34bdf14d730b"
+                    },
+                    {
+                      "key": "type",
+                      "value": "advance-expense"
+                    },
+                    {
+                      "key": "status",
+                      "value": "approved"
+                    },
+                    {
+                      "key": "paid",
+                      "value": "0"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2021-10-07 00:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2022-09-06 23:59:59"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"007b98ea560c401fa49bbb488e2b4a2b\",\n        \"type\": \"advance-expense\",\n        \"date\": \"2022-09-06\",\n        \"installmentPlan\": null,\n        \"personId\": \"066626006c27aa1296ac34bdf14d730b\",\n        \"description\": null,\n        \"status\": \"approved\",\n        \"paid\": false,\n        \"isGross\": null,\n        \"affectPayroll\": false,\n        \"createdAt\": \"2022-09-06T16:14:32\",\n        \"updatedAt\": \"2022-09-06T16:15:46\",\n        \"person\": {\n          \"id\": \"066626006c27aa1296ac34bdf14d730b\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\"\n        },\n        \"receipts\": [\n          {\n            \"id\": \"fe7ae947599a93f92d67d55e27fbc537\",\n            \"status\": \"created\",\n            \"amount\": 10,\n            \"currency\": \"TL\",\n            \"vatRate\": 18,\n            \"category\": {\n              \"id\": \"4a357c29d26eabe0a01151985d145f53\",\n              \"title\": \"Yolculuk ve Ulaşım\",\n              \"description\": \"Benzin, taksi, araba kiralama ve benzeri\",\n              \"isDefault\": true,\n              \"isEnable\": true\n            },\n            \"file\": null,\n            \"date\": \"2022-09-06\",\n            \"description\": null,\n            \"lastEvaluator\": null,\n            \"createdAt\": \"2022-09-06T16:14:32\",\n            \"updatedAt\": \"2022-09-06T16:14:32\"\n          },\n          {\n            \"id\": \"423f97178e14d503f82d4405b7cc5963\",\n            \"status\": \"created\",\n            \"amount\": 20,\n            \"currency\": \"USD\",\n            \"vatRate\": 18,\n            \"category\": {\n              \"id\": \"b5c903e0bee29c899fef30efe801b319\",\n              \"title\": \"Yiyecek ve İçecek\",\n              \"description\": \"Ofis dışı yapılan yiyecek harcamaları, müşteri öğle ve akşam yemekleri\",\n              \"isDefault\": false,\n              \"isEnable\": true\n            },\n            \"file\": null,\n            \"date\": \"2022-09-06\",\n            \"description\": null,\n            \"lastEvaluator\": null,\n            \"createdAt\": \"2022-09-06T16:14:50\",\n            \"updatedAt\": \"2022-09-06T16:14:50\"\n          },\n          {\n            \"id\": \"003f7edb8bd61e5a391ba2d64e542e30\",\n            \"status\": \"created\",\n            \"amount\": 30,\n            \"currency\": \"EUR\",\n            \"vatRate\": 18,\n            \"category\": {\n              \"id\": \"8675d533d33a0b7285ef1fed81905c17\",\n              \"title\": \"Eğitim ve Kurslar\",\n              \"description\": \"Eğitim, kurs ve programları için yapılan harcamalar\",\n              \"isDefault\": false,\n              \"isEnable\": true\n            },\n            \"file\": null,\n            \"date\": \"2022-09-06\",\n            \"description\": null,\n            \"lastEvaluator\": null,\n            \"createdAt\": \"2022-09-06T16:15:05\",\n            \"updatedAt\": \"2022-09-06T16:15:05\"\n          },\n          {\n            \"id\": \"38feb37186047a44196af89f3c4564ef\",\n            \"status\": \"created\",\n            \"amount\": 80,\n            \"currency\": \"TL\",\n            \"vatRate\": 18,\n            \"category\": {\n              \"id\": \"4a357c29d26eabe0a01151985d145f53\",\n              \"title\": \"Yolculuk ve Ulaşım\",\n              \"description\": \"Benzin, taksi, araba kiralama ve benzeri\",\n              \"isDefault\": true,\n              \"isEnable\": true\n            },\n            \"file\": null,\n            \"date\": \"2022-09-06\",\n            \"description\": null,\n            \"lastEvaluator\": null,\n            \"createdAt\": \"2022-09-06T16:15:35\",\n            \"updatedAt\": \"2022-09-06T16:15:35\"\n          }\n        ]\n      }\n    ],\n    \"searchCount\": 1,\n    \"totalCount\": 1,\n    \"page\": 1,\n    \"limit\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db50a7b7-87ba-4cde-85c3-b4d3b3b10218",
+          "name": "Delete a transaction record",
+          "request": {
+            "name": "Delete a transaction record",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction",
+                "delete",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e5ae8f8-2a04-4a96-aca2-8c6fab563d67",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction",
+                    "delete",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bac3ab97-1059-422d-a146-148b38ce2c4b",
+    "name": "Kolay Public Approval Process Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

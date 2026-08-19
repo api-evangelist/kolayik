@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Leave API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leave",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List leaves",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/leave/list",
+            "params": [
+              {
+                "name": "status",
+                "value": "approved",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "2019-10-07 00:00:00",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "2021-10-07 23:59:59",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query"
+              },
+              {
+                "name": "personId",
+                "value": "def06a1d21cd7db749f0d8d6aab271ec",
+                "type": "query"
+              },
+              {
+                "name": "include_inactive_employees",
+                "value": "false",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "You can list leave records by date or person."
+        },
+        {
+          "info": {
+            "name": "Create a new leave record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/leave/create",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "2020-10-12 09:00:00",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "2020-10-12 18:00:00",
+                "type": "query"
+              },
+              {
+                "name": "personId",
+                "value": "def06a1d21cd7db749f0d8d6aab271ec",
+                "type": "query"
+              },
+              {
+                "name": "leaveTypeId",
+                "value": "ac342dff523200714ac25487b152ca38",
+                "type": "query"
+              },
+              {
+                "name": "comment",
+                "value": "Test leave record.",
+                "type": "query"
+              },
+              {
+                "name": "replacementPersonId",
+                "value": "def06a1d21cd7db749f0d8d6aab271ec",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Create a new leave record with given parameters."
+        },
+        {
+          "info": {
+            "name": "View a leave record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/leave/view/:leaveId",
+            "params": [
+              {
+                "name": "leaveId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View the details of an existing leave record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

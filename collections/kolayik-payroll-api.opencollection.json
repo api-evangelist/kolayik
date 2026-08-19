@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Payroll API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payroll",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payroll Sheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/payroll-sheet/view/:payrollId",
+            "params": [
+              {
+                "name": "payrollId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "View Payroll Sheet\nReturns the complete payroll sheet data (Çarşaf Bordro) for a given payroll run as JSON. This is the API equivalent of the Excel export.\n\nScope: payroll-sheet:view\n\nRequest\nPOST /v2/payroll-sheet/view/{id}\n\nParameter\nType\nRequired\nDescription\n\nid\nstring\nYes\n32-char payroll ID\n\nBody\n{\n  \"filter\": {\n    \"search\": \"Ahmet\",\n    \"status\": [\"ended\"],\n    \"salaryPeriod\": [\"monthly\"],\n    \"insuranceId\": [\"setting_id\"],\n    \"taxId\": [\"setting_id\"],\n    \"expenseCenterId\": [\"setting_id\"]"
+        },
+        {
+          "info": {
+            "name": "Get Payroll List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/payroll/list",
+            "params": [
+              {
+                "name": "year",
+                "value": "2026",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Payroll Periods\nReturns the list of payroll runs (bordro dönemleri) for a given year. Use this to get payroll IDs before calling the View Payroll Sheet endpoint.\n\nScope: payroll:list\n\nRequest\nGET /v2/payroll/list?year=2026\n\nQuery Parameters\n\nParameter\nType\nRequired\nDescription\n\nyear\ninteger\nNo\nFilter by year. Max value: current year + 1. Defaults to current year if omitted.\n\nResponse\n{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"abc123def456ghi789jkl012mno345pq\",\n      \"period\": \"2026-"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

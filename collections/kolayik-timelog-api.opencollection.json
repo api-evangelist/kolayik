@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Timelog API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timelog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a timelog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/timelog/create",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "2020-11-23 12:00:00",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "2020-11-23 15:00:00",
+                "type": "query"
+              },
+              {
+                "name": "personId",
+                "value": "061dfecf1e1c0a3f6b5b98d1a2a029ab",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "approved",
+                "type": "query"
+              },
+              {
+                "name": "description",
+                "value": "Testing",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "work",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "You can create a new timelog record with the endpoint."
+        },
+        {
+          "info": {
+            "name": "List timelogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/timelog/list",
+            "params": [
+              {
+                "name": "personId",
+                "value": "066626006c27aa1296ac34bdf14d730b",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "overtime",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "waiting",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "2021-10-07 00:00:00",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "2022-09-29 23:59:59",
+                "type": "query"
+              },
+              {
+                "name": "sortType",
+                "value": "startDate",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "desc",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List timelogs"
+        },
+        {
+          "info": {
+            "name": "View a timelog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/timelog/view/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a timelog"
+        },
+        {
+          "info": {
+            "name": "Delete a timelog record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolayik.com/v2/timelog/delete/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a timelog record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

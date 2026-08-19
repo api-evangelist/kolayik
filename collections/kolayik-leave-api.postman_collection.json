@@ -1,0 +1,417 @@
+{
+  "item": [
+    {
+      "id": "cf2b95ae-5b7d-4de3-8352-0eeb28c70fde",
+      "name": "Leave",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe63f28c-cf86-418f-8fa1-3aa71880d22e",
+          "name": "List leaves",
+          "request": {
+            "name": "List leaves",
+            "description": {
+              "content": "You can list leave records by date or person.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leave",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "personId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_inactive_employees",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fec94243-85b7-444b-bf3c-5d2d81288d71",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leave",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "approved"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2019-10-07 00:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2021-10-07 23:59:59"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "personId",
+                      "value": "def06a1d21cd7db749f0d8d6aab271ec"
+                    },
+                    {
+                      "key": "include_inactive_employees",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": [\n    {\n      \"id\": \"032e7f829957f0c57feaaf88cd67c399\",\n      \"startDate\": \"2020-10-07 09:00:00\",\n      \"endDate\": \"2020-10-07 18:00:00\",\n      \"returnDate\": \"2020-10-08 09:00:00\",\n      \"comment\": \"I am going for a vacation.\",\n      \"type\": {\n        \"id\": \"ac342dff523200714ac25487b152ca38\",\n        \"name\": \"Yıllık İzin\",\n        \"limitation\": \"limited_to_year\"\n      },\n      \"leaveFormSigned\": null,\n      \"person\": {\n        \"id\": \"def06a1d21cd7db749f0d8d6aab271ec\",\n        \"name\": \"John Doe\"\n      },\n      \"replacementPerson\": null,\n      \"status\": \"approved\",\n      \"usedDays\": 1,\n      \"createdAt\": \"2020-10-06 01:41:41\",\n      \"updatedAt\": \"2020-10-06 01:41:58\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "681e710b-2091-48ce-8fa9-020683355b64",
+          "name": "Create a new leave record",
+          "request": {
+            "name": "Create a new leave record",
+            "description": {
+              "content": "Create a new leave record with given parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leave",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "personId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "leaveTypeId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "comment",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "replacementPersonId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "592470c5-02e3-4e13-8dca-313cfbcf2027",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leave",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2020-10-12 09:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2020-10-12 18:00:00"
+                    },
+                    {
+                      "key": "personId",
+                      "value": "def06a1d21cd7db749f0d8d6aab271ec"
+                    },
+                    {
+                      "key": "leaveTypeId",
+                      "value": "ac342dff523200714ac25487b152ca38"
+                    },
+                    {
+                      "key": "comment",
+                      "value": "Test leave record."
+                    },
+                    {
+                      "key": "replacementPersonId",
+                      "value": "def06a1d21cd7db749f0d8d6aab271ec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"leave\": {\n      \"id\": \"796539bdf093db3ac30b4ae9917d2d25\",\n      \"usedDays\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ad4b589-25ce-4f5d-bf29-0d7ea079fa4f",
+          "name": "View a leave record",
+          "request": {
+            "name": "View a leave record",
+            "description": {
+              "content": "View the details of an existing leave record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leave",
+                "view",
+                ":leaveId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "leaveId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "629a59fe-8134-465f-a7e7-7e7a4b8c1389",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leave",
+                    "view",
+                    ":leaveId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "leaveId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"data\": {\n    \"id\": \"63ba80dfc3e6cf28f1b70b0e6e400365\",\n    \"startDate\": \"2020-10-12 09:00:00\",\n    \"endDate\": \"2020-10-12 18:00:00\",\n    \"returnDate\": \"2020-10-13 09:00:00\",\n    \"comment\": \"Test leave record.\",\n    \"type\": {\n      \"id\": \"ac342dff523200714ac25487b152ca38\",\n      \"name\": \"Yıllık İzin\",\n      \"limitation\": \"limited_to_year\"\n    },\n    \"leaveFormSigned\": null,\n    \"person\": {\n      \"id\": \"def06a1d21cd7db749f0d8d6aab271ec\",\n      \"name\": \"John Doe\"\n    },\n    \"replacementPerson\": {\n      \"id\": \"def06a1d21cd7db749f0d8d6aab271ec\",\n      \"name\": \"John Doe\"\n    },\n    \"status\": \"approved\",\n    \"usedDays\": 1,\n    \"createdAt\": \"2020-10-12 19:34:33\",\n    \"updatedAt\": \"2020-10-12 19:34:33\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolayik.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "580c69b5-9f9d-4f43-a780-ca17cfb4f8e0",
+    "name": "Kolay Public Approval Process Leave API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to Public API reference of Kolay!\n\nThis documentation is here to help you easily integrate your existing apps to Kolay. In order to use this API you need to have an API Token ready. If you don't have an existing API Token you can visit the following link and create one for your needs https://app.kolayik.com/settings/developer-settings If you have any technical questions you can contact us via apisupport@kolay.io\n\nContact Support:\n Name: Kolay API Support\n Email: apisupport@kolay.io",
+      "type": "text/plain"
+    }
+  }
+}

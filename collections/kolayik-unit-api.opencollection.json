@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kolay Public Approval Process Unit API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a unit item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolayik.com/v2/unit/create-unit-item",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "621724be9cd14d5a6521d81ea2d403311",
+                "type": "query"
+              },
+              {
+                "name": "unitName",
+                "value": "Location",
+                "type": "query"
+              },
+              {
+                "name": "unitItemName",
+                "value": "Amsterdam",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "You can create a new unit item via this endpoint. You should provide either unitName or unitId."
+        },
+        {
+          "info": {
+            "name": "Show unit tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolayik.com/v2/unit/show-unit-tree"
+          },
+          "docs": "See all available units and their items.\n\nSequence starts from 0 if the account is a holding account, 1 if otherwise."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
