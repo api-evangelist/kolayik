@@ -2,16 +2,18 @@ arazzo: 1.0.1
 info:
   title: Check balances and book leave in Kolay İK
   version: 1.0.0
-  summary: Resolve an employee, read their leave balances, check for overlapping leave
-    in the window, create the leave record, and verify it.
+  summary: Resolve an employee, read their leave balances, check for overlapping leave in the window, create the leave record, and verify it.
   description: >-
     Every operationId below exists verbatim in openapi/kolayik-public-api-openapi.yml,
     which is a faithful conversion of the official Kolay Public API Postman collection.
     Kolay publishes no sandbox and no idempotency key — a retried createLeave books a
     second leave record.
 sourceDescriptions:
-- name: kolay
-  url: ../openapi/kolayik-public-api-openapi.yml
+- name: leaveApi
+  url: ../openapi/kolayik-leave-api-openapi.yml
+  type: openapi
+- name: personApi
+  url: ../openapi/kolayik-person-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: bookLeave

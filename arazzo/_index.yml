@@ -1,6 +1,6 @@
-generated: '2026-07-19'
-method: derived
-source: arazzo/*.yml
+x-generated: '2026-07-19'
+x-method: derived
+x-source: arazzo/*.yml
 workflows:
 - file: kolayik-onboard-employee.yml
   workflowId: onboardEmployee
@@ -12,7 +12,7 @@ workflows:
   title: Check balances and book leave in Kolay İK
   summary: Resolve an employee, read their leave balances, check for overlapping leave
     in the window, create the leave record, and verify it.
-notes:
+x-notes:
 - Every operationId referenced by these workflows was verified verbatim against openapi/kolayik-public-api-openapi.yml.
 - Kolay publishes no sandbox, so no example inputs are seeded — running a workflow writes
   to live HR data.

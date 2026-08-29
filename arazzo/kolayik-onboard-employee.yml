@@ -2,16 +2,21 @@ arazzo: 1.0.1
 info:
   title: Onboard an employee in Kolay İK
   version: 1.0.0
-  summary: Discover the tenant's custom person fields and org tree, create the person,
-    verify the stored record, and assign onboarding training.
+  summary: Discover the tenant's custom person fields and org tree, create the person, verify the stored record, and assign onboarding training.
   description: >-
     Every operationId below exists verbatim in openapi/kolayik-public-api-openapi.yml,
     which is a faithful conversion of the official Kolay Public API Postman collection.
     Kolay publishes no sandbox — running this workflow against a real token creates a
     real employee record.
 sourceDescriptions:
-- name: kolay
-  url: ../openapi/kolayik-public-api-openapi.yml
+- name: personApi
+  url: ../openapi/kolayik-person-api-openapi.yml
+  type: openapi
+- name: trainingApi
+  url: ../openapi/kolayik-training-api-openapi.yml
+  type: openapi
+- name: unitApi
+  url: ../openapi/kolayik-unit-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: onboardEmployee
@@ -42,8 +47,7 @@ workflows:
     successCriteria:
     - condition: $statusCode == 200
   - stepId: readUnitTree
-    description: Read the organizational tree so the new hire can be assigned to real
-      unit items.
+    description: Read the organizational tree so the new hire can be assigned to real unit items.
     operationId: unitShowUnitTree
     successCriteria:
     - condition: $statusCode == 200
