@@ -10,6 +10,18 @@ description: 'Kolay İK (Kolay Yazılım A.Ş.) is an Istanbul-based cloud human
   as a public Postman collection at apidocs.kolayik.com, covering person, unit, leave,
   timelog, transaction, approval, calendar, training, expense and payroll resources,
   authenticated with a bearer API token created from the in-product developer settings.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
