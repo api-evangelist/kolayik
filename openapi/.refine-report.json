@@ -1,17 +1,7 @@
 {
   "provider": "kolayik",
   "sources": [
-    "kolayik-approval-process-api-openapi.yml",
-    "kolayik-calendar-api-openapi.yml",
-    "kolayik-expense-api-openapi.yml",
-    "kolayik-leave-api-openapi.yml",
-    "kolayik-payroll-api-openapi.yml",
-    "kolayik-person-api-openapi.yml",
-    "kolayik-profile-api-openapi.yml",
-    "kolayik-timelog-api-openapi.yml",
-    "kolayik-training-api-openapi.yml",
-    "kolayik-transaction-api-openapi.yml",
-    "kolayik-unit-api-openapi.yml"
+    "_original/kolayik-public-api-openapi.yml"
   ],
   "outputs": [
     "kolayik-approval-process-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kolayik-public-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "kolayik-approval-process-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-calendar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-expense-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-leave-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-payroll-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-person-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-timelog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-training-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-transaction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kolayik-unit-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

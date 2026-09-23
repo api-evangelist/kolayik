@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kolay Public Approval Process Person API
+  title: Kolay Public Person API
   version: 2.0.0
   description: 'Welcome to Public API reference of Kolay!
 
@@ -22,7 +22,182 @@ paths:
     post:
       operationId: personCreate
       summary: Create a person
-      description: "You can create a single person with all the basic information populated. Only the firstName and the lastName fields are mandatory, others are optional. All skipped fields default to null unless otherwise stated.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system.\n\nemploymentType fulltime parttime intern freelance daily contracted mobile\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]\n\nperson.compensationList\nYou can use this field to provide compensation and salary information for the person. It only accepts an array of objects. So you can use this field to add all historical compensation data, it this case only the 'active: true' one will be the current.\n\npayPeriod monthly daily yearly weekly hourly\ntype bonus food transportation healthInsurance personalRetirement\n\n[\n            {\n                \"amount\": 1250.50,\n                \"payPeriod\": \"monthly\",\n                \"gross\": true,\n                \"currency\": \"TL\",\n                \"comment\": \"Starting salary\",\n                \"active\": true,\n                \"effectiveOn\": \"2020-08-13\",\n                \"items\": [\n                    {\n                        \"amount\": 250,\n                        \"type\": \"food\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Cash for food\",\n                        \"payPeriod\": \"monthly\"\n                    },\n                    {\n                        \"amount\": 50,\n                        \"type\": \"transportation\",\n                        \"currency\": \"TL\",\n                        \"affectPayroll\": true,\n                        \"gross\": true,\n                        \"comment\": \"Top-up cost for public transportation\",\n                        \"payPeriod\": \"monthly\"\n                    }\n                ]\n            }\n        ]\n\noptions\n\nsendWelcomeEmail can be true or false, if true an e-mail will be sent welcoming the person with a link to login. (default: false)"
+      description: 'You can create a single person with all the basic information populated. Only the firstName and the lastName fields are mandatory, others are optional. All skipped fields default to null unless otherwise stated.
+
+
+        person
+
+        Person Object Model
+
+
+        person.dataList
+
+        This is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.
+
+
+        [
+
+        {
+
+        "fieldToken": "adres",
+
+        "value": "Selam Sok. 33/4"
+
+        },
+
+        {
+
+        "fieldToken": "evTelefonu",
+
+        "value": "02123456666"
+
+        }
+
+        ]
+
+
+        person.unitList
+
+        This field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system.
+
+
+        employmentType fulltime parttime intern freelance daily contracted mobile
+
+
+        [
+
+        {
+
+        "startDate": "2020-08-13",
+
+        "endDate": "2020-08-14",
+
+        "employmentType": "fulltime",
+
+        "managerId": null,
+
+        "default": true,
+
+        "active": true,
+
+        "items": [
+
+        {
+
+        "unitName": "Şirket",
+
+        "unitItemName": "Smith Group"
+
+        },
+
+        {
+
+        "unitName": "Şube",
+
+        "unitItemName": "Amsterdam"
+
+        },
+
+        {
+
+        "unitName": "Departman",
+
+        "unitItemName": "Sales"
+
+        },
+
+        {
+
+        "unitName": "Unvan",
+
+        "unitItemName": "Enterprise Sales Asisstant"
+
+        }
+
+        ]
+
+        }
+
+        ]
+
+
+        person.compensationList
+
+        You can use this field to provide compensation and salary information for the person. It only accepts an array of objects. So you can use this field to add all historical compensation data, it this case only the ''active: true'' one will be the current.
+
+
+        payPeriod monthly daily yearly weekly hourly
+
+        type bonus food transportation healthInsurance personalRetirement
+
+
+        [
+
+        {
+
+        "amount": 1250.50,
+
+        "payPeriod": "monthly",
+
+        "gross": true,
+
+        "currency": "TL",
+
+        "comment": "Starting salary",
+
+        "active": true,
+
+        "effectiveOn": "2020-08-13",
+
+        "items": [
+
+        {
+
+        "amount": 250,
+
+        "type": "food",
+
+        "currency": "TL",
+
+        "affectPayroll": true,
+
+        "gross": true,
+
+        "comment": "Cash for food",
+
+        "payPeriod": "monthly"
+
+        },
+
+        {
+
+        "amount": 50,
+
+        "type": "transportation",
+
+        "currency": "TL",
+
+        "affectPayroll": true,
+
+        "gross": true,
+
+        "comment": "Top-up cost for public transportation",
+
+        "payPeriod": "monthly"
+
+        }
+
+        ]
+
+        }
+
+        ]
+
+
+        options
+
+
+        sendWelcomeEmail can be true or false, if true an e-mail will be sent welcoming the person with a link to login. (default: false)'
       tags:
       - Person
       requestBody:
@@ -123,7 +298,100 @@ paths:
     put:
       operationId: personUpdate
       summary: Update a person
-      description: "You can update the details of a single person. Only the id is mandatory, other fields will be updated if provided. In order to remove a value from the object, you should send it as null.\n\nperson\nPerson Object Model\n\nperson.dataList\nThis is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.\n\n[\n    {\n        \"fieldToken\": \"adres\",\n        \"value\": \"Selam Sok. 33/4\"\n    },\n    {\n        \"fieldToken\": \"evTelefonu\",\n        \"value\": \"02123456666\"\n    }\n]\n\nperson.unitList\nThis field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system. Items will be removed if not included that has already been sent while creating. So the given array will be the final list of units.\n\n[\n    {\n        \"startDate\": \"2020-08-13\",\n        \"endDate\": \"2020-08-14\",\n        \"employmentType\": \"fulltime\",\n        \"managerId\": null,\n        \"default\": true,\n        \"active\": true,\n        \"items\": [\n            {\n                \"unitName\": \"Şirket\",\n                \"unitItemName\": \"Smith Group\"\n            },\n            {\n                \"unitName\": \"Şube\",\n                \"unitItemName\": \"Amsterdam\"\n            },\n            {\n                \"unitName\": \"Departman\",\n                \"unitItemName\": \"Sales\"\n            },\n            {\n                \"unitName\": \"Unvan\",\n                \"unitItemName\": \"Enterprise Sales Asisstant\"\n            }\n        ]\n    }\n]"
+      description: 'You can update the details of a single person. Only the id is mandatory, other fields will be updated if provided. In order to remove a value from the object, you should send it as null.
+
+
+        person
+
+        Person Object Model
+
+
+        person.dataList
+
+        This is a list of additional person data fields. This object attribute only accepts an array of objects. Objects can only have two properties named fieldToken and value.
+
+
+        [
+
+        {
+
+        "fieldToken": "adres",
+
+        "value": "Selam Sok. 33/4"
+
+        },
+
+        {
+
+        "fieldToken": "evTelefonu",
+
+        "value": "02123456666"
+
+        }
+
+        ]
+
+
+        person.unitList
+
+        This field is the unit list of a person and accepts an array of unit objects, so you can choose to add historical data or only the active unit. If the field default is true that means it will be the default unit throughout the system. Items will be removed if not included that has already been sent while creating. So the given array will be the final list of units.
+
+
+        [
+
+        {
+
+        "startDate": "2020-08-13",
+
+        "endDate": "2020-08-14",
+
+        "employmentType": "fulltime",
+
+        "managerId": null,
+
+        "default": true,
+
+        "active": true,
+
+        "items": [
+
+        {
+
+        "unitName": "Şirket",
+
+        "unitItemName": "Smith Group"
+
+        },
+
+        {
+
+        "unitName": "Şube",
+
+        "unitItemName": "Amsterdam"
+
+        },
+
+        {
+
+        "unitName": "Departman",
+
+        "unitItemName": "Sales"
+
+        },
+
+        {
+
+        "unitName": "Unvan",
+
+        "unitItemName": "Enterprise Sales Asisstant"
+
+        }
+
+        ]
+
+        }
+
+        ]'
       tags:
       - Person
       requestBody:

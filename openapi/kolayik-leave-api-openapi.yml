@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kolay Public Approval Process Leave API
+  title: Kolay Public Leave API
   version: 2.0.0
   description: 'Welcome to Public API reference of Kolay!
 
