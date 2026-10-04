@@ -46,6 +46,9 @@ x-tier-reason: official-public-api-documented
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
+x-docs-platform: postman
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - Human Resources
@@ -256,6 +259,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/kolayik-capability-edges.yml
+  name: KolayIK Business Capability Map
 - type: Overlay
   url: overlays/kolayik-public-api-overlay.yaml
 - type: DomainSecurity
