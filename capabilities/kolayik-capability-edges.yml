@@ -1,0 +1,61 @@
+slug: kolayik
+provider: KolayIK
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Payroll
+  spec_file: kolayik-payroll-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.92
+  evidence: POST /v2/payroll-sheet/view/{payrollId}  payrollSheetView  Get Payroll Sheet
+  reason: Payroll sheets and payroll lists are payroll administration, explicitly named in HR Operations
+    Management (employee records, payroll administration).
+- tag: Person
+  spec_file: kolayik-person-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.9
+  evidence: POST /v2/person/terminate  personTerminate  Terminate employment; POST /v2/person/rehire/{id}  personRehire  Rehire
+    a person
+  reason: Employee master record CRUD plus termination/rehire and document files is employee records and
+    HR service delivery — HR Operations Management.
+- tag: Training
+  spec_file: kolayik-training-api-openapi.yml
+  capability_id: BC-300.40
+  capability_id_l1: BC-300
+  capability_name: Learning & Development Management
+  confidence: 0.88
+  evidence: POST /v2/training/create  trainingCreate  Create a training
+  reason: CRUD over training records in an HCM platform directly realises Learning & Development Management
+    (training, capability building).
+- tag: Leave
+  spec_file: kolayik-leave-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: POST /v2/leave/create  leaveCreate  Create a new leave record
+  reason: Creating and listing employee leave records is core HR administration/absence management within
+    the employee lifecycle, part of HR Operations Management.
+- tag: Timelog
+  spec_file: kolayik-timelog-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.8
+  evidence: POST /v2/timelog/create  timelogCreate  Create a timelog
+  reason: Timelog records in an HR platform that advertises 'time and attendance' are employee time tracking,
+    administered as part of HR operations feeding payroll.
