@@ -64,29 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kolay İK (Kolay Yazılım A.Ş.) is an Istanbul-based cloud HR / human-capital-management SaaS platform used by 4,500+ companies and 300,000+ employees, mostly in Türkiye. It covers personnel records (özlük), payroll (bordro), performance, shifts (vardiya), compensation review, applicant tracking, HR analytics, time and attendance (PDKS), leave, expenses and training.
+Kolay İK (Kolay Yazılım A.Ş.) is an Istanbul-based cloud human-resources and human-capital-management SaaS platform serving more than 4,500 companies and 300,000+ employees, predominantly in Türkiye. The product covers employee/personnel records (özlük), payroll (bordro), performance evaluation, shift management (vardiya), compensation review, applicant tracking, HR analytics, time and attendance (PDKS), leave management, expense and asset tracking, and training. Kolay publishes an official public REST API — the "Kolay Public API" (v2, https://api.kolayik.com) — documented as a public Postman collection at apidocs.kolayik.com, covering person, unit, leave, timelog, transaction, approval, calendar, training, expense and payroll resources, authenticated with a bearer API token created from the in-product developer settings.
 
-Kolay publishes one official public REST API — the **Kolay Public API** (v2, `https://api.kolayik.com`) — documented as a public Postman collection at <https://apidocs.kolayik.com/>. It has 46 operations covering person, unit, leave, timelog, transaction, approval process, calendar, training, expense and payroll. Authentication is an HTTP bearer API token created in-product at <https://app.kolayik.com/settings/developer-settings>.
+**Areas:** Company · Human Resources · Payroll · HCM · Employee Management · Time and Attendance · Applicant Tracking · Software-as-a-Service · Turkey
 
-## Artifacts
+## KolayIK on APIs.io
 
-| Artifact | Method |
+Everything profiled for KolayIK is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kolayik/](https://apis.io/providers/kolayik/)** — or go straight to one of the APIs or properties below.
+
+### APIs (11)
+
+- [KolayIK Approval Process API](https://apis.io/apis/kolayik/kolayik-approval-process-api/) — The Approval Process API from KolayIK — 1 operation(s) for approval process.
+- [KolayIK Calendar API](https://apis.io/apis/kolayik/kolayik-calendar-api/) — The Calendar API from KolayIK — 5 operation(s) for calendar.
+- [KolayIK Expense API](https://apis.io/apis/kolayik/kolayik-expense-api/) — The Expense API from KolayIK — 1 operation(s) for expense.
+- [KolayIK Leave API](https://apis.io/apis/kolayik/kolayik-leave-api/) — The Leave API from KolayIK — 3 operation(s) for leave.
+- [KolayIK Payroll API](https://apis.io/apis/kolayik/kolayik-payroll-api/) — The Payroll API from KolayIK — 2 operation(s) for payroll.
+- [KolayIK Person API](https://apis.io/apis/kolayik/kolayik-person-api/) — The Person API from KolayIK — 18 operation(s) for person.
+- [KolayIK Profile API](https://apis.io/apis/kolayik/kolayik-profile-api/) — The Profile API from KolayIK — 1 operation(s) for profile.
+- [KolayIK Timelog API](https://apis.io/apis/kolayik/kolayik-timelog-api/) — The Timelog API from KolayIK — 4 operation(s) for timelog.
+- [KolayIK Training API](https://apis.io/apis/kolayik/kolayik-training-api/) — The Training API from KolayIK — 5 operation(s) for training.
+- [KolayIK Transaction API](https://apis.io/apis/kolayik/kolayik-transaction-api/) — The Transaction API from KolayIK — 4 operation(s) for transaction.
+- [KolayIK Unit API](https://apis.io/apis/kolayik/kolayik-unit-api/) — The Unit API from KolayIK — 2 operation(s) for unit.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (2)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Check balances and book leave in Kolay İK](https://apis.io/arazzos/kolayik/kolayik-book-leave/)
+- [Onboard an employee in Kolay İK](https://apis.io/arazzos/kolayik/kolayik-onboard-employee/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [kolayik](https://apis.io/servers/kolayik/kolayik/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Kolayik Agentic Access](https://apis.io/agentic-access/kolayik/kolayik-agentic-access/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Kolay Public Approval Process API](https://apis.io/collections/kolayik/open-kolayik-approval-process-api/)
+- [Kolay Public Approval Process Calendar API](https://apis.io/collections/kolayik/open-kolayik-calendar-api/)
+- [Kolay Public Approval Process Expense API](https://apis.io/collections/kolayik/open-kolayik-expense-api/)
+- [Kolay Public Approval Process Leave API](https://apis.io/collections/kolayik/open-kolayik-leave-api/)
+- [Kolay Public Approval Process Payroll API](https://apis.io/collections/kolayik/open-kolayik-payroll-api/)
+- [Kolay Public Approval Process Person API](https://apis.io/collections/kolayik/open-kolayik-person-api/)
+- [Kolay Public Approval Process Profile API](https://apis.io/collections/kolayik/open-kolayik-profile-api/)
+- [Kolay Public Approval Process Timelog API](https://apis.io/collections/kolayik/open-kolayik-timelog-api/)
+- [Kolay Public Approval Process Training API](https://apis.io/collections/kolayik/open-kolayik-training-api/)
+- [Kolay Public Approval Process Transaction API](https://apis.io/collections/kolayik/open-kolayik-transaction-api/)
+- [Kolay Public Approval Process Unit API](https://apis.io/collections/kolayik/open-kolayik-unit-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Kolayik Public Api Overlay](https://apis.io/overlays/kolayik/kolayik-public-api-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kolayik Authentication](https://apis.io/security/kolayik/kolayik-authentication/)
+- [Kolayik Domain Security](https://apis.io/security/kolayik/kolayik-domain-security/)
+- [Kolayik Vulnerability Disclosure](https://apis.io/security/kolayik/kolayik-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://kolayik.com)
+- [Documentation](https://apidocs.kolayik.com/)
+- [API reference](https://apidocs.kolayik.com/)
+- [Pricing](https://kolayik.com/insan-kaynaklari-yazilimi-fiyatlari)
+- [Sign up](https://kolayik.com/kayit-ol)
+- [Support](https://destek.kolayik.com/tr/)
+- [Changelog](https://updates.kolayik.com/tr)
+- [Blog](https://kolayik.com/blog)
+- [Security](https://kolayik.com/bilgi-guvenligi-politikasi)
+- [Compliance](https://kolayik.com/bilgi-guvenligi-politikasi)
+- [Terms of service](https://kolayik.com/kullanici-sozlesmesi)
+- [Privacy policy](https://kolayik.com/internet-sitesi-kvkk)
+- [GitHub](https://github.com/kolayik)
+- [Status](https://status.kolayik.com)
+
+## API Evangelist rating
+
+**Kin Score 48.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `postman/` — the official published Postman collection, verbatim | searched |
-| `openapi/` — OpenAPI 3.1 converted faithfully from that collection | derived |
-| `overlays/` — API Evangelist enhancements and gap notes | generated |
-| `authentication/`, `conventions/`, `errors/`, `lifecycle/`, `data-model/` | searched / derived |
-| `conformance/` — ISO 27001 / 27701 / 9001 and KVKK posture | searched |
-| `security/` — domain security probe, vulnerability disclosure findings | probed |
-| `changelog/`, `well-known/`, `packages/`, `cli/`, `mcp/`, `llms/` | searched / derived |
-| `skills/`, `arazzo/`, `agentic-access/` | generated |
+| Discoverability | 73.2 |
+| Contract quality | 49.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 51.8 |
+| Access clarity | 52.6 |
 
-## Notable gaps
+**Agent readiness 28.3** — agent-aware
 
-- No 4xx/5xx responses, JSON schemas, rate-limit policy or error-code registry are documented.
-- **No sandbox or test mode** — every write hits live HR, payroll and personal data.
-- No idempotency mechanism, no webhook or event surface, no OAuth scopes.
-- No first-party SDKs or CLI; the `kolay-cli` package (and its `kolay-mcp` server) is community-maintained and explicitly not a Kolay product.
-- No `/.well-known/security.txt` and no formal vulnerability disclosure policy, though a published information security policy and a security contact exist.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-Backed by: 500-global — https://kolayik.com
+**Regulatory alignment 29.4** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kolayik/](https://apis.io/providers/kolayik/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for KolayIK: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kolayik/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
